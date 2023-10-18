@@ -1,12 +1,849 @@
 {
   "path": ".",
-  "variables": {},
-  "outputs": {},
+  "variables": {
+    "pi_cloud_connection": {
+      "name": "pi_cloud_connection",
+      "type": "object({\n    count          = number\n    speed          = number\n    global_routing = bool\n    metered        = bool\n  })",
+      "description": "Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created.",
+      "default": {
+        "count": 0,
+        "global_routing": true,
+        "metered": true,
+        "speed": 5000
+      },
+      "source": [
+        "module.powervs_cloud_connection_attach",
+        "module.powervs_cloud_connection_create"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 36
+      }
+    },
+    "pi_image_names": {
+      "name": "pi_image_names",
+      "type": "list(string)",
+      "description": "List of images to be imported into cloud account from catalog images. Max number of images that can be imported is 6 images. Can be set to null and images will not be imported. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md)",
+      "source": [
+        "module.powervs_workspace"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 105
+      }
+    },
+    "pi_private_subnet_1": {
+      "name": "pi_private_subnet_1",
+      "type": "object({\n    name = string\n    cidr = string\n  })",
+      "description": "IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet.",
+      "default": {
+        "cidr": "10.51.0.0/24",
+        "name": "sub_1"
+      },
+      "source": [
+        "module.powervs_workspace"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 57
+      }
+    },
+    "pi_private_subnet_2": {
+      "name": "pi_private_subnet_2",
+      "type": "object({\n    name = string\n    cidr = string\n  })",
+      "description": "IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet.",
+      "source": [
+        "module.powervs_workspace"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 69
+      }
+    },
+    "pi_private_subnet_3": {
+      "name": "pi_private_subnet_3",
+      "type": "object({\n    name = string\n    cidr = string\n  })",
+      "description": "IBM Cloud PowerVS third private subnet name and cidr which will be created. Set value to null to not create this subnet.",
+      "source": [
+        "module.powervs_workspace"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 78
+      }
+    },
+    "pi_public_subnet_enable": {
+      "name": "pi_public_subnet_enable",
+      "type": "bool",
+      "description": "IBM Cloud PowerVS Public Network. Set to true to enable this.",
+      "default": false,
+      "source": [
+        "module.powervs_workspace.ibm_pi_network.public_subnet.count"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 87
+      }
+    },
+    "pi_resource_group_name": {
+      "name": "pi_resource_group_name",
+      "type": "string",
+      "description": "Existing Resource Group Name.",
+      "required": true,
+      "source": [
+        "module.powervs_workspace.data.ibm_resource_group.resource_group_ds.name"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 10
+      },
+      "cloud_data_type": "resource_group",
+      "computed": true,
+      "cloud_data_range": [
+        "resolved_to:name"
+      ]
+    },
+    "pi_ssh_public_key": {
+      "name": "pi_ssh_public_key",
+      "type": "object({\n    name  = string\n    value = string\n  })",
+      "description": "Name and value of the Public SSH key to create.",
+      "required": true,
+      "source": [
+        "module.powervs_workspace"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 24
+      }
+    },
+    "pi_tags": {
+      "name": "pi_tags",
+      "type": "list(string)",
+      "description": "List of Tag names for IBM Cloud PowerVS workspace. Can be set to null.",
+      "required": true,
+      "source": [
+        "module.powervs_workspace.ibm_resource_instance.pi_workspace.tags"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 99
+      },
+      "min_length": 1,
+      "max_length": 128,
+      "matches": "^[A-Za-z0-9:_ .-]+$",
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
+      }
+    },
+    "pi_workspace_name": {
+      "name": "pi_workspace_name",
+      "type": "string",
+      "description": "Name of IBM Cloud PowerVS workspace which will be created.",
+      "required": true,
+      "source": [
+        "ibm_tg_connection.tg_powervs_workspace_attach.name",
+        "module.powervs_workspace.ibm_resource_instance.pi_workspace.name"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 19
+      },
+      "min_length": 1,
+      "max_length": 63,
+      "matches": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$"
+    },
+    "pi_zone": {
+      "name": "pi_zone",
+      "type": "string",
+      "description": "IBM Cloud PowerVS zone.",
+      "required": true,
+      "source": [
+        "module.powervs_cloud_connection_create",
+        "module.powervs_workspace.ibm_resource_instance.pi_workspace.location"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 1
+      },
+      "cloud_data_type": "region",
+      "immutable": true
+    },
+    "transit_gateway_id": {
+      "name": "transit_gateway_id",
+      "type": "string",
+      "description": "ID of the existing transit gateway. This is required to attach the CCs( Non PER environment) to TGW. Can be set to null and CCs will not be attached to TGW but it will be created.",
+      "required": true,
+      "source": [
+        "ibm_tg_connection.tg_powervs_workspace_attach.gateway",
+        "module.powervs_cloud_connection_create.ibm_tg_connection.ibm_tg_cc_connection_1.gateway",
+        "module.powervs_cloud_connection_create.ibm_tg_connection.ibm_tg_cc_connection_2.gateway"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 93
+      },
+      "immutable": true
+    }
+  },
+  "outputs": {
+    "pi_cloud_connection_count": {
+      "name": "pi_cloud_connection_count",
+      "description": "Number of cloud connections configured in created PowerVS infrastructure.",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 51
+      }
+    },
+    "pi_private_subnet_1": {
+      "name": "pi_private_subnet_1",
+      "description": "Created PowerVS private subnet 1 details.",
+      "value": "module.powervs_workspace.pi_private_subnet_1",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 31
+      }
+    },
+    "pi_private_subnet_2": {
+      "name": "pi_private_subnet_2",
+      "description": "Created PowerVS private subnet 2 details.",
+      "value": "module.powervs_workspace.pi_private_subnet_2",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 36
+      }
+    },
+    "pi_private_subnet_3": {
+      "name": "pi_private_subnet_3",
+      "description": "Created PowerVS private subnet 3 details.",
+      "value": "module.powervs_workspace.pi_private_subnet_3",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 41
+      }
+    },
+    "pi_public_subnet": {
+      "name": "pi_public_subnet",
+      "description": "Created PowerVS public subnet.",
+      "value": "module.powervs_workspace.pi_public_subnet",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 46
+      }
+    },
+    "pi_resource_group_name": {
+      "name": "pi_resource_group_name",
+      "description": "Existing Resource Group Name.",
+      "value": "var.pi_resource_group_name",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 6
+      },
+      "type": "string",
+      "cloud_data_type": "resource_group",
+      "cloud_data_range": [
+        "resolved_to:name"
+      ]
+    },
+    "pi_ssh_public_key": {
+      "name": "pi_ssh_public_key",
+      "description": "Name and value of the Public SSH key to create.",
+      "value": "var.pi_ssh_public_key",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 26
+      },
+      "type": "object({\n    name  = string\n    value = string\n  })"
+    },
+    "pi_workspace_guid": {
+      "name": "pi_workspace_guid",
+      "description": "PowerVS infrastructure workspace guid. The GUID of the resource instance.",
+      "value": "module.powervs_workspace.pi_workspace_guid",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 21
+      },
+      "type": "TypeString"
+    },
+    "pi_workspace_id": {
+      "name": "pi_workspace_id",
+      "description": "PowerVS infrastructure workspace id. The unique identifier of the new resource instance.",
+      "value": "module.powervs_workspace.pi_workspace_id",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 16
+      }
+    },
+    "pi_workspace_name": {
+      "name": "pi_workspace_name",
+      "description": "Name of IBM Cloud PowerVS workspace which will be created.",
+      "value": "var.pi_workspace_name",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 11
+      },
+      "type": "string"
+    },
+    "pi_zone": {
+      "name": "pi_zone",
+      "description": "IBM Cloud PowerVS zone.",
+      "value": "var.pi_zone",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 1
+      },
+      "type": "string",
+      "cloud_data_type": "region"
+    }
+  },
   "required_core": [
-    "\u003e= 1.3.0, \u003c1.6.0"
+    "\u003e= 1.3"
   ],
-  "required_providers": {},
-  "managed_resources": {},
+  "required_providers": {
+    "ibm": {
+      "source": "IBM-Cloud/ibm",
+      "version_constraints": [
+        "\u003e=1.49.0"
+      ]
+    }
+  },
+  "managed_resources": {
+    "ibm_tg_connection.tg_powervs_workspace_attach": {
+      "mode": "managed",
+      "type": "ibm_tg_connection",
+      "name": "tg_powervs_workspace_attach",
+      "attributes": {
+        "gateway": "transit_gateway_id",
+        "name": "pi_workspace_name"
+      },
+      "provider": {
+        "name": "ibm"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 75
+      }
+    }
+  },
   "data_resources": {},
-  "module_calls": {}
+  "module_calls": {
+    "powervs_cloud_connection_attach": {
+      "name": "powervs_cloud_connection_attach",
+      "source": "./submodules/pi-cloudconnection-attach",
+      "attributes": {
+        "pi_cloud_connection_count": "pi_cloud_connection"
+      },
+      "managed_resources": {
+        "ibm_pi_cloud_connection_network_attach.private_subnet_1": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection_network_attach",
+          "name": "private_subnet_1",
+          "attributes": {
+            "count": "pi_cloud_connection_count",
+            "pi_cloud_instance_id": "pi_workspace_guid",
+            "pi_network_id": "pi_private_subnet_ids"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-attach/main.tf",
+            "line": 13
+          }
+        },
+        "ibm_pi_cloud_connection_network_attach.private_subnet_1_redundant": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection_network_attach",
+          "name": "private_subnet_1_redundant",
+          "attributes": {
+            "count": "pi_cloud_connection_count",
+            "pi_cloud_instance_id": "pi_workspace_guid",
+            "pi_network_id": "pi_private_subnet_ids"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-attach/main.tf",
+            "line": 52
+          }
+        },
+        "ibm_pi_cloud_connection_network_attach.private_subnet_2": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection_network_attach",
+          "name": "private_subnet_2",
+          "attributes": {
+            "count": "pi_cloud_connection_count",
+            "pi_cloud_instance_id": "pi_workspace_guid",
+            "pi_network_id": "pi_private_subnet_ids"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-attach/main.tf",
+            "line": 24
+          }
+        },
+        "ibm_pi_cloud_connection_network_attach.private_subnet_2_redundant": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection_network_attach",
+          "name": "private_subnet_2_redundant",
+          "attributes": {
+            "count": "pi_cloud_connection_count",
+            "pi_cloud_instance_id": "pi_workspace_guid",
+            "pi_network_id": "pi_private_subnet_ids"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-attach/main.tf",
+            "line": 65
+          }
+        },
+        "ibm_pi_cloud_connection_network_attach.private_subnet_3": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection_network_attach",
+          "name": "private_subnet_3",
+          "attributes": {
+            "count": "pi_cloud_connection_count",
+            "pi_cloud_instance_id": "pi_workspace_guid",
+            "pi_network_id": "pi_private_subnet_ids"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-attach/main.tf",
+            "line": 36
+          }
+        },
+        "ibm_pi_cloud_connection_network_attach.private_subnet_3_redundant": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection_network_attach",
+          "name": "private_subnet_3_redundant",
+          "attributes": {
+            "count": "pi_cloud_connection_count",
+            "pi_cloud_instance_id": "pi_workspace_guid",
+            "pi_network_id": "pi_private_subnet_ids"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-attach/main.tf",
+            "line": 76
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_pi_cloud_connections.cloud_connection_ds": {
+          "mode": "data",
+          "type": "ibm_pi_cloud_connections",
+          "name": "cloud_connection_ds",
+          "attributes": {
+            "pi_cloud_instance_id": "pi_workspace_guid"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-attach/main.tf",
+            "line": 5
+          }
+        }
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 58
+      }
+    },
+    "powervs_cloud_connection_create": {
+      "name": "powervs_cloud_connection_create",
+      "source": "./submodules/pi-cloudconnection-create",
+      "attributes": {
+        "pi_cloud_connection": "pi_cloud_connection",
+        "pi_zone": "pi_zone",
+        "transit_gateway_id": "transit_gateway_id"
+      },
+      "managed_resources": {
+        "ibm_pi_cloud_connection.cloud_connection": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection",
+          "name": "cloud_connection",
+          "attributes": {
+            "count": "pi_cloud_connection",
+            "pi_cloud_connection_global_routing": "pi_cloud_connection",
+            "pi_cloud_connection_metered": "pi_cloud_connection",
+            "pi_cloud_connection_speed": "pi_cloud_connection",
+            "pi_cloud_instance_id": "pi_workspace_guid"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 14
+          }
+        },
+        "ibm_pi_cloud_connection.cloud_connection_backup": {
+          "mode": "managed",
+          "type": "ibm_pi_cloud_connection",
+          "name": "cloud_connection_backup",
+          "attributes": {
+            "count": "pi_cloud_connection",
+            "pi_cloud_connection_global_routing": "pi_cloud_connection",
+            "pi_cloud_connection_metered": "pi_cloud_connection",
+            "pi_cloud_connection_speed": "pi_cloud_connection",
+            "pi_cloud_instance_id": "pi_workspace_guid"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 25
+          }
+        },
+        "ibm_tg_connection.ibm_tg_cc_connection_1": {
+          "mode": "managed",
+          "type": "ibm_tg_connection",
+          "name": "ibm_tg_cc_connection_1",
+          "attributes": {
+            "count": "pi_cloud_connection",
+            "gateway": "transit_gateway_id"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 79
+          }
+        },
+        "ibm_tg_connection.ibm_tg_cc_connection_2": {
+          "mode": "managed",
+          "type": "ibm_tg_connection",
+          "name": "ibm_tg_cc_connection_2",
+          "attributes": {
+            "count": "pi_cloud_connection",
+            "gateway": "transit_gateway_id"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 89
+          }
+        },
+        "time_sleep.dl_1_resource_propagation": {
+          "mode": "managed",
+          "type": "time_sleep",
+          "name": "dl_1_resource_propagation",
+          "attributes": {
+            "count": "pi_cloud_connection"
+          },
+          "provider": {
+            "name": "time"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 55
+          }
+        },
+        "time_sleep.dl_2_resource_propagation": {
+          "mode": "managed",
+          "type": "time_sleep",
+          "name": "dl_2_resource_propagation",
+          "attributes": {
+            "count": "pi_cloud_connection"
+          },
+          "provider": {
+            "name": "time"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 65
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_dl_gateway.gateway_ds_1": {
+          "mode": "data",
+          "type": "ibm_dl_gateway",
+          "name": "gateway_ds_1",
+          "attributes": {
+            "count": "pi_cloud_connection"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 41
+          }
+        },
+        "data.ibm_dl_gateway.gateway_ds_2": {
+          "mode": "data",
+          "type": "ibm_dl_gateway",
+          "name": "gateway_ds_2",
+          "attributes": {
+            "count": "pi_cloud_connection"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-cloudconnection-create/main.tf",
+            "line": 48
+          }
+        }
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 37
+      }
+    },
+    "powervs_workspace": {
+      "name": "powervs_workspace",
+      "source": "./submodules/pi-workspace",
+      "attributes": {
+        "pi_image_names": "pi_image_names",
+        "pi_private_subnet_1": "pi_private_subnet_1",
+        "pi_private_subnet_2": "pi_private_subnet_2",
+        "pi_private_subnet_3": "pi_private_subnet_3",
+        "pi_public_subnet_enable": "pi_public_subnet_enable",
+        "pi_resource_group_name": "pi_resource_group_name",
+        "pi_ssh_public_key": "pi_ssh_public_key",
+        "pi_tags": "pi_tags",
+        "pi_workspace_name": "pi_workspace_name",
+        "pi_zone": "pi_zone"
+      },
+      "managed_resources": {
+        "ibm_pi_image.import_images_1": {
+          "mode": "managed",
+          "type": "ibm_pi_image",
+          "name": "import_images_1",
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_images.tf",
+            "line": 31
+          }
+        },
+        "ibm_pi_image.import_images_2": {
+          "mode": "managed",
+          "type": "ibm_pi_image",
+          "name": "import_images_2",
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_images.tf",
+            "line": 43
+          }
+        },
+        "ibm_pi_image.import_images_3": {
+          "mode": "managed",
+          "type": "ibm_pi_image",
+          "name": "import_images_3",
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_images.tf",
+            "line": 55
+          }
+        },
+        "ibm_pi_key.ssh_key": {
+          "mode": "managed",
+          "type": "ibm_pi_key",
+          "name": "ssh_key",
+          "attributes": {
+            "pi_key_name": "pi_ssh_public_key",
+            "pi_ssh_key": "pi_ssh_public_key"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_ssh_key.tf",
+            "line": 5
+          }
+        },
+        "ibm_pi_network.private_subnet_1": {
+          "mode": "managed",
+          "type": "ibm_pi_network",
+          "name": "private_subnet_1",
+          "attributes": {
+            "count": "pi_private_subnet_1",
+            "pi_cidr": "pi_private_subnet_1",
+            "pi_network_name": "pi_private_subnet_1"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_subnets.tf",
+            "line": 5
+          }
+        },
+        "ibm_pi_network.private_subnet_2": {
+          "mode": "managed",
+          "type": "ibm_pi_network",
+          "name": "private_subnet_2",
+          "attributes": {
+            "count": "pi_private_subnet_1",
+            "pi_cidr": "pi_private_subnet_2",
+            "pi_network_name": "pi_private_subnet_2"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_subnets.tf",
+            "line": 15
+          }
+        },
+        "ibm_pi_network.private_subnet_3": {
+          "mode": "managed",
+          "type": "ibm_pi_network",
+          "name": "private_subnet_3",
+          "attributes": {
+            "count": "pi_private_subnet_3",
+            "pi_cidr": "pi_private_subnet_3",
+            "pi_network_name": "pi_private_subnet_3"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_subnets.tf",
+            "line": 27
+          }
+        },
+        "ibm_pi_network.public_subnet": {
+          "mode": "managed",
+          "type": "ibm_pi_network",
+          "name": "public_subnet",
+          "attributes": {
+            "count": "pi_public_subnet_enable"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_subnets.tf",
+            "line": 44
+          }
+        },
+        "ibm_resource_instance.pi_workspace": {
+          "mode": "managed",
+          "type": "ibm_resource_instance",
+          "name": "pi_workspace",
+          "attributes": {
+            "location": "pi_zone",
+            "name": "pi_workspace_name",
+            "tags": "pi_tags"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/main.tf",
+            "line": 19
+          }
+        }
+      },
+      "data_resources": {
+        "data.ibm_pi_catalog_images.catalog_images_ds": {
+          "mode": "data",
+          "type": "ibm_pi_catalog_images",
+          "name": "catalog_images_ds",
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/pi_images.tf",
+            "line": 5
+          }
+        },
+        "data.ibm_resource_group.resource_group_ds": {
+          "mode": "data",
+          "type": "ibm_resource_group",
+          "name": "resource_group_ds",
+          "attributes": {
+            "name": "pi_resource_group_name"
+          },
+          "provider": {
+            "name": "ibm"
+          },
+          "pos": {
+            "filename": "submodules/pi-workspace/main.tf",
+            "line": 15
+          }
+        }
+      },
+      "outputs": {
+        "pi_private_subnet_1": {
+          "name": "pi_private_subnet_1",
+          "description": "Created PowerVS private subnet 1 details.",
+          "pos": {
+            "filename": "submodules/pi-workspace/outputs.tf",
+            "line": 11
+          }
+        },
+        "pi_private_subnet_2": {
+          "name": "pi_private_subnet_2",
+          "description": "Created PowerVS private subnet 2 details.",
+          "pos": {
+            "filename": "submodules/pi-workspace/outputs.tf",
+            "line": 16
+          }
+        },
+        "pi_private_subnet_3": {
+          "name": "pi_private_subnet_3",
+          "description": "Created PowerVS private subnet 3 details.",
+          "pos": {
+            "filename": "submodules/pi-workspace/outputs.tf",
+            "line": 21
+          }
+        },
+        "pi_public_subnet": {
+          "name": "pi_public_subnet",
+          "description": "Created PowerVS public subnet.",
+          "pos": {
+            "filename": "submodules/pi-workspace/outputs.tf",
+            "line": 26
+          }
+        },
+        "pi_workspace_guid": {
+          "name": "pi_workspace_guid",
+          "description": "PowerVS infrastructure workspace guid. The GUID of the resource instance.",
+          "value": "ibm_resource_instance.pi_workspace.guid",
+          "pos": {
+            "filename": "submodules/pi-workspace/outputs.tf",
+            "line": 6
+          },
+          "type": "TypeString"
+        },
+        "pi_workspace_id": {
+          "name": "pi_workspace_id",
+          "description": "PowerVS infrastructure workspace id. The unique identifier of the new resource instance.",
+          "value": "ibm_resource_instance.pi_workspace.id",
+          "pos": {
+            "filename": "submodules/pi-workspace/outputs.tf",
+            "line": 1
+          }
+        }
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 15
+      }
+    }
+  }
 }
