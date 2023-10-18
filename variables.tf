@@ -29,26 +29,6 @@ variable "pi_ssh_public_key" {
   })
 }
 
-########################################################
-# Cloud Connection variables
-########################################################
-
-variable "pi_cloud_connection" {
-  description = "Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created."
-  type = object({
-    count          = number
-    speed          = number
-    global_routing = bool
-    metered        = bool
-  })
-
-  default = {
-    count          = 0
-    speed          = 5000
-    global_routing = true
-    metered        = true
-  }
-}
 
 ########################################################
 #Optional Parameters
@@ -90,10 +70,33 @@ variable "pi_public_subnet_enable" {
   default     = false
 }
 
-variable "transit_gateway_id" {
-  description = "ID of the existing transit gateway. This is required to attach the CCs( Non PER environment) to TGW. Can be set to null and CCs will not be attached to TGW but it will be created."
-  type        = string
-  default     = null
+variable "pi_cloud_connection" {
+  description = "Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created."
+  type = object({
+    count          = number
+    speed          = number
+    global_routing = bool
+    metered        = bool
+  })
+
+  default = {
+    count          = 2
+    speed          = 5000
+    global_routing = true
+    metered        = true
+  }
+}
+
+variable "pi_transit_gateway_connection" {
+  description = "Set enable to true and provide ID of the existing transit gateway to attach the CCs( Non PER DC) to TGW or to attach PowerVS workspace to TGW (PER DC). If enable is false, CCs will not be attached to TGW , or PowerVS workspace will not be attached to TGW, but CCs in (Non PER DC) will be created."
+  type = object({
+    enable             = bool
+    transit_gateway_id = string
+  })
+  default = {
+    enable             = false
+    transit_gateway_id = ""
+  }
 }
 
 variable "pi_tags" {

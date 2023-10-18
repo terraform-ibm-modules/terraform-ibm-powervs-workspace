@@ -6,7 +6,7 @@
       "type": "object({\n    count          = number\n    speed          = number\n    global_routing = bool\n    metered        = bool\n  })",
       "description": "Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created.",
       "default": {
-        "count": 0,
+        "count": 2,
         "global_routing": true,
         "metered": true,
         "speed": 5000
@@ -17,7 +17,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 36
+        "line": 73
       }
     },
     "pi_image_names": {
@@ -29,7 +29,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 105
+        "line": 108
       }
     },
     "pi_private_subnet_1": {
@@ -45,7 +45,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 57
+        "line": 37
       }
     },
     "pi_private_subnet_2": {
@@ -57,7 +57,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 69
+        "line": 49
       }
     },
     "pi_private_subnet_3": {
@@ -69,7 +69,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 78
+        "line": 58
       }
     },
     "pi_public_subnet_enable": {
@@ -82,7 +82,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 87
+        "line": 67
       }
     },
     "pi_resource_group_name": {
@@ -126,7 +126,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 99
+        "line": 102
       },
       "min_length": 1,
       "max_length": 128,
@@ -134,6 +134,23 @@
       "computed": true,
       "elem": {
         "type": "TypeString"
+      }
+    },
+    "pi_transit_gateway_connection": {
+      "name": "pi_transit_gateway_connection",
+      "type": "object({\n    enable             = bool\n    transit_gateway_id = string\n  })",
+      "description": "Set enable to true and provide ID of the existing transit gateway to attach the CCs( Non PER DC) to TGW or to attach PowerVS workspace to TGW (PER DC). If enable is false, CCs will not be attached to TGW , or PowerVS workspace will not be attached to TGW, but CCs in (Non PER DC) will be created.",
+      "default": {
+        "enable": false,
+        "transit_gateway_id": ""
+      },
+      "source": [
+        "ibm_tg_connection.tg_powervs_workspace_attach.gateway",
+        "module.powervs_cloud_connection_create"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 90
       }
     },
     "pi_workspace_name": {
@@ -167,22 +184,6 @@
         "line": 1
       },
       "cloud_data_type": "region",
-      "immutable": true
-    },
-    "transit_gateway_id": {
-      "name": "transit_gateway_id",
-      "type": "string",
-      "description": "ID of the existing transit gateway. This is required to attach the CCs( Non PER environment) to TGW. Can be set to null and CCs will not be attached to TGW but it will be created.",
-      "required": true,
-      "source": [
-        "ibm_tg_connection.tg_powervs_workspace_attach.gateway",
-        "module.powervs_cloud_connection_create.ibm_tg_connection.ibm_tg_cc_connection_1.gateway",
-        "module.powervs_cloud_connection_create.ibm_tg_connection.ibm_tg_cc_connection_2.gateway"
-      ],
-      "pos": {
-        "filename": "variables.tf",
-        "line": 93
-      },
       "immutable": true
     }
   },
@@ -313,7 +314,7 @@
       "type": "ibm_tg_connection",
       "name": "tg_powervs_workspace_attach",
       "attributes": {
-        "gateway": "transit_gateway_id",
+        "gateway": "pi_transit_gateway_connection",
         "name": "pi_workspace_name"
       },
       "provider": {
@@ -464,8 +465,8 @@
       "source": "./submodules/pi-cloudconnection-create",
       "attributes": {
         "pi_cloud_connection": "pi_cloud_connection",
-        "pi_zone": "pi_zone",
-        "transit_gateway_id": "transit_gateway_id"
+        "pi_transit_gateway_connection": "pi_transit_gateway_connection",
+        "pi_zone": "pi_zone"
       },
       "managed_resources": {
         "ibm_pi_cloud_connection.cloud_connection": {
@@ -512,7 +513,7 @@
           "name": "ibm_tg_cc_connection_1",
           "attributes": {
             "count": "pi_cloud_connection",
-            "gateway": "transit_gateway_id"
+            "gateway": "pi_transit_gateway_connection"
           },
           "provider": {
             "name": "ibm"
@@ -528,7 +529,7 @@
           "name": "ibm_tg_cc_connection_2",
           "attributes": {
             "count": "pi_cloud_connection",
-            "gateway": "transit_gateway_id"
+            "gateway": "pi_transit_gateway_connection"
           },
           "provider": {
             "name": "ibm"

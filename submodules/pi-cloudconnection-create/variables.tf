@@ -8,9 +8,12 @@ variable "pi_workspace_guid" {
   type        = string
 }
 
-variable "transit_gateway_id" {
-  description = "ID of the existing transit gateway. This is required to attach the CCs( Non PER environment) to TGW. Can be set to null and CCs will not be attached to TGW but it will be created."
-  type        = string
+variable "pi_transit_gateway_connection" {
+  description = "Set enable to true and provide ID of the existing transit gateway to attach the CCs( Non PER environment) to TGW. If enable is false, CCs will not be attached to TGW but CCs will be created."
+  type = object({
+    enable             = bool
+    transit_gateway_id = string
+  })
 }
 
 variable "pi_cloud_connection" {

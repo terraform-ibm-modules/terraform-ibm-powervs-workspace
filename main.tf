@@ -38,10 +38,10 @@ module "powervs_cloud_connection_create" {
   source = "./submodules/pi-cloudconnection-create"
   count  = local.pi_per_enabled ? 0 : 1
 
-  pi_zone             = var.pi_zone
-  pi_workspace_guid   = module.powervs_workspace.pi_workspace_guid
-  transit_gateway_id  = var.transit_gateway_id
-  pi_cloud_connection = var.pi_cloud_connection
+  pi_zone                       = var.pi_zone
+  pi_workspace_guid             = module.powervs_workspace.pi_workspace_guid
+  pi_transit_gateway_connection = var.pi_transit_gateway_connection
+  pi_cloud_connection           = var.pi_cloud_connection
 }
 
 #####################################################
@@ -73,10 +73,10 @@ module "powervs_cloud_connection_attach" {
 #####################################################
 
 resource "ibm_tg_connection" "tg_powervs_workspace_attach" {
-  count = local.pi_per_enabled && var.transit_gateway_id != null ? 1 : 0
+  count = local.pi_per_enabled && var.pi_transit_gateway_connection.enable ? 1 : 0
 
   name         = var.pi_workspace_name
   network_type = "power_virtual_server"
-  gateway      = var.transit_gateway_id
+  gateway      = var.pi_transit_gateway_connection.transit_gateway_id
   network_id   = module.powervs_workspace.pi_workspace_id
 }

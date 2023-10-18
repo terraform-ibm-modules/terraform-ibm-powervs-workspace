@@ -43,18 +43,18 @@ module "power-workspace" {
   source  = "terraform-ibm-modules/powervs-workspace/ibm"
   version = "latest" # Replace "latest" with a release version to lock into a specific release
 
-  pi_zone                 = var.pi_zone
-  pi_resource_group_name  = var.pi_resource_group_name
-  pi_workspace_name       = var.pi_workspace_name
-  pi_ssh_public_key       = var.pi_ssh_public_key
-  pi_cloud_connection     = var.pi_cloud_connection     #(optional, default check vars)
-  pi_private_subnet_1     = var.pi_private_subnet_1     #(optional, default [])
-  pi_private_subnet_2     = var.pi_private_subnet_2     #(optional, default [])
-  pi_private_subnet_3     = var.pi_private_subnet_3     #(optional, default null)
-  pi_public_subnet_enable = var.pi_public_subnet_enable #(optional, default false)
-  transit_gateway_id      = var.transit_gateway_id      #(optional, default null)
-  pi_tags                 = var.pi_tags                 #(optional, default [])
-  pi_image_names          = var.pi_image_names          #(optional, default [])
+  pi_zone                        = var.pi_zone
+  pi_resource_group_name         = var.pi_resource_group_name
+  pi_workspace_name              = var.pi_workspace_name
+  pi_ssh_public_key              = var.pi_ssh_public_key
+  pi_cloud_connection            = var.pi_cloud_connection             #(optional, default check vars)
+  pi_private_subnet_1            = var.pi_private_subnet_1             #(optional, default [])
+  pi_private_subnet_2            = var.pi_private_subnet_2             #(optional, default [])
+  pi_private_subnet_3            = var.pi_private_subnet_3             #(optional, default null)
+  pi_public_subnet_enable        = var.pi_public_subnet_enable         #(optional, default false)
+  pi_transit_gateway_connection  = var.pi_transit_gateway_connection   #(optional, default check vars)
+  pi_tags                        = var.pi_tags                         #(optional, default [])
+  pi_image_names                 = var.pi_image_names                  #(optional, default [])
 }
 
 ```
@@ -104,7 +104,7 @@ You need the following permissions to run this module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_pi_cloud_connection"></a> [pi\_cloud\_connection](#input\_pi\_cloud\_connection) | Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global\_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created. | <pre>object({<br>    count          = number<br>    speed          = number<br>    global_routing = bool<br>    metered        = bool<br>  })</pre> | <pre>{<br>  "count": 0,<br>  "global_routing": true,<br>  "metered": true,<br>  "speed": 5000<br>}</pre> | no |
+| <a name="input_pi_cloud_connection"></a> [pi\_cloud\_connection](#input\_pi\_cloud\_connection) | Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global\_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created. | <pre>object({<br>    count          = number<br>    speed          = number<br>    global_routing = bool<br>    metered        = bool<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "global_routing": true,<br>  "metered": true,<br>  "speed": 5000<br>}</pre> | no |
 | <a name="input_pi_image_names"></a> [pi\_image\_names](#input\_pi\_image\_names) | List of images to be imported into cloud account from catalog images. Max number of images that can be imported is 6 images. Can be set to null and images will not be imported. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md) | `list(string)` | `null` | no |
 | <a name="input_pi_private_subnet_1"></a> [pi\_private\_subnet\_1](#input\_pi\_private\_subnet\_1) | IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | <pre>{<br>  "cidr": "10.51.0.0/24",<br>  "name": "sub_1"<br>}</pre> | no |
 | <a name="input_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#input\_pi\_private\_subnet\_2) | IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | `null` | no |
@@ -113,9 +113,9 @@ You need the following permissions to run this module.
 | <a name="input_pi_resource_group_name"></a> [pi\_resource\_group\_name](#input\_pi\_resource\_group\_name) | Existing Resource Group Name. | `string` | n/a | yes |
 | <a name="input_pi_ssh_public_key"></a> [pi\_ssh\_public\_key](#input\_pi\_ssh\_public\_key) | Name and value of the Public SSH key to create. | <pre>object({<br>    name  = string<br>    value = string<br>  })</pre> | n/a | yes |
 | <a name="input_pi_tags"></a> [pi\_tags](#input\_pi\_tags) | List of Tag names for IBM Cloud PowerVS workspace. Can be set to null. | `list(string)` | `null` | no |
+| <a name="input_pi_transit_gateway_connection"></a> [pi\_transit\_gateway\_connection](#input\_pi\_transit\_gateway\_connection) | Set enable to true and provide ID of the existing transit gateway to attach the CCs( Non PER DC) to TGW or to attach PowerVS workspace to TGW (PER DC). If enable is false, CCs will not be attached to TGW , or PowerVS workspace will not be attached to TGW, but CCs in (Non PER DC) will be created. | <pre>object({<br>    enable             = bool<br>    transit_gateway_id = string<br>  })</pre> | <pre>{<br>  "enable": false,<br>  "transit_gateway_id": ""<br>}</pre> | no |
 | <a name="input_pi_workspace_name"></a> [pi\_workspace\_name](#input\_pi\_workspace\_name) | Name of IBM Cloud PowerVS workspace which will be created. | `string` | n/a | yes |
 | <a name="input_pi_zone"></a> [pi\_zone](#input\_pi\_zone) | IBM Cloud PowerVS zone. | `string` | n/a | yes |
-| <a name="input_transit_gateway_id"></a> [transit\_gateway\_id](#input\_transit\_gateway\_id) | ID of the existing transit gateway. This is required to attach the CCs( Non PER environment) to TGW. Can be set to null and CCs will not be attached to TGW but it will be created. | `string` | `null` | no |
 
 ### Outputs
 

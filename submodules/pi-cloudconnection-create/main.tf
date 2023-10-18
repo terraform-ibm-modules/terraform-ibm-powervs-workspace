@@ -78,21 +78,21 @@ resource "time_sleep" "dl_2_resource_propagation" {
 
 resource "ibm_tg_connection" "ibm_tg_cc_connection_1" {
   depends_on = [ibm_pi_cloud_connection.cloud_connection_backup]
-  count      = var.pi_cloud_connection.count > 0 && var.transit_gateway_id != null ? 1 : 0
+  count      = var.pi_cloud_connection.count > 0 && var.pi_transit_gateway_connection.enable ? 1 : 0
 
   name         = local.cloud_connection_name_1
   network_type = "directlink"
-  gateway      = var.transit_gateway_id
+  gateway      = var.pi_transit_gateway_connection.transit_gateway_id
   network_id   = time_sleep.dl_1_resource_propagation[0].triggers["dl_crn"]
 }
 
 resource "ibm_tg_connection" "ibm_tg_cc_connection_2" {
   depends_on = [ibm_tg_connection.ibm_tg_cc_connection_1]
-  count      = var.pi_cloud_connection.count > 1 && var.transit_gateway_id != null ? 1 : 0
+  count      = var.pi_cloud_connection.count > 1 && var.pi_transit_gateway_connection.enable ? 1 : 0
 
   name         = local.cloud_connection_name_2
   network_type = "directlink"
-  gateway      = var.transit_gateway_id
+  gateway      = var.pi_transit_gateway_connection.transit_gateway_id
   network_id   = time_sleep.dl_2_resource_propagation[0].triggers["dl_crn"]
 }
 

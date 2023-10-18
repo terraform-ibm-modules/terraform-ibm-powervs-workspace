@@ -13,10 +13,10 @@ ibmcloud_api_key = "your api key" != null ? "your api key" : null
 module "powervs_cloud_connection_create" {
   source = "./submodules/pi-cloudconnection-create"
 
-  pi_zone             = var.pi_zone
-  pi_workspace_guid   = var.pi_workspace_guid
-  transit_gateway_id  = var.transit_gateway_id
-  pi_cloud_connection = var.pi_cloud_connection
+  pi_zone                        = var.pi_zone
+  pi_workspace_guid              = var.pi_workspace_guid
+  pi_transit_gateway_connection  = var.pi_transit_gateway_connection
+  pi_cloud_connection            = var.pi_cloud_connection
 }
 ```
 
@@ -51,9 +51,9 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_pi_cloud_connection"></a> [pi\_cloud\_connection](#input\_pi\_cloud\_connection) | Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global\_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created. | <pre>object({<br>    count          = number<br>    speed          = number<br>    global_routing = bool<br>    metered        = bool<br>  })</pre> | n/a | yes |
+| <a name="input_pi_transit_gateway_connection"></a> [pi\_transit\_gateway\_connection](#input\_pi\_transit\_gateway\_connection) | Set enable to true and provide ID of the existing transit gateway to attach the CCs( Non PER environment) to TGW. If enable is false, CCs will not be attached to TGW but CCs will be created. | <pre>object({<br>    enable             = bool<br>    transit_gateway_id = string<br>  })</pre> | n/a | yes |
 | <a name="input_pi_workspace_guid"></a> [pi\_workspace\_guid](#input\_pi\_workspace\_guid) | Existing IBM Cloud PowerVS Workspace GUID. | `string` | n/a | yes |
 | <a name="input_pi_zone"></a> [pi\_zone](#input\_pi\_zone) | IBM Cloud PowerVS Zone. | `string` | n/a | yes |
-| <a name="input_transit_gateway_id"></a> [transit\_gateway\_id](#input\_transit\_gateway\_id) | ID of the existing transit gateway. This is required to attach the CCs( Non PER environment) to TGW. Can be set to null and CCs will not be attached to TGW but it will be created. | `string` | n/a | yes |
 
 ### Outputs
 
