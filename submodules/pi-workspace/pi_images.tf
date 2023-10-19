@@ -63,3 +63,15 @@ resource "ibm_pi_image" "import_images_3" {
     create = "9m"
   }
 }
+
+################
+# For output
+################
+
+locals {
+  import_images_1 = length(local.split_images_1) >= 1 ? ibm_pi_image.import_images_1[*] : null
+  import_images_2 = length(local.split_images_2) >= 1 ? ibm_pi_image.import_images_2[*] : null
+  import_images_3 = length(local.split_images_3) >= 1 ? ibm_pi_image.import_images_3[*] : null
+  images          = flatten([local.import_images_1, local.import_images_2, local.import_images_3])
+  pi_images       = flatten([for image in local.images : [for k, val in image : { "name" = k, "id" = val.image_id }] if image != null])
+}

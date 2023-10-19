@@ -29,3 +29,8 @@ output "pi_public_subnet" {
     "name" = ibm_pi_network.public_subnet[0].pi_network_name
   "id" = ibm_pi_network.public_subnet[0].network_id } : {}
 }
+
+output "pi_images" {
+  description = "List of objects containing powervs image name and image id."
+  value       = length(local.pi_images) > 0 ? nonsensitive(local.pi_images) : local.pi_images
+}

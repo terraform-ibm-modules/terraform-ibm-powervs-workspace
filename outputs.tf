@@ -24,7 +24,7 @@ output "pi_workspace_guid" {
 }
 
 output "pi_ssh_public_key" {
-  description = "SSH public key name in created PowerVS infrastructure."
+  description = "SSH public key name and value in created PowerVS infrastructure."
   value       = var.pi_ssh_public_key
 }
 
@@ -51,4 +51,9 @@ output "pi_public_subnet" {
 output "pi_cloud_connection_count" {
   description = "Number of cloud connections configured in created PowerVS infrastructure."
   value       = local.pi_per_enabled ? 0 : var.pi_cloud_connection.count
+}
+
+output "pi_images" {
+  description = "List of objects containing powervs image name and image id."
+  value       = module.powervs_workspace.pi_images
 }
