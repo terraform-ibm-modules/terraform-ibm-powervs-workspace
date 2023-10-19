@@ -48,7 +48,7 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 	return options
 }
 
-func TestRunCompleteExample(t *testing.T) {
+func TestRunDefaultExample(t *testing.T) {
 	t.Parallel()
 
 	options := setupOptions(t, "pvs-ws-d", completeExampleDir)
