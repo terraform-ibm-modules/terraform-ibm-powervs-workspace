@@ -35,15 +35,8 @@ variable "powervs_workspace_name" {
 }
 
 variable "powervs_ssh_public_key" {
-  description = "Name and value of the Public SSH key to create."
-  type = object({
-    name  = string
-    value = string
-  })
-  default = {
-    name  = "pi-key"
-    value = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCd6kECDFRccE3AY/3u4FcHoNtNJjE7fCg0INvxAU9i3V8bibnUnDrWYuWV1pUq6wm0+Ab1ECX6R+MUfNC22xhbYQDvdREEfUFIeGPW27kJ3zT4Jxiw0ih23p8Scukk0B7wWaDl+HQnHkZNhD+1I8Y5yGULBqNVnVdFhXQZK03tLBC4OvhQNVbjO93iAkJQYpTGQZGxIlyavEk4T3criztFeMzVieN2J6vbvxDOuqjCGE+VcBaIXHoHIpUu44ZlCax4ArxOx+MlZBb5LXasjdhajKBqSiL7Sknq51ftnAbj0+spqRYpbNrMC2TThYrXLsYQ4EV7nndRpeLqLk+dJoX0F5KuRSOeImvyGPkCpEySzSw2SPjzlMLmJNSFErMZS159F1N6fyjRzEJQYKRu4lRSoVeirNcmM8mfuF3SesRCqy5FuUKr3B/NzJ6hJ+ia8vgy2e6itcynk+QvgLrY/iO8LXy1m9vG/xF8qDvviPsFe4KAe31IyHoIcgncwe3smtU= root@eu-jump-box-1"
-  }
+  description = "Value of the Public SSH key to create."
+  type        = string
 }
 
 variable "powervs_private_subnet_1" {
