@@ -61,7 +61,7 @@ func TestRunBranchExample(t *testing.T) {
 func TestRunMainExample(t *testing.T) {
 	t.Parallel()
 
-	t.Skip("Skipping upgrade test until initial code is in master branch")
+	//t.Skip("Skipping upgrade test until initial code is in master branch")
 	options := setupOptions(t, "pvs-wsm", completeExampleDir)
 
 	output, err := options.RunTestUpgrade()
