@@ -60,5 +60,4 @@ output "pi_cloud_connection_count" {
 output "pi_images" {
   description = "List of objects containing powervs image name and image id."
   value       = module.powervs_infra.pi_images
-  #length(module.powervs_infra.pi_images) > 0 ? nonsensitive(module.powervs_infra.pi_images) : module.powervs_infra.pi_images
 }
