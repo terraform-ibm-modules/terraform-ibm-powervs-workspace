@@ -11,7 +11,7 @@ import (
 )
 
 // Use existing resource group
-const resourceGroup = "Default"
+const resourceGroup = "geretain-test-resources"
 const completeExampleDir = "examples/basic"
 
 var sharedInfoSvc *cloudinfo.CloudInfoService
@@ -48,7 +48,7 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 	return options
 }
 
-func TestRunDefaultExample(t *testing.T) {
+func TestRunExample(t *testing.T) {
 	t.Parallel()
 
 	options := setupOptions(t, "pvs-ws-d", completeExampleDir)
