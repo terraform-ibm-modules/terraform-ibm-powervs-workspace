@@ -1,6 +1,16 @@
-########################################################################################################################
-# Input variables
-########################################################################################################################
+################################
+# Resource group module variable
+################################
+
+variable "powervs_resource_group_name" {
+  type        = string
+  description = "The name of an existing resource group to provision resources in to. If not set a new resource group will be created using the prefix variable"
+  default     = null
+}
+
+####################################
+# PowerVS Workspace module variables
+###################################
 
 variable "ibmcloud_api_key" {
   type        = string
@@ -8,26 +18,89 @@ variable "ibmcloud_api_key" {
   sensitive   = true
 }
 
-variable "region" {
-  type        = string
-  description = "Region to provision all resources created by this example"
-  default     = "us-south"
-}
-
 variable "prefix" {
   type        = string
   description = "Prefix to append to all resources created by this example"
-  default     = "basic"
 }
 
-variable "resource_group" {
+variable "powervs_zone" {
+  description = "IBM Cloud PowerVS zone."
   type        = string
-  description = "The name of an existing resource group to provision resources in to. If not set a new resource group will be created using the prefix variable"
-  default     = null
 }
 
-variable "resource_tags" {
+variable "powervs_workspace_name" {
+  description = "Name of IBM Cloud PowerVS workspace which will be created."
+  type        = string
+  default     = "powervs-workspace"
+}
+
+variable "powervs_ssh_public_key" {
+  description = "Name and value of the Public SSH key to create."
+  type = object({
+    name  = string
+    value = string
+  })
+  default = {
+    name  = "pi-key"
+    value = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCd6kECDFRccE3AY/3u4FcHoNtNJjE7fCg0INvxAU9i3V8bibnUnDrWYuWV1pUq6wm0+Ab1ECX6R+MUfNC22xhbYQDvdREEfUFIeGPW27kJ3zT4Jxiw0ih23p8Scukk0B7wWaDl+HQnHkZNhD+1I8Y5yGULBqNVnVdFhXQZK03tLBC4OvhQNVbjO93iAkJQYpTGQZGxIlyavEk4T3criztFeMzVieN2J6vbvxDOuqjCGE+VcBaIXHoHIpUu44ZlCax4ArxOx+MlZBb5LXasjdhajKBqSiL7Sknq51ftnAbj0+spqRYpbNrMC2TThYrXLsYQ4EV7nndRpeLqLk+dJoX0F5KuRSOeImvyGPkCpEySzSw2SPjzlMLmJNSFErMZS159F1N6fyjRzEJQYKRu4lRSoVeirNcmM8mfuF3SesRCqy5FuUKr3B/NzJ6hJ+ia8vgy2e6itcynk+QvgLrY/iO8LXy1m9vG/xF8qDvviPsFe4KAe31IyHoIcgncwe3smtU= root@eu-jump-box-1"
+  }
+}
+
+variable "powervs_private_subnet_1" {
+  description = "IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet."
+  type = object({
+    name = string
+    cidr = string
+  })
+  default = {
+    name = "sub_1"
+    cidr = "10.51.0.0/24"
+  }
+}
+
+variable "powervs_private_subnet_2" {
+  description = "IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet."
+  type = object({
+    name = string
+    cidr = string
+  })
+  default = {
+    name = "sub_2"
+    cidr = "10.53.0.0/24"
+  }
+}
+
+variable "powervs_public_network_enable" {
+  description = "IBM Cloud PowerVS Public Network. Set to true to enable this."
+  type        = bool
+  default     = true
+}
+
+variable "powervs_tags" {
+  description = "List of Tag names for IBM Cloud PowerVS workspace."
   type        = list(string)
-  description = "Optional list of tags to be added to created resources"
-  default     = []
+  default     = ["pi-basic"]
+}
+
+variable "powervs_image_names" {
+  description = "List of Images to be imported into cloud account from catalog images."
+  type        = list(string)
+  default     = ["SLES15-SP4-SAP", "RHEL8-SP6-SAP", "7300-01-01", "IBMi-75-01-2984-2"]
+}
+
+variable "powervs_cloud_connection" {
+  description = "Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created."
+  type = object({
+    count          = number
+    speed          = number
+    global_routing = bool
+    metered        = bool
+  })
+
+  default = {
+    count          = 2
+    speed          = 5000
+    global_routing = true
+    metered        = true
+  }
 }
