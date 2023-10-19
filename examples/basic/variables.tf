@@ -2,7 +2,7 @@
 # Resource group module variable
 ################################
 
-variable "resource_group" {
+variable "powervs_resource_group_name" {
   type        = string
   description = "The name of an existing resource group to provision resources in to. If not set a new resource group will be created using the prefix variable"
   default     = null

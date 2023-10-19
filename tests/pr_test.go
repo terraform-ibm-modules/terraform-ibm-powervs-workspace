@@ -2,6 +2,7 @@
 package test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -10,15 +11,14 @@ import (
 )
 
 // Use existing resource group
-const resourceGroup = "geretain-test-resources"
+const resourceGroup = "Default"
 const completeExampleDir = "examples/basic"
 
 var sharedInfoSvc *cloudinfo.CloudInfoService
 
-// TestMain will be run before any parallel tests, used to set up a shared InfoService object to track region usage
-// for multiple tests
 func TestMain(m *testing.M) {
 	sharedInfoSvc, _ = cloudinfo.NewCloudInfoServiceFromEnv("TF_VAR_ibmcloud_api_key", cloudinfo.CloudInfoServiceOptions{})
+	os.Exit(m.Run())
 }
 
 func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
@@ -31,8 +31,6 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 		DefaultRegion:      "us-south",
 		BestRegionYAMLPath: "../common-dev-assets/common-go-assets/cloudinfo-region-power-prefs.yaml", // specific to powervs zones
 	})
-	// query for best zone to deploy powervs example, based on current connection count
-	// NOTE: this is why we do not want to run multiple tests in parallel.
 	options.Region, _ = testhelper.GetBestPowerSystemsRegionO(options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], options.BestRegionYAMLPath, options.DefaultRegion,
 		testhelper.TesthelperTerraformOptions{CloudInfoService: sharedInfoSvc})
 	// if for any reason the region is empty at this point, such as error, use default
@@ -47,14 +45,13 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 		//"powervs_zone": "lon06",
 		"powervs_zone": options.Region,
 	}
-
 	return options
 }
 
 func TestRunCompleteExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "pvs-ws", completeExampleDir)
+	options := setupOptions(t, "pvs-ws-d", completeExampleDir)
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
