@@ -3,7 +3,7 @@
 [![Graduated (Supported)](https://img.shields.io/badge/status-Graduated%20(Supported)-brightgreen?style=plastic)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-powervs-infrastructure?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-infrastructure/releases/latest)
+[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-powervs-workspace?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/releases/latest)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
 
@@ -16,7 +16,7 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 - Optionally create one public subnet.
 - Optionally create one or two [IBM Cloud connections](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-cloud-connections) and attaches the private subnets to the IBM Cloud connections in Non PER DC.
 - Optionally attach the IBM Cloud connections to a transit gateway in Non PER DC.
-- Optionally attach the PowerVS workspace to Transit gateway in PER DC.
+- Optionally attach the PowerVS workspace to transit gateway in PER DC.
 - Optionally import up to 6 catalog images.
 
 <!-- BEGIN OVERVIEW HOOK -->

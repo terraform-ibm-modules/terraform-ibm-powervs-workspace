@@ -27,20 +27,26 @@ resource "ibm_tg_gateway" "transit_gateway" {
 #############################
 # Create PowerVS Workspace
 #############################
+locals {
+  powervs_transit_gateway_connection = { enable = true, transit_gateway_id = ibm_tg_gateway.transit_gateway.id }
+  powervs_workspace_name             = "${var.prefix}-${var.powervs_workspace_name}"
+  powervs_ssh_public_key             = { name = "${var.prefix}-pi-ssh-key", value = var.powervs_ssh_public_key }
+  powervs_resource_group_name        = module.resource_group.resource_group_name
+}
 
 module "powervs_infra" {
   source     = "../../"
   depends_on = [module.resource_group]
 
   pi_zone                       = var.powervs_zone
-  pi_resource_group_name        = module.resource_group.resource_group_name
-  pi_workspace_name             = "${var.prefix}-${var.powervs_workspace_name}"
+  pi_resource_group_name        = local.powervs_resource_group_name
+  pi_workspace_name             = local.powervs_workspace_name
   pi_tags                       = var.powervs_tags
   pi_image_names                = var.powervs_image_names
-  pi_ssh_public_key             = var.powervs_ssh_public_key
+  pi_ssh_public_key             = local.powervs_ssh_public_key
   pi_private_subnet_1           = var.powervs_private_subnet_1
   pi_private_subnet_2           = var.powervs_private_subnet_2
   pi_public_subnet_enable       = var.powervs_public_network_enable
-  pi_transit_gateway_connection = { enable = true, transit_gateway_id = ibm_tg_gateway.transit_gateway.id }
+  pi_transit_gateway_connection = local.powervs_transit_gateway_connection
   pi_cloud_connection           = var.powervs_cloud_connection
 }
