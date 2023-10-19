@@ -58,6 +58,6 @@ output "pi_cloud_connection_count" {
 }
 
 output "pi_images" {
-  description = "List of objects containing powervs image name and image id."
+  description = "Object containing imported PowerVS image names and image ids."
   value       = module.powervs_infra.pi_images
 }
