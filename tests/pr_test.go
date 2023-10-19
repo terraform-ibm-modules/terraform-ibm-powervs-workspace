@@ -48,21 +48,21 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 	return options
 }
 
-func TestRunExample(t *testing.T) {
+func TestRunBranchExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "pvs-ws-d", completeExampleDir)
+	options := setupOptions(t, "pvs-wsb", completeExampleDir)
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
 	assert.NotNil(t, output, "Expected some output")
 }
 
-func TestRunUpgradeExample(t *testing.T) {
+func TestRunMainExample(t *testing.T) {
 	t.Parallel()
 
 	t.Skip("Skipping upgrade test until initial code is in master branch")
-	options := setupOptions(t, "pvs-ws-up", completeExampleDir)
+	options := setupOptions(t, "pvs-wsm", completeExampleDir)
 
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {

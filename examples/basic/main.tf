@@ -14,7 +14,7 @@ module "resource_group" {
 # Create Transit gateway
 #############################
 
-resource "ibm_tg_gateway" "new_tg_gw" {
+resource "ibm_tg_gateway" "transit_gateway" {
   provider = ibm.ibm-is
 
   name           = "${var.prefix}-transit-gateway-1"
@@ -41,6 +41,6 @@ module "powervs_infra" {
   pi_private_subnet_1           = var.powervs_private_subnet_1
   pi_private_subnet_2           = var.powervs_private_subnet_2
   pi_public_subnet_enable       = var.powervs_public_network_enable
-  pi_transit_gateway_connection = { enable = true, transit_gateway_id = ibm_tg_gateway.new_tg_gw.id }
+  pi_transit_gateway_connection = { enable = true, transit_gateway_id = ibm_tg_gateway.transit_gateway.id }
   pi_cloud_connection           = var.powervs_cloud_connection
 }
