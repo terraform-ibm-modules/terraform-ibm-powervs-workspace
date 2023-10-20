@@ -1,6 +1,9 @@
-# Submodule pi-cloudconnection-create
+# Module pi-cloudconnection-create
 
-This submodule creates Cloud Connections and attaches the cloud connections to the Transit gateway if transit gateway id is not null.If TGW id is set to null, only CCs will be created and will not attach the CCs to TGW.
+This module provisions the following resources in IBM Cloud:
+
+- Create one or two [IBM Cloud connections](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-cloud-connections)
+- Optionally attach the IBM Cloud connections to a transit gateway if transit gateway id is provided in Non PER DC.
 
 ## Usage
 ```hcl
@@ -11,7 +14,8 @@ ibmcloud_api_key = "your api key" != null ? "your api key" : null
 }
 
 module "powervs_cloud_connection_create" {
-  source = "./submodules/pi-cloudconnection-create"
+  source     = "terraform-ibm-modules/powervs-workspace/ibm//modules//pi-cloudconnection-create"
+  version    = "x.x.x" #replace x.x.x with latest git release
 
   pi_zone                        = var.pi_zone
   pi_workspace_guid              = var.pi_workspace_guid

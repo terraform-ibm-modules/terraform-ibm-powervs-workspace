@@ -53,7 +53,7 @@ resource "ibm_pi_network" "public_subnet" {
 
 
 ################################################
-# #Moved blocks
+# Moved blocks
 ################################################
 
 moved {

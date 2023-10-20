@@ -1,4 +1,38 @@
-# Submodule pi-workspace
+# Module pi-workspace
+
+This module provisions the following resources in IBM Cloud:
+
+- Creates an IBM® Power Virtual Server (PowerVS) workspace.
+- Creates a Public SSH key in Power Virtual Server (PowerVS) workspace.
+- Optionally create one or two or three private subnets.
+- Optionally create one public subnet.
+- Import up to 6 catalog Stock images from IBM cloud.
+
+## Usage
+```hcl
+provider "ibm" {
+region           = "sao"
+zone             = "sao01"
+ibmcloud_api_key = "your api key" != null ? "your api key" : null
+}
+
+module "powervs_instance" {
+  source     = "terraform-ibm-modules/powervs-workspace/ibm//modules//pi_workspace"
+  version    = "x.x.x" #replace x.x.x with latest git release
+
+
+  pi_zone                 = var.pi_zone
+  pi_resource_group_name  = var.pi_resource_group_name
+  pi_workspace_name       = var.pi_workspace_name
+  pi_tags                 = var.pi_tags
+  pi_image_names          = var.pi_image_names
+  pi_ssh_public_key       = var.pi_ssh_public_key
+  pi_private_subnet_1     = var.pi_private_subnet_1
+  pi_private_subnet_2     = var.pi_private_subnet_2
+  pi_private_subnet_3     = var.pi_private_subnet_3
+  pi_public_subnet_enable = var.pi_public_subnet_enable
+}
+```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ### Requirements
