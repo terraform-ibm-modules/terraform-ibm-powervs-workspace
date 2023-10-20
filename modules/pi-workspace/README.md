@@ -17,7 +17,7 @@ ibmcloud_api_key = "your api key" != null ? "your api key" : null
 }
 
 module "powervs_instance" {
-  source     = "terraform-ibm-modules/powervs-workspace/ibm//modules//pi_workspace"
+  source     = "terraform-ibm-modules/powervs-workspace/ibm//modules//pi-workspace"
   version    = "x.x.x" #replace x.x.x with latest git release
 
 
