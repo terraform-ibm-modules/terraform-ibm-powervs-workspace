@@ -1,6 +1,9 @@
-# Submodule pi-cloudconnection-attach
+# Module pi-cloudconnection-attach
 
-This submodule attaches PowerVS subnets to cloud connections. Maximum of 3 private subnets can be attached to CCs.
+
+This module provisions the following resources in IBM Cloud:
+
+- Attaches IBM® Power Virtual Server (PowerVS) subnets to [IBM Cloud connections](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-cloud-connections). Maximum of 3 private subnets can be attached to CCs.
 
 ## Usage
 ```hcl
@@ -11,7 +14,8 @@ ibmcloud_api_key = "your api key" != null ? "your api key" : null
 }
 
 module "powervs_cloud_connection_attach" {
-  source     = "./submodules/pi-cloudconnection-attach"
+  source     = "terraform-ibm-modules/powervs-workspace/ibm//modules//pi-cloudconnection-attach"
+  version    = "x.x.x" #replace x.x.x with latest git release
 
   pi_workspace_guid         = var.pi_workspace_guid
   pi_cloud_connection_count = var.pi_cloud_connection_count

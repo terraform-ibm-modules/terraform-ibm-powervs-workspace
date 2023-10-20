@@ -8,12 +8,12 @@ locals {
 }
 
 #####################################################
-# Workspace Submodule ( Creates Workspace, SSH key,
+# Workspace module ( Creates Workspace, SSH key,
 # Subnets, Imports catalog images )
 #####################################################
 
 module "powervs_workspace" {
-  source = "./submodules/pi-workspace"
+  source = "./modules/pi-workspace"
 
   pi_zone                 = var.pi_zone
   pi_resource_group_name  = var.pi_resource_group_name
@@ -29,13 +29,13 @@ module "powervs_workspace" {
 
 
 #####################################################
-# CC Create Submodule
+# CC Create module
 # Non PER DC: Creates CCs, attaches CCs to TGW
 # PER DC: Skip
 #####################################################
 
 module "powervs_cloud_connection_create" {
-  source = "./submodules/pi-cloudconnection-create"
+  source = "./modules/pi-cloudconnection-create"
   count  = local.pi_per_enabled ? 0 : 1
 
   pi_zone                       = var.pi_zone
@@ -45,7 +45,7 @@ module "powervs_cloud_connection_create" {
 }
 
 #####################################################
-# CC Subnet Attach Submodule
+# CC Subnet Attach module
 # Non PER DC: Attaches Subnets to CCs
 # PER DC: Skip
 #####################################################
@@ -56,7 +56,7 @@ locals {
 }
 
 module "powervs_cloud_connection_attach" {
-  source     = "./submodules/pi-cloudconnection-attach"
+  source     = "./modules/pi-cloudconnection-attach"
   depends_on = [module.powervs_cloud_connection_create]
   count      = local.pi_per_enabled ? 0 : 1
 

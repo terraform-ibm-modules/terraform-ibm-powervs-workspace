@@ -22,6 +22,10 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 * [terraform-ibm-powervs-workspace](#terraform-ibm-powervs-workspace)
+* [Submodules](./modules)
+    * [pi-cloudconnection-attach](./modules/pi-cloudconnection-attach)
+    * [pi-cloudconnection-create](./modules/pi-cloudconnection-create)
+    * [pi-workspace](./modules/pi-workspace)
 * [Examples](./examples)
     * [Basic example](./examples/basic)
 * [Contributing](#contributing)
@@ -90,9 +94,9 @@ You need the following permissions to run this module.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_powervs_cloud_connection_attach"></a> [powervs\_cloud\_connection\_attach](#module\_powervs\_cloud\_connection\_attach) | ./submodules/pi-cloudconnection-attach | n/a |
-| <a name="module_powervs_cloud_connection_create"></a> [powervs\_cloud\_connection\_create](#module\_powervs\_cloud\_connection\_create) | ./submodules/pi-cloudconnection-create | n/a |
-| <a name="module_powervs_workspace"></a> [powervs\_workspace](#module\_powervs\_workspace) | ./submodules/pi-workspace | n/a |
+| <a name="module_powervs_cloud_connection_attach"></a> [powervs\_cloud\_connection\_attach](#module\_powervs\_cloud\_connection\_attach) | ./modules/pi-cloudconnection-attach | n/a |
+| <a name="module_powervs_cloud_connection_create"></a> [powervs\_cloud\_connection\_create](#module\_powervs\_cloud\_connection\_create) | ./modules/pi-cloudconnection-create | n/a |
+| <a name="module_powervs_workspace"></a> [powervs\_workspace](#module\_powervs\_workspace) | ./modules/pi-workspace | n/a |
 
 ### Resources
 
