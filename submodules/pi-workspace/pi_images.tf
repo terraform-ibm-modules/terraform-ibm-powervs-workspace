@@ -63,3 +63,14 @@ resource "ibm_pi_image" "import_images_3" {
     create = "9m"
   }
 }
+
+################
+# For output
+################
+
+locals {
+  import_images_1 = length(local.split_images_1) >= 1 ? { for image in ibm_pi_image.import_images_1 : image.pi_image_name => image.image_id } : null
+  import_images_2 = length(local.split_images_2) >= 1 ? { for image in ibm_pi_image.import_images_2 : image.pi_image_name => image.image_id } : null
+  import_images_3 = length(local.split_images_3) >= 1 ? { for image in ibm_pi_image.import_images_3 : image.pi_image_name => image.image_id } : null
+  pi_images       = merge(local.import_images_1, local.import_images_2, local.import_images_3)
+}

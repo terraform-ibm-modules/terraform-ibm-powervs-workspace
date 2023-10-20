@@ -56,3 +56,8 @@ output "pi_cloud_connection_count" {
   description = "Number of cloud connections configured in created PowerVS infrastructure."
   value       = module.powervs_infra.pi_cloud_connection_count
 }
+
+output "pi_images" {
+  description = "Object containing imported PowerVS image names and image ids."
+  value       = module.powervs_infra.pi_images
+}
