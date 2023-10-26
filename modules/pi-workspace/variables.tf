@@ -21,6 +21,11 @@ variable "pi_ssh_public_key" {
   })
 }
 
+variable "pi_image_names" {
+  description = "List of images to be imported into cloud account from catalog images. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md)"
+  type        = list(string)
+}
+
 variable "pi_private_subnet_1" {
   description = "IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
@@ -70,13 +75,4 @@ variable "pi_public_subnet_enable" {
 variable "pi_tags" {
   description = "List of Tag names for IBM Cloud PowerVS workspace."
   type        = list(string)
-}
-
-variable "pi_image_names" {
-  description = "List of images to be imported into cloud account from catalog images. Max number of images that can be imported is 6 images. Can be set to null and images will not be imported. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md)"
-  type        = list(string)
-  validation {
-    error_message = "Exceeds the length of list of list by 6. Can support max 6 values only."
-    condition     = var.pi_image_names != null ? length(var.pi_image_names) < 7 ? true : false : true
-  }
 }

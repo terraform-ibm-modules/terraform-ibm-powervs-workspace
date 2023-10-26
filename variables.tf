@@ -29,6 +29,10 @@ variable "pi_ssh_public_key" {
   })
 }
 
+variable "pi_image_names" {
+  description = "List of images to be imported into cloud account from catalog images. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md)"
+  type        = list(string)
+}
 
 ########################################################
 #Optional Parameters
@@ -101,12 +105,6 @@ variable "pi_transit_gateway_connection" {
 
 variable "pi_tags" {
   description = "List of Tag names for IBM Cloud PowerVS workspace. Can be set to null."
-  type        = list(string)
-  default     = null
-}
-
-variable "pi_image_names" {
-  description = "List of images to be imported into cloud account from catalog images. Max number of images that can be imported is 6 images. Can be set to null and images will not be imported. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md)"
   type        = list(string)
   default     = null
 }
