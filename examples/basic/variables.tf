@@ -66,7 +66,7 @@ variable "powervs_private_subnet_2" {
 variable "powervs_public_network_enable" {
   description = "IBM Cloud PowerVS Public Network. Set to true to enable this."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "powervs_tags" {
