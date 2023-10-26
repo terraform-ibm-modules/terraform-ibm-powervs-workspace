@@ -8,14 +8,11 @@ data "ibm_pi_catalog_images" "catalog_images_ds" {
 }
 
 locals {
-
   catalog_images_to_import = flatten([for stock_image in data.ibm_pi_catalog_images.catalog_images_ds.images : [for image_name in var.pi_image_names : stock_image if stock_image.name == image_name]])
-
 }
 
-
 #######################################################
-# Import of multiple images 
+# Import of multiple images
 #######################################################
 
 resource "ibm_pi_image" "import_images" {
