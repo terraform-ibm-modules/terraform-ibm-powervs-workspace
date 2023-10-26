@@ -34,5 +34,5 @@ resource "ibm_pi_image" "import_images" {
 
 locals {
 
-  pi_images = { for image in ibm_pi_image.import_images : image.pi_image_name => image.pi_image_id }
+  pi_images = { for image in ibm_pi_image.import_images : image.pi_image_name => image.image_id }
 }
