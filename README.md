@@ -51,6 +51,7 @@ module "power-workspace" {
   pi_resource_group_name         = var.pi_resource_group_name
   pi_workspace_name              = var.pi_workspace_name
   pi_ssh_public_key              = var.pi_ssh_public_key
+  pi_image_names                 = var.pi_image_names
   pi_cloud_connection            = var.pi_cloud_connection             #(optional, default check vars)
   pi_private_subnet_1            = var.pi_private_subnet_1             #(optional, default [])
   pi_private_subnet_2            = var.pi_private_subnet_2             #(optional, default [])
@@ -58,7 +59,6 @@ module "power-workspace" {
   pi_public_subnet_enable        = var.pi_public_subnet_enable         #(optional, default false)
   pi_transit_gateway_connection  = var.pi_transit_gateway_connection   #(optional, default check vars)
   pi_tags                        = var.pi_tags                         #(optional, default [])
-  pi_image_names                 = var.pi_image_names                  #(optional, default [])
 }
 
 ```
@@ -109,7 +109,7 @@ You need the following permissions to run this module.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_pi_cloud_connection"></a> [pi\_cloud\_connection](#input\_pi\_cloud\_connection) | Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global\_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created. | <pre>object({<br>    count          = number<br>    speed          = number<br>    global_routing = bool<br>    metered        = bool<br>  })</pre> | <pre>{<br>  "count": 2,<br>  "global_routing": true,<br>  "metered": true,<br>  "speed": 5000<br>}</pre> | no |
-| <a name="input_pi_image_names"></a> [pi\_image\_names](#input\_pi\_image\_names) | List of images to be imported into cloud account from catalog images. Max number of images that can be imported is 6 images. Can be set to null and images will not be imported. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md) | `list(string)` | `null` | no |
+| <a name="input_pi_image_names"></a> [pi\_image\_names](#input\_pi\_image\_names) | List of images to be imported into cloud account from catalog images. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md) | `list(string)` | n/a | yes |
 | <a name="input_pi_private_subnet_1"></a> [pi\_private\_subnet\_1](#input\_pi\_private\_subnet\_1) | IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | <pre>{<br>  "cidr": "10.51.0.0/24",<br>  "name": "sub_1"<br>}</pre> | no |
 | <a name="input_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#input\_pi\_private\_subnet\_2) | IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | `null` | no |
 | <a name="input_pi_private_subnet_3"></a> [pi\_private\_subnet\_3](#input\_pi\_private\_subnet\_3) | IBM Cloud PowerVS third private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | `null` | no |
