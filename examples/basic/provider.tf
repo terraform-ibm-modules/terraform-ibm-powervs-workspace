@@ -15,6 +15,8 @@ locals {
     "dal10"    = "us-south"
     "dal12"    = "us-south"
     "us-east"  = "us-east"
+    "wdc06"    = "us-east"
+    "mad02"    = "mad"
   }
 
   ibm_powervs_zone_cloud_region_map = {
@@ -33,6 +35,8 @@ locals {
     "dal10"    = "us-south"
     "dal12"    = "us-south"
     "us-east"  = "us-east"
+    "wdc06"    = "us-east"
+    "mad02"    = "eu-es"
   }
 }
 

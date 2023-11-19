@@ -3,7 +3,7 @@
 #####################################################
 
 locals {
-  pi_per_enabled_dc_list = ["dal10", "wdc06"]
+  pi_per_enabled_dc_list = ["dal10", "wdc06", "mad02"]
   pi_per_enabled         = contains(local.pi_per_enabled_dc_list, var.pi_zone)
 }
 
