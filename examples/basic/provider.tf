@@ -11,12 +11,15 @@ locals {
     "syd04"    = "syd"
     "syd05"    = "syd"
     "sao01"    = "sao"
+    "sao04"    = "sao"
     "us-south" = "us-south"
     "dal10"    = "us-south"
     "dal12"    = "us-south"
     "us-east"  = "us-east"
     "wdc06"    = "us-east"
+    "wdc07"    = "us-east"
     "mad02"    = "mad"
+    "mad04"    = "mad"
   }
 
   ibm_powervs_zone_cloud_region_map = {
@@ -30,13 +33,16 @@ locals {
     "tor01"    = "ca-tor"
     "osa21"    = "jp-osa"
     "sao01"    = "br-sao"
+    "sao04"    = "br-sao"
     "mon01"    = "ca-tor"
     "us-south" = "us-south"
     "dal10"    = "us-south"
     "dal12"    = "us-south"
     "us-east"  = "us-east"
     "wdc06"    = "us-east"
+    "wdc07"    = "us-east"
     "mad02"    = "eu-es"
+    "mad04"    = "eu-es"
   }
 }
 
