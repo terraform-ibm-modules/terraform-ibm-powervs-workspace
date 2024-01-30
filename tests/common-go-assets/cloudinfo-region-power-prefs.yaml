@@ -1,11 +1,11 @@
 ---
-- name: eu-de-2
+- name: dal10
   useForTest: true
   testPriority: 1
-- name: sao04
+- name: mad04
   useForTest: true
   testPriority: 2
-- name: eu-de-1
+- name: eu-de-2
   useForTest: true
   testPriority: 3
 - name: wdc06
@@ -17,9 +17,9 @@
 - name: mad02
   useForTest: true
   testPriority: 6
-- name: mad04
+- name: sao04
   useForTest: true
   testPriority: 7
-- name: dal10
+- name: eu-de-1
   useForTest: true
   testPriority: 7
