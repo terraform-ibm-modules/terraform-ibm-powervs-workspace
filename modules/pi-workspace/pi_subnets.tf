@@ -20,7 +20,7 @@ resource "ibm_pi_network" "private_subnet_1" {
 }
 
 resource "ibm_pi_network" "private_subnet_2" {
-  count = var.pi_private_subnet_1 != null ? 1 : 0
+  count = var.pi_private_subnet_2 != null ? 1 : 0
 
   depends_on           = [ibm_pi_network.private_subnet_1]
   pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
