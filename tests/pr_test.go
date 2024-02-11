@@ -23,20 +23,20 @@ func TestMain(m *testing.M) {
 
 func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
-		Testing:            t,
-		TerraformDir:       dir,
-		Prefix:             prefix,
-		ResourceGroup:      resourceGroup,
-		Region:             "us-south", // specify default region to skip best choice query
-		DefaultRegion:      "us-south",
+		Testing:       t,
+		TerraformDir:  dir,
+		Prefix:        prefix,
+		ResourceGroup: resourceGroup,
+		//Region:             "us-south", // specify default region to skip best choice query
+		//DefaultRegion:      "us-south",
 		BestRegionYAMLPath: "./common-go-assets/cloudinfo-region-power-prefs.yaml", // specific to powervs zones
 	})
-	options.Region, _ = testhelper.GetBestPowerSystemsRegionO(options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], options.BestRegionYAMLPath, options.DefaultRegion,
-		testhelper.TesthelperTerraformOptions{CloudInfoService: sharedInfoSvc})
+	//options.Region, _ = testhelper.GetBestPowerSystemsRegionO(options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], options.BestRegionYAMLPath, options.DefaultRegion,
+	//testhelper.TesthelperTerraformOptions{CloudInfoService: sharedInfoSvc})
 	// if for any reason the region is empty at this point, such as error, use default
-	if len(options.Region) == 0 {
-		options.Region = options.DefaultRegion
-	}
+	//if len(options.Region) == 0 {
+	//options.Region = options.DefaultRegion
+	//}
 
 	options.TerraformVars = map[string]interface{}{
 		"prefix":                      options.Prefix,
