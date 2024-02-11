@@ -23,12 +23,12 @@ func TestMain(m *testing.M) {
 
 func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
-		Testing:            t,
-		TerraformDir:       dir,
-		Prefix:             prefix,
-		ResourceGroup:      resourceGroup,
-		Region:             "us-south", // specify default region to skip best choice query
-		DefaultRegion:      "us-south",
+		Testing:       t,
+		TerraformDir:  dir,
+		Prefix:        prefix,
+		ResourceGroup: resourceGroup,
+		//Region:             "us-south", // specify default region to skip best choice query
+		DefaultRegion:      "dal12",
 		BestRegionYAMLPath: "./common-go-assets/cloudinfo-region-power-prefs.yaml", // specific to powervs zones
 	})
 	options.Region, _ = testhelper.GetBestPowerSystemsRegionO(options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], options.BestRegionYAMLPath, options.DefaultRegion,
