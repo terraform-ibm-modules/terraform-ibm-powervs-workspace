@@ -17,7 +17,7 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 - Optionally create one or two [IBM Cloud connections](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-cloud-connections) and attaches the private subnets to the IBM Cloud connections in non-PER DC.
 - Optionally attach the IBM Cloud connections to a transit gateway in non-PER DC.
 - Optionally attach the PowerVS workspace to transit gateway in PER DC.
-- Optionally import up to 6 catalog images.
+- Optionally import list of stock catalog images.
 
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
