@@ -3,8 +3,9 @@
 #####################################################
 
 data "ibm_pi_catalog_images" "catalog_images_ds" {
-  sap                  = true
   pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
+  sap                  = true
+  vtl                  = true
 }
 
 locals {
