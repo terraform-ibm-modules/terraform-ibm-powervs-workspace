@@ -2,6 +2,6 @@
 - name: dal10
   useForTest: true
   testPriority: 1
-- name: mad02
+- name: sao04
   useForTest: true
   testPriority: 2
