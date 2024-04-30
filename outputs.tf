@@ -50,7 +50,7 @@ output "pi_public_subnet" {
 
 output "pi_cloud_connection_count" {
   description = "Number of cloud connections configured in created PowerVS infrastructure."
-  value       = local.pi_per_enabled ? 0 : var.pi_cloud_connection.count
+  value       = local.pi_per_disabled ? var.pi_cloud_connection.count : 0
 }
 
 output "pi_images" {

@@ -3,8 +3,8 @@
 #####################################################
 
 locals {
-  pi_per_enabled_dc_list = ["dal10", "dal12", "wdc06", "wdc07", "mad02", "mad04", "eu-de-1", "eu-de-2", "sao01", "sao04", "tok04", "osa21", "syd05", "lon06"]
-  pi_per_enabled         = contains(local.pi_per_enabled_dc_list, var.pi_zone)
+  pi_non_per_dc_list = ["mon01", "tor01", "lon04", "us-south", "us-east"]
+  pi_per_disabled    = contains(local.pi_non_per_dc_list, var.pi_zone)
 }
 
 #####################################################
@@ -36,7 +36,7 @@ module "powervs_workspace" {
 
 module "powervs_cloud_connection_create" {
   source = "./modules/pi-cloudconnection-create"
-  count  = local.pi_per_enabled ? 0 : 1
+  count  = local.pi_per_disabled ? 1 : 0
 
   pi_zone                       = var.pi_zone
   pi_workspace_guid             = module.powervs_workspace.pi_workspace_guid
@@ -58,7 +58,7 @@ locals {
 module "powervs_cloud_connection_attach" {
   source     = "./modules/pi-cloudconnection-attach"
   depends_on = [module.powervs_cloud_connection_create]
-  count      = local.pi_per_enabled ? 0 : 1
+  count      = local.pi_per_disabled ? 1 : 0
 
   pi_workspace_guid         = module.powervs_workspace.pi_workspace_guid
   pi_cloud_connection_count = var.pi_cloud_connection.count
@@ -74,7 +74,7 @@ module "powervs_cloud_connection_attach" {
 
 resource "ibm_tg_connection" "tg_powervs_workspace_attach" {
   depends_on = [module.powervs_workspace]
-  count      = local.pi_per_enabled && var.pi_transit_gateway_connection.enable ? 1 : 0
+  count      = !local.pi_per_disabled && var.pi_transit_gateway_connection.enable ? 1 : 0
 
   name         = var.pi_workspace_name
   network_type = "power_virtual_server"
