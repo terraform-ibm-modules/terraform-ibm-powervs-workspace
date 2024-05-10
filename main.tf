@@ -3,7 +3,7 @@
 #####################################################
 
 locals {
-  pi_non_per_dc_list = ["mon01", "tor01", "lon04", "us-south", "us-east"]
+  pi_non_per_dc_list = ["mon01", "lon04", "us-east"]
   pi_per_disabled    = contains(local.pi_non_per_dc_list, var.pi_zone)
 }
 
