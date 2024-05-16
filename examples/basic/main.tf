@@ -34,7 +34,7 @@ locals {
   powervs_resource_group_name        = module.resource_group.resource_group_name
 }
 
-module "powervs_infra" {
+module "powervs_workspace" {
   source     = "../../"
   depends_on = [module.resource_group]
 
@@ -48,5 +48,4 @@ module "powervs_infra" {
   pi_private_subnet_2           = var.powervs_private_subnet_2
   pi_public_subnet_enable       = var.powervs_public_network_enable
   pi_transit_gateway_connection = local.powervs_transit_gateway_connection
-  pi_cloud_connection           = var.powervs_cloud_connection
 }

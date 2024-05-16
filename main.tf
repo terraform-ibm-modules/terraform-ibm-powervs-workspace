@@ -1,83 +1,54 @@
 #####################################################
-# IBM Cloud PowerVS Configuration
+# IBM Cloud PowerVS Workspace Module
+#####################################################
+
+#####################################################
+# Create PowerVS workspace
 #####################################################
 
 locals {
-  pi_non_per_dc_list = ["mon01", "lon04", "us-east"]
-  pi_per_disabled    = contains(local.pi_non_per_dc_list, var.pi_zone)
+  service_type = "power-iaas"
+  plan         = "power-virtual-server-group"
+}
+
+data "ibm_resource_group" "resource_group_ds" {
+  name = var.pi_resource_group_name
+}
+
+resource "ibm_resource_instance" "pi_workspace" {
+  name              = var.pi_workspace_name
+  service           = local.service_type
+  plan              = local.plan
+  location          = var.pi_zone
+  resource_group_id = data.ibm_resource_group.resource_group_ds.id
+  tags              = (var.pi_tags != null ? var.pi_tags : [])
+
+  timeouts {
+    create = "6m"
+    update = "5m"
+    delete = "10m"
+  }
 }
 
 #####################################################
-# Workspace module ( Creates Workspace, SSH key,
-# Subnets, Imports catalog images )
+# Create SSH Public Key in PowerVS workspace
 #####################################################
 
-module "powervs_workspace" {
-  source = "./modules/pi-workspace"
-
-  pi_zone                 = var.pi_zone
-  pi_resource_group_name  = var.pi_resource_group_name
-  pi_workspace_name       = var.pi_workspace_name
-  pi_tags                 = var.pi_tags
-  pi_image_names          = var.pi_image_names
-  pi_ssh_public_key       = var.pi_ssh_public_key
-  pi_private_subnet_1     = var.pi_private_subnet_1
-  pi_private_subnet_2     = var.pi_private_subnet_2
-  pi_private_subnet_3     = var.pi_private_subnet_3
-  pi_public_subnet_enable = var.pi_public_subnet_enable
-}
-
-
-#####################################################
-# CC Create module
-# Non PER DC: Creates CCs, attaches CCs to TGW
-# PER DC: Skip
-#####################################################
-
-module "powervs_cloud_connection_create" {
-  source = "./modules/pi-cloudconnection-create"
-  count  = local.pi_per_disabled ? 1 : 0
-
-  pi_zone                       = var.pi_zone
-  pi_workspace_guid             = module.powervs_workspace.pi_workspace_guid
-  pi_transit_gateway_connection = var.pi_transit_gateway_connection
-  pi_cloud_connection           = var.pi_cloud_connection
-}
-
-#####################################################
-# CC Subnet Attach module
-# Non PER DC: Attaches Subnets to CCs
-# PER DC: Skip
-#####################################################
-
-locals {
-  pi_private_subnets    = [module.powervs_workspace.pi_private_subnet_1, module.powervs_workspace.pi_private_subnet_2, module.powervs_workspace.pi_private_subnet_3]
-  pi_private_subnet_ids = [for subnet in local.pi_private_subnets : subnet.id if subnet != null]
-}
-
-module "powervs_cloud_connection_attach" {
-  source     = "./modules/pi-cloudconnection-attach"
-  depends_on = [module.powervs_cloud_connection_create]
-  count      = local.pi_per_disabled ? 1 : 0
-
-  pi_workspace_guid         = module.powervs_workspace.pi_workspace_guid
-  pi_cloud_connection_count = var.pi_cloud_connection.count
-  pi_private_subnet_ids     = local.pi_private_subnet_ids
+resource "ibm_pi_key" "ssh_key" {
+  pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
+  pi_key_name          = var.pi_ssh_public_key.name
+  pi_ssh_key           = var.pi_ssh_public_key.value
 }
 
 
 #####################################################
 # Attach PowerVS Workspace to transit gateway
-# Non PER DC: Skip
-# PER DC: Attach
 #####################################################
 
 resource "ibm_tg_connection" "tg_powervs_workspace_attach" {
-  depends_on = [module.powervs_workspace]
-  count      = !local.pi_per_disabled && var.pi_transit_gateway_connection.enable ? 1 : 0
-
+  count        = var.pi_transit_gateway_connection != null ? var.pi_transit_gateway_connection.enable ? 1 : 0 : 0
   name         = var.pi_workspace_name
   network_type = "power_virtual_server"
   gateway      = var.pi_transit_gateway_connection.transit_gateway_id
-  network_id   = module.powervs_workspace.pi_workspace_id
+  network_id   = ibm_resource_instance.pi_workspace.id
 }
