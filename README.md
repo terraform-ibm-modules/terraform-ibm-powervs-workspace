@@ -12,12 +12,11 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 
 - Creates an IBM® Power Virtual Server (PowerVS) workspace.
 - Creates an SSH key.
+- Imports list of stock catalog images.
 - Optionally create one or two or three private subnets.
 - Optionally create one public subnet.
-- Optionally create one or two [IBM Cloud connections](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-cloud-connections) and attaches the private subnets to the IBM Cloud connections in non-PER DC.
-- Optionally attach the IBM Cloud connections to a transit gateway in non-PER DC.
-- Optionally attach the PowerVS workspace to transit gateway in PER DC.
-- Optionally import list of stock catalog images.
+- Optionally attach the PowerVS workspace to transit gateway.
+
 
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
@@ -48,11 +47,11 @@ module "power-workspace" {
   pi_workspace_name              = var.pi_workspace_name
   pi_ssh_public_key              = var.pi_ssh_public_key
   pi_image_names                 = var.pi_image_names
+  pi_transit_gateway_connection  = var.pi_transit_gateway_connection   #(optional, default check vars)
   pi_private_subnet_1            = var.pi_private_subnet_1             #(optional, default null)
   pi_private_subnet_2            = var.pi_private_subnet_2             #(optional, default null)
   pi_private_subnet_3            = var.pi_private_subnet_3             #(optional, default null)
   pi_public_subnet_enable        = var.pi_public_subnet_enable         #(optional, default false)
-  pi_transit_gateway_connection  = var.pi_transit_gateway_connection   #(optional, default check vars)
   pi_tags                        = var.pi_tags                         #(optional, default [])
 }
 
