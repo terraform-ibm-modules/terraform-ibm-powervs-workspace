@@ -39,6 +39,12 @@ variable "powervs_ssh_public_key" {
   type        = string
 }
 
+variable "powervs_image_names" {
+  description = "List of Images to be imported into cloud account from catalog images."
+  type        = list(string)
+  default     = ["SLES15-SP5-SAP", "RHEL9-SP2-SAP"]
+}
+
 variable "powervs_private_subnet_1" {
   description = "IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
@@ -73,27 +79,4 @@ variable "powervs_tags" {
   description = "List of Tag names for IBM Cloud PowerVS workspace."
   type        = list(string)
   default     = ["pi-basic"]
-}
-
-variable "powervs_image_names" {
-  description = "List of Images to be imported into cloud account from catalog images."
-  type        = list(string)
-  default     = ["SLES15-SP5-SAP", "RHEL9-SP2-SAP"]
-}
-
-variable "powervs_cloud_connection" {
-  description = "Cloud connection configuration: speed (50, 100, 200, 500, 1000, 2000, 5000, 10000 Mb/s), count (1 or 2 connections), global_routing (true or false), metered (true or false). Not applicable for PER enabled DC and CCs will not be created."
-  type = object({
-    count          = number
-    speed          = number
-    global_routing = bool
-    metered        = bool
-  })
-
-  default = {
-    count          = 2
-    speed          = 5000
-    global_routing = true
-    metered        = true
-  }
 }

@@ -2,8 +2,8 @@
 # Create Private Subnets
 #####################################################
 
-## Adding sleep because of PER enabled workspace
-## which needs some time to initialize
+# Adding sleep because of PER enabled workspace
+# which needs some time to initialize
 resource "time_sleep" "wait_30_sec" {
   depends_on      = [ibm_resource_instance.pi_workspace]
   create_duration = "30s"
@@ -52,19 +52,4 @@ resource "ibm_pi_network" "public_subnet" {
   pi_network_name      = "public_net"
   pi_network_type      = "pub-vlan"
   pi_network_mtu       = 9000
-}
-
-
-################################################
-# Moved blocks
-################################################
-
-moved {
-  from = ibm_pi_network.management_network
-  to   = ibm_pi_network.private_subnet_1[0]
-}
-
-moved {
-  from = ibm_pi_network.backup_network
-  to   = ibm_pi_network.private_subnet_2[0]
 }
