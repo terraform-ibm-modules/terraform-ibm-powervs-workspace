@@ -80,3 +80,56 @@ variable "powervs_tags" {
   type        = list(string)
   default     = ["pi-basic"]
 }
+
+variable "custom_pi_images" {
+  description = <<EOF
+    Optional list of custom images to import from Cloud Object Storage into PowerVS workspace.
+      image_name: string, must be unique image name how the image will be named inside PowerVS workspace
+      file_name: string, full file name of the image inside COS bucket
+      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the following values: "tier0", "tier1", "tier3", ""
+      # TODO What type is fixed iops
+      sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
+  EOF
+  type = list(object({
+    image_name   = string
+    file_name    = string
+    storage_tier = string
+    sap_type     = string
+  }))
+  # TODO add more validation
+  # validation {
+  #   condition     = false
+  #   error_message = "Invalid image_bucket_access. Allowed values: [\"public\", \"private\"]."
+  # }
+  default = []
+}
+
+variable "custom_pi_image_cos_configuration" {
+  description = <<EOF
+    Cloud Object Storage bucket containing the custom PowerVS images. Images will be imported into the PowerVS Workspace.
+      bucket_name: string, name of the COS bucket
+      bucket_access: string, possible values: "public", "private" (private requires custom_pi_image_cos_service_credentials)
+      bucket_region: string, COS bucket region
+  EOF
+  type = object({
+    bucket_name   = string
+    bucket_access = string
+    bucket_region = string
+  })
+  default = {
+    "bucket_name" : "powervs-automation",
+    "bucket_access" : "private"
+    "bucket_region" : "eu-geo",
+  }
+}
+
+variable "custom_pi_image_cos_service_credentials" {
+  description = "Service credentials for the Cloud Object Storage bucket containing the custom PowerVS images. The bucket must have HMAC credentials enabled. Click [here](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for a json example of a service credential."
+  type        = string
+  sensitive   = true
+  default     = null
+  validation {
+    condition     = var.custom_pi_image_cos_configuration.bucket_access == "private" ? var.custom_pi_image_cos_service_credentials != null : true
+    error_message = "custom_pi_image_cos_service_credentials are required to access private COS buckets."
+  }
+}

@@ -38,14 +38,17 @@ module "powervs_workspace" {
   source     = "../../"
   depends_on = [module.resource_group]
 
-  pi_zone                       = var.powervs_zone
-  pi_resource_group_name        = local.powervs_resource_group_name
-  pi_workspace_name             = local.powervs_workspace_name
-  pi_tags                       = var.powervs_tags
-  pi_image_names                = var.powervs_image_names
-  pi_ssh_public_key             = local.powervs_ssh_public_key
-  pi_private_subnet_1           = var.powervs_private_subnet_1
-  pi_private_subnet_2           = var.powervs_private_subnet_2
-  pi_public_subnet_enable       = var.powervs_public_network_enable
-  pi_transit_gateway_connection = local.powervs_transit_gateway_connection
+  pi_zone                                 = var.powervs_zone
+  pi_resource_group_name                  = local.powervs_resource_group_name
+  pi_workspace_name                       = local.powervs_workspace_name
+  pi_tags                                 = var.powervs_tags
+  pi_image_names                          = var.powervs_image_names
+  pi_ssh_public_key                       = local.powervs_ssh_public_key
+  pi_private_subnet_1                     = var.powervs_private_subnet_1
+  pi_private_subnet_2                     = var.powervs_private_subnet_2
+  pi_public_subnet_enable                 = var.powervs_public_network_enable
+  pi_transit_gateway_connection           = local.powervs_transit_gateway_connection
+  custom_pi_images                        = var.custom_pi_images
+  custom_pi_image_cos_configuration       = var.custom_pi_image_cos_configuration
+  custom_pi_image_cos_service_credentials = var.custom_pi_image_cos_service_credentials
 }
