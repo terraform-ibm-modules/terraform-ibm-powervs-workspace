@@ -95,11 +95,14 @@ variable "custom_pi_images" {
     storage_tier = string
     sap_type     = string
   }))
-  # TODO add more validation
-  # validation {
-  #   condition     = false
-  #   error_message = "Invalid image_bucket_access. Allowed values: [\"public\", \"private\"]."
-  # }
+  validation {
+    condition     = length([for image in var.custom_pi_images : image.image_name]) == length(distinct([for image in var.custom_pi_images : image.image_name]))
+    error_message = "Duplicate image_name detected. All image names must be unique in their workspace."
+  }
+  validation {
+    condition     = alltrue([for image in var.custom_pi_images : image.sap_type == null ? true : contains(["Hana", "Netweaver"], image.sap_type)])
+    error_message = "Unsupported sap_type. Supported values: null, \"Hana\", \"Netweaver\"."
+  }
   default = []
 }
 
@@ -119,6 +122,10 @@ variable "custom_pi_image_cos_configuration" {
     "bucket_name" : "powervs-automation",
     "bucket_access" : "private"
     "bucket_region" : "eu-geo",
+  }
+  validation {
+    condition     = contains(["public", "private"], var.custom_pi_image_cos_configuration.bucket_access)
+    error_message = "Invalid custom_pi_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
   }
 }
 
