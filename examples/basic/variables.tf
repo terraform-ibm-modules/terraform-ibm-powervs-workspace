@@ -119,7 +119,7 @@ variable "custom_pi_image_cos_configuration" {
     bucket_region = string
   })
   default = {
-    "bucket_name" : "powervs-automation",
+    "bucket_name" : "image-bucket-name",
     "bucket_access" : "private"
     "bucket_region" : "eu-geo",
   }
@@ -135,7 +135,7 @@ variable "custom_pi_image_cos_service_credentials" {
   sensitive   = true
   default     = null
   validation {
-    condition     = var.custom_pi_image_cos_configuration.bucket_access == "private" ? var.custom_pi_image_cos_service_credentials != null : true
+    condition     = length(var.custom_pi_images) > 0 && var.custom_pi_image_cos_configuration.bucket_access == "private" ? var.custom_pi_image_cos_service_credentials != null : true
     error_message = "custom_pi_image_cos_service_credentials are required to access private COS buckets."
   }
 }
