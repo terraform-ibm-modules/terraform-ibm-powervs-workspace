@@ -86,8 +86,7 @@ variable "custom_pi_images" {
     Optional list of custom images to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
       file_name: string, full file name of the image inside COS bucket
-      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the following values: "tier0", "tier1", "tier3", ""
-      # TODO What type is fixed iops
+      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Typical values are: "tier0", "tier1", "tier3", "tier5k"
       sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
   EOF
   type = list(object({
