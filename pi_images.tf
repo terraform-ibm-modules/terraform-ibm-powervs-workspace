@@ -31,7 +31,7 @@ resource "ibm_pi_image" "import_images" {
 #####################################################
 
 locals {
-  custom_pi_image_cos_service_credentials = var.custom_pi_image_cos_configuration.bucket_access == "private" ? jsondecode(var.custom_pi_image_cos_service_credentials) : null
+  custom_pi_image_cos_service_credentials = var.custom_pi_image_cos_configuration != null ? var.custom_pi_image_cos_configuration.bucket_access == "private" ? jsondecode(var.custom_pi_image_cos_service_credentials) : null : null
 }
 
 resource "ibm_pi_image" "custom_images" {

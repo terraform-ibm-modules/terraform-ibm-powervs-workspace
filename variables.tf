@@ -145,14 +145,14 @@ variable "custom_pi_image_cos_configuration" {
     bucket_access = string
     bucket_region = string
   })
-  default = {
-    "bucket_name" : "powervs-automation",
-    "bucket_access" : "public"
-    "bucket_region" : "eu-geo",
+  default = null
+  validation {
+    condition     = var.custom_pi_image_cos_configuration != null ? contains(["public", "private"], var.custom_pi_image_cos_configuration.bucket_access) : true
+    error_message = "Invalid custom_pi_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
   }
   validation {
-    condition     = contains(["public", "private"], var.custom_pi_image_cos_configuration.bucket_access)
-    error_message = "Invalid custom_pi_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
+    condition     = length(var.custom_pi_images) > 0 ? var.custom_pi_image_cos_configuration != null : true
+    error_message = "The import of custom images into PowerVS workspace requires a cos configuration. custom_pi_image_cos_configuration undefined."
   }
 }
 
@@ -162,7 +162,7 @@ variable "custom_pi_image_cos_service_credentials" {
   sensitive   = true
   default     = null
   validation {
-    condition     = var.custom_pi_image_cos_configuration.bucket_access == "private" ? var.custom_pi_image_cos_service_credentials != null : true
+    condition     = var.custom_pi_image_cos_configuration != null ? var.custom_pi_image_cos_configuration.bucket_access == "private" ? var.custom_pi_image_cos_service_credentials != null : true : true
     error_message = "custom_pi_image_cos_service_credentials are required to access private COS buckets."
   }
 }
