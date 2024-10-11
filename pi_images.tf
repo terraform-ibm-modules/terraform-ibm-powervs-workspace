@@ -39,6 +39,7 @@ resource "null_resource" "set_initial_state" {
     interpreter = ["bash", "-c"]
     command     = "echo \"0\" > current_state.txt"
   }
+  depends_on = [ibm_resource_instance.pi_workspace]
 }
 
 resource "ibm_pi_image" "custom_images" {
@@ -75,7 +76,7 @@ resource "ibm_pi_image" "custom_images" {
 
   provisioner "local-exec" {
     interpreter = ["bash", "-c"]
-    command     = "echo \"${count.index + 1}\" > current_state.txt"
+    command     = "echo \"${count.index + 1}\" > current_state.txt; sleep 60"
   }
 
   depends_on = [null_resource.set_initial_state]
