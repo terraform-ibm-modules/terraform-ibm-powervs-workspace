@@ -81,7 +81,7 @@ variable "powervs_tags" {
   default     = ["pi-basic"]
 }
 
-variable "custom_pi_image1" {
+variable "pi_custom_image1" {
   description = <<EOF
     Optional custom image to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
@@ -96,13 +96,13 @@ variable "custom_pi_image1" {
     sap_type     = string
   })
   validation {
-    condition     = var.custom_pi_image1 != null ? var.custom_pi_image1.sap_type == null ? true : contains(["Hana", "Netweaver"], var.custom_pi_image1.sap_type) : true
-    error_message = "Unsupported sap_type in custom_pi_image1. Supported values: null, \"Hana\", \"Netweaver\"."
+    condition     = var.pi_custom_image1 != null ? var.pi_custom_image1.sap_type == null ? true : contains(["Hana", "Netweaver"], var.pi_custom_image1.sap_type) : true
+    error_message = "Unsupported sap_type in pi_custom_image1. Supported values: null, \"Hana\", \"Netweaver\"."
   }
   default = null
 }
 
-variable "custom_pi_image2" {
+variable "pi_custom_image2" {
   description = <<EOF
     Optional custom image to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
@@ -117,13 +117,13 @@ variable "custom_pi_image2" {
     sap_type     = string
   })
   validation {
-    condition     = var.custom_pi_image2 != null ? var.custom_pi_image2.sap_type == null ? true : contains(["Hana", "Netweaver"], var.custom_pi_image2.sap_type) : true
-    error_message = "Unsupported sap_type in custom_pi_image2. Supported values: null, \"Hana\", \"Netweaver\"."
+    condition     = var.pi_custom_image2 != null ? var.pi_custom_image2.sap_type == null ? true : contains(["Hana", "Netweaver"], var.pi_custom_image2.sap_type) : true
+    error_message = "Unsupported sap_type in pi_custom_image2. Supported values: null, \"Hana\", \"Netweaver\"."
   }
   default = null
 }
 
-variable "custom_pi_image3" {
+variable "pi_custom_image3" {
   description = <<EOF
     Optional custom image to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
@@ -138,17 +138,17 @@ variable "custom_pi_image3" {
     sap_type     = string
   })
   validation {
-    condition     = var.custom_pi_image3 != null ? var.custom_pi_image3.sap_type == null ? true : contains(["Hana", "Netweaver"], var.custom_pi_image3.sap_type) : true
-    error_message = "Unsupported sap_type in custom_pi_image3. Supported values: null, \"Hana\", \"Netweaver\"."
+    condition     = var.pi_custom_image3 != null ? var.pi_custom_image3.sap_type == null ? true : contains(["Hana", "Netweaver"], var.pi_custom_image3.sap_type) : true
+    error_message = "Unsupported sap_type in pi_custom_image3. Supported values: null, \"Hana\", \"Netweaver\"."
   }
   default = null
 }
 
-variable "custom_pi_image_cos_configuration" {
+variable "pi_custom_image_cos_configuration" {
   description = <<EOF
     Cloud Object Storage bucket containing the custom PowerVS images. Images will be imported into the PowerVS Workspace.
       bucket_name: string, name of the COS bucket
-      bucket_access: string, possible values: "public", "private" (private requires custom_pi_image_cos_service_credentials)
+      bucket_access: string, possible values: "public", "private" (private requires pi_custom_image_cos_service_credentials)
       bucket_region: string, COS bucket region
   EOF
   type = object({
@@ -158,18 +158,18 @@ variable "custom_pi_image_cos_configuration" {
   })
   default = null
   validation {
-    condition     = var.custom_pi_image_cos_configuration != null ? contains(["public", "private"], var.custom_pi_image_cos_configuration.bucket_access) : true
-    error_message = "Invalid custom_pi_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
+    condition     = var.pi_custom_image_cos_configuration != null ? contains(["public", "private"], var.pi_custom_image_cos_configuration.bucket_access) : true
+    error_message = "Invalid pi_custom_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
   }
 }
 
-variable "custom_pi_image_cos_service_credentials" {
+variable "pi_custom_image_cos_service_credentials" {
   description = "Service credentials for the Cloud Object Storage bucket containing the custom PowerVS images. The bucket must have HMAC credentials enabled. Click [here](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for a json example of a service credential."
   type        = string
   sensitive   = true
   default     = null
   validation {
-    condition     = var.custom_pi_image_cos_configuration != null ? var.custom_pi_image_cos_configuration.bucket_access == "private" ? var.custom_pi_image_cos_service_credentials != null : true : true
-    error_message = "custom_pi_image_cos_service_credentials are required to access private COS buckets."
+    condition     = var.pi_custom_image_cos_configuration != null ? var.pi_custom_image_cos_configuration.bucket_access == "private" ? var.pi_custom_image_cos_service_credentials != null : true : true
+    error_message = "pi_custom_image_cos_service_credentials are required to access private COS buckets."
   }
 }
