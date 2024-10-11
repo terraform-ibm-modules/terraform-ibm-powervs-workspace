@@ -43,6 +43,10 @@ resource "null_resource" "set_initial_state" {
 
 resource "ibm_pi_image" "custom_images" {
   count = length(var.custom_pi_images)
+  timeouts {
+    create = 40 * count.index
+  }
+
   provisioner "local-exec" {
     interpreter = ["bash", "-c"]
     command     = "while [[ $(cat current_state.txt) != \"${count.index}\" ]]; do echo \"${count.index} is waiting...\";sleep 5;done"
