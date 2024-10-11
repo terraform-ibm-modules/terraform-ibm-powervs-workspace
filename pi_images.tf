@@ -44,7 +44,7 @@ resource "null_resource" "set_initial_state" {
 resource "ibm_pi_image" "custom_images" {
   count = length(var.custom_pi_images)
   timeouts {
-    create = 40 * count.index
+    create = "${40 * count.index}m"
   }
 
   provisioner "local-exec" {
