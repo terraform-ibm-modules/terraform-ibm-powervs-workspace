@@ -108,29 +108,67 @@ variable "pi_tags" {
   default     = null
 }
 
-variable "custom_pi_images" {
+variable "custom_pi_image1" {
   description = <<EOF
-    Optional list of custom images to import from Cloud Object Storage into PowerVS workspace.
+    Optional custom image to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
       file_name: string, full file name of the image inside COS bucket
       storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Typical values are: "tier0", "tier1", "tier3", "tier5k"
       sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
   EOF
-  type = list(object({
+  type = object({
     image_name   = string
     file_name    = string
     storage_tier = string
     sap_type     = string
-  }))
+  })
   validation {
-    condition     = length([for image in var.custom_pi_images : image.image_name]) == length(distinct([for image in var.custom_pi_images : image.image_name]))
-    error_message = "Duplicate image_name detected. All image names must be unique in their workspace."
+    condition     = var.custom_pi_image1 != null ? var.custom_pi_image1.sap_type == null ? true : contains(["Hana", "Netweaver"], var.custom_pi_image1.sap_type) : true
+    error_message = "Unsupported sap_type in custom_pi_image1. Supported values: null, \"Hana\", \"Netweaver\"."
   }
+  default = null
+}
+
+variable "custom_pi_image2" {
+  description = <<EOF
+    Optional custom image to import from Cloud Object Storage into PowerVS workspace.
+      image_name: string, must be unique image name how the image will be named inside PowerVS workspace
+      file_name: string, full file name of the image inside COS bucket
+      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Typical values are: "tier0", "tier1", "tier3", "tier5k"
+      sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
+  EOF
+  type = object({
+    image_name   = string
+    file_name    = string
+    storage_tier = string
+    sap_type     = string
+  })
   validation {
-    condition     = alltrue([for image in var.custom_pi_images : image.sap_type == null ? true : contains(["Hana", "Netweaver"], image.sap_type)])
-    error_message = "Unsupported sap_type. Supported values: null, \"Hana\", \"Netweaver\"."
+    condition     = var.custom_pi_image2 != null ? var.custom_pi_image2.sap_type == null ? true : contains(["Hana", "Netweaver"], var.custom_pi_image2.sap_type) : true
+    error_message = "Unsupported sap_type in custom_pi_image2. Supported values: null, \"Hana\", \"Netweaver\"."
   }
-  default = []
+  default = null
+}
+
+variable "custom_pi_image3" {
+  description = <<EOF
+    Optional custom image to import from Cloud Object Storage into PowerVS workspace.
+      image_name: string, must be unique image name how the image will be named inside PowerVS workspace
+      file_name: string, full file name of the image inside COS bucket
+      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Typical values are: "tier0", "tier1", "tier3", "tier5k"
+      sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
+  EOF
+  type = object({
+    image_name   = string
+    file_name    = string
+    storage_tier = string
+    sap_type     = string
+  })
+  validation {
+    condition     = var.custom_pi_image3 != null ? var.custom_pi_image3.sap_type == null ? true : contains(["Hana", "Netweaver"], var.custom_pi_image3.sap_type) : true
+    error_message = "Unsupported sap_type in custom_pi_image3. Supported values: null, \"Hana\", \"Netweaver\"."
+  }
+  default = null
 }
 
 variable "custom_pi_image_cos_configuration" {
@@ -151,7 +189,7 @@ variable "custom_pi_image_cos_configuration" {
     error_message = "Invalid custom_pi_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
   }
   validation {
-    condition     = length(var.custom_pi_images) > 0 ? var.custom_pi_image_cos_configuration != null : true
+    condition     = alltrue([var.custom_pi_image1 == null, var.custom_pi_image2 == null, var.custom_pi_image3 == null]) ? var.custom_pi_image_cos_configuration != null : true
     error_message = "The import of custom images into PowerVS workspace requires a cos configuration. custom_pi_image_cos_configuration undefined."
   }
 }
