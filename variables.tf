@@ -113,7 +113,7 @@ variable "pi_custom_image1" {
     Optional custom image to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
       file_name: string, full file name of the image inside COS bucket
-      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Typical values are: "tier0", "tier1", "tier3", "tier5k"
+      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Supported values are: "tier0", "tier1", "tier3", "tier5k"
       sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
   EOF
   type = object({
@@ -126,6 +126,10 @@ variable "pi_custom_image1" {
     condition     = var.pi_custom_image1 != null ? var.pi_custom_image1.sap_type == null ? true : contains(["Hana", "Netweaver"], var.pi_custom_image1.sap_type) : true
     error_message = "Unsupported sap_type in pi_custom_image1. Supported values: null, \"Hana\", \"Netweaver\"."
   }
+  validation {
+    condition     = var.pi_custom_image1 != null ? contains(["tier0", "tier1", "tier3", "tier5k"], var.pi_custom_image1.storage_tier) : true
+    error_message = "Invalid storage tier detected in pi_custom_image1. Supported values are: tier0, tier1, tier3, tier5k."
+  }
   default = null
 }
 
@@ -134,7 +138,7 @@ variable "pi_custom_image2" {
     Optional custom image to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
       file_name: string, full file name of the image inside COS bucket
-      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Typical values are: "tier0", "tier1", "tier3", "tier5k"
+      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Supported values are: "tier0", "tier1", "tier3", "tier5k"
       sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
   EOF
   type = object({
@@ -147,6 +151,10 @@ variable "pi_custom_image2" {
     condition     = var.pi_custom_image2 != null ? var.pi_custom_image2.sap_type == null ? true : contains(["Hana", "Netweaver"], var.pi_custom_image2.sap_type) : true
     error_message = "Unsupported sap_type in pi_custom_image2. Supported values: null, \"Hana\", \"Netweaver\"."
   }
+  validation {
+    condition     = var.pi_custom_image2 != null ? contains(["tier0", "tier1", "tier3", "tier5k"], var.pi_custom_image2.storage_tier) : true
+    error_message = "Invalid storage tier detected in pi_custom_image2. Supported values are: tier0, tier1, tier3, tier5k."
+  }
   default = null
 }
 
@@ -155,7 +163,7 @@ variable "pi_custom_image3" {
     Optional custom image to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
       file_name: string, full file name of the image inside COS bucket
-      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Typical values are: "tier0", "tier1", "tier3", "tier5k"
+      storage_tier: string, storage tier which the image will be stored in after import. Must be one of the storage tiers supported in the PowerVS workspace region. Available tiers can be found using `ibmcloud pi storage-tiers`. Supported values are: "tier0", "tier1", "tier3", "tier5k"
       sap_type: string, "Hana", "Netweaver". Set to null if it's not an SAP image.
   EOF
   type = object({
@@ -167,6 +175,10 @@ variable "pi_custom_image3" {
   validation {
     condition     = var.pi_custom_image3 != null ? var.pi_custom_image3.sap_type == null ? true : contains(["Hana", "Netweaver"], var.pi_custom_image3.sap_type) : true
     error_message = "Unsupported sap_type in pi_custom_image3. Supported values: null, \"Hana\", \"Netweaver\"."
+  }
+  validation {
+    condition     = var.pi_custom_image3 != null ? contains(["tier0", "tier1", "tier3", "tier5k"], var.pi_custom_image3.storage_tier) : true
+    error_message = "Invalid storage tier detected in pi_custom_image3. Supported values are: tier0, tier1, tier3, tier5k."
   }
   default = null
 }
