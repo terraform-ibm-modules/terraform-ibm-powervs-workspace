@@ -87,7 +87,7 @@ resource "ibm_pi_image" "pi_custom_image2" {
 
 resource "ibm_pi_image" "pi_custom_image3" {
   count      = var.pi_custom_image3 != null ? 1 : 0
-  depends_on = [ibm_pi_image.pi_custom_image2]
+  depends_on = [ibm_pi_image.pi_custom_image1, ibm_pi_image.pi_custom_image2]
 
   pi_image_name             = var.pi_custom_image3.image_name
   pi_cloud_instance_id      = ibm_resource_instance.pi_workspace.guid
