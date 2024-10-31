@@ -30,6 +30,7 @@ resource "ibm_resource_instance" "pi_workspace" {
   }
 }
 
+
 #####################################################
 # Create SSH Public Key in PowerVS workspace
 #####################################################
