@@ -53,7 +53,7 @@ module "power-workspace" {
   pi_private_subnet_2                     = var.pi_private_subnet_2                     #(optional, default null)
   pi_private_subnet_3                     = var.pi_private_subnet_3                     #(optional, default null)
   pi_public_subnet_enable                 = var.pi_public_subnet_enable                 #(optional, default false)
-  pi_tags                                 = var.pi_tags                                 #(optional, default [])
+  pi_tags                                 = var.pi_tags                                 #(optional, default null)
   pi_custom_image1                        = var.pi_custom_image1                        #(optional, default null)
   pi_custom_image2                        = var.pi_custom_image2                        #(optional, default null)
   pi_custom_image3                        = var.pi_custom_image3                        #(optional, default null)
