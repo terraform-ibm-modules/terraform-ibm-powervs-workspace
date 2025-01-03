@@ -19,6 +19,7 @@ resource "ibm_pi_image" "import_images" {
   pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
   pi_image_id          = lookup(local.catalog_images, each.key, null)
   pi_image_name        = each.key
+  pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 
   timeouts {
     create = "9m"
@@ -46,6 +47,7 @@ resource "ibm_pi_image" "pi_custom_image1" {
   pi_image_storage_type     = var.pi_custom_image1.storage_tier
   pi_image_access_key       = var.pi_custom_image_cos_configuration.bucket_access == "private" ? local.pi_custom_image_cos_service_credentials.cos_hmac_keys.access_key_id : null
   pi_image_secret_key       = var.pi_custom_image_cos_configuration.bucket_access == "private" ? local.pi_custom_image_cos_service_credentials.cos_hmac_keys.secret_access_key : null
+  pi_user_tags              = var.pi_tags != null ? var.pi_tags : []
 
   dynamic "pi_image_import_details" {
     # make pi_image_import_details optional
@@ -72,6 +74,7 @@ resource "ibm_pi_image" "pi_custom_image2" {
   pi_image_storage_type     = var.pi_custom_image2.storage_tier
   pi_image_access_key       = var.pi_custom_image_cos_configuration.bucket_access == "private" ? local.pi_custom_image_cos_service_credentials.cos_hmac_keys.access_key_id : null
   pi_image_secret_key       = var.pi_custom_image_cos_configuration.bucket_access == "private" ? local.pi_custom_image_cos_service_credentials.cos_hmac_keys.secret_access_key : null
+  pi_user_tags              = var.pi_tags != null ? var.pi_tags : []
 
   dynamic "pi_image_import_details" {
     # make pi_image_import_details optional
@@ -98,6 +101,7 @@ resource "ibm_pi_image" "pi_custom_image3" {
   pi_image_storage_type     = var.pi_custom_image3.storage_tier
   pi_image_access_key       = var.pi_custom_image_cos_configuration.bucket_access == "private" ? local.pi_custom_image_cos_service_credentials.cos_hmac_keys.access_key_id : null
   pi_image_secret_key       = var.pi_custom_image_cos_configuration.bucket_access == "private" ? local.pi_custom_image_cos_service_credentials.cos_hmac_keys.secret_access_key : null
+  pi_user_tags              = var.pi_tags != null ? var.pi_tags : []
 
   dynamic "pi_image_import_details" {
     # make pi_image_import_details optional
