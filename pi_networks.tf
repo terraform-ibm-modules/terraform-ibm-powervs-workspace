@@ -17,6 +17,7 @@ resource "ibm_pi_network" "private_subnet_1" {
   pi_cidr              = var.pi_private_subnet_1.cidr
   pi_network_type      = "vlan"
   pi_network_mtu       = 9000
+  pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
 
 resource "ibm_pi_network" "private_subnet_2" {
@@ -28,6 +29,7 @@ resource "ibm_pi_network" "private_subnet_2" {
   pi_cidr              = var.pi_private_subnet_2.cidr
   pi_network_type      = "vlan"
   pi_network_mtu       = 9000
+  pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
 
 resource "ibm_pi_network" "private_subnet_3" {
@@ -39,6 +41,7 @@ resource "ibm_pi_network" "private_subnet_3" {
   pi_cidr              = var.pi_private_subnet_3.cidr
   pi_network_type      = "vlan"
   pi_network_mtu       = 9000
+  pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
 
 
@@ -52,4 +55,5 @@ resource "ibm_pi_network" "public_subnet" {
   pi_network_name      = "public_net"
   pi_network_type      = "pub-vlan"
   pi_network_mtu       = 9000
+  pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
