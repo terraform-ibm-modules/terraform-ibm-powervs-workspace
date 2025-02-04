@@ -5,21 +5,29 @@
 data "ibm_pi_catalog_images" "catalog_images_ds" {
   pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
   sap                  = true
+  provider             = ibm
 }
 
 locals {
   catalog_images = {
     for stock_image in data.ibm_pi_catalog_images.catalog_images_ds.images :
     stock_image.name => stock_image.image_id
+    if stock_image.name == [for img in data.ibm_pi_catalog_images.catalog_images_ds.images : img.name][0]
   }
 }
 
 resource "ibm_pi_image" "import_images" {
   for_each             = toset(var.pi_image_names)
   pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
-  pi_image_id          = lookup(local.catalog_images, each.key, null)
-  pi_image_name        = each.key
-  pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
+  #pi_image_id          = lookup(local.catalog_images, each.key, null)
+  pi_image_id   = "e0ea7bb6-8512-4ec4-a2ba-48e5adab3fa9"
+  pi_image_name = each.key
+  # pi_image_bucket_name = "None"
+  # pi_image_bucket_file_name = "None"
+  # pi_image_bucket_region = "None"
+  #pi_ostype = "ibmi"
+  pi_user_tags = var.pi_tags != null ? var.pi_tags : []
+  provider     = ibm
 
   timeouts {
     create = "9m"

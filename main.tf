@@ -7,9 +7,19 @@
 #####################################################
 
 locals {
-  service_type = "power-iaas"
-  plan         = "power-virtual-server-group"
+  service_type     = "power-iaas"
+  plan             = "power-virtual-server-private-group"
+  ibmcloud_api_key = var.ibmcloud_api_key
+  zone             = "satloc_dal_clp25g92006uiuvbvku0"
 }
+
+provider "ibm" {
+  ibmcloud_api_key = var.ibmcloud_api_key
+  zone             = "satloc_dal_clp25g92006uiuvbvku0"
+}
+
+# How to pass the customer satellite locations/zones?
+# Handle the occurrences of duplicates in the pi image list
 
 data "ibm_resource_group" "resource_group_ds" {
   name = var.pi_resource_group_name
