@@ -42,7 +42,7 @@ variable "powervs_ssh_public_key" {
 variable "powervs_image_names" {
   description = "List of Images to be imported into cloud account from catalog images."
   type        = list(string)
-  default     = ["RHEL9-SP2-SAP"]
+  default     = ["SLES15-SP5-SAP", "RHEL9-SP2-SAP"]
 }
 
 variable "powervs_private_subnet_1" {
