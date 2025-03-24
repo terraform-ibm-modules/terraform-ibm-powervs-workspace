@@ -1,7 +1,0 @@
----
-- name: osa21
-  useForTest: true
-  testPriority: 1
-- name: sao04
-  useForTest: true
-  testPriority: 2
