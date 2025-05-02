@@ -29,11 +29,6 @@ variable "pi_ssh_public_key" {
   })
 }
 
-variable "pi_image_names" {
-  description = "List of images to be imported into cloud account from catalog images. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md)"
-  type        = list(string)
-}
-
 ########################################################
 #Optional Parameters
 ########################################################
