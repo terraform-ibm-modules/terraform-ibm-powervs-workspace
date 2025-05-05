@@ -12,7 +12,7 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 
 - Creates an IBM® Power Virtual Server (PowerVS) workspace.
 - Creates an SSH key.
-- Optionally imports up to three custom images from Cloud Object Storage.
+- Optionally imports up to three custom Linux or SAP Linux images from Cloud Object Storage.
 - Optionally create one or two or three private subnets.
 - Optionally create one public subnet.
 - Optionally attach the PowerVS workspace to transit gateway.
