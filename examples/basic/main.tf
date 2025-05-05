@@ -42,7 +42,6 @@ module "powervs_workspace" {
   pi_resource_group_name        = local.powervs_resource_group_name
   pi_workspace_name             = local.powervs_workspace_name
   pi_tags                       = var.powervs_tags
-  pi_image_names                = var.powervs_image_names
   pi_ssh_public_key             = local.powervs_ssh_public_key
   pi_private_subnet_1           = var.powervs_private_subnet_1
   pi_private_subnet_2           = var.powervs_private_subnet_2

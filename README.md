@@ -12,7 +12,6 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 
 - Creates an IBM® Power Virtual Server (PowerVS) workspace.
 - Creates an SSH key.
-- Optionally imports list of stock catalog images.
 - Optionally imports up to three custom images from Cloud Object Storage.
 - Optionally create one or two or three private subnets.
 - Optionally create one public subnet.
@@ -47,7 +46,6 @@ module "power-workspace" {
   pi_resource_group_name                  = var.pi_resource_group_name
   pi_workspace_name                       = var.pi_workspace_name
   pi_ssh_public_key                       = var.pi_ssh_public_key
-  pi_image_names                          = var.pi_image_names
   pi_transit_gateway_connection           = var.pi_transit_gateway_connection           #(optional, default check vars)
   pi_private_subnet_1                     = var.pi_private_subnet_1                     #(optional, default null)
   pi_private_subnet_2                     = var.pi_private_subnet_2                     #(optional, default null)
@@ -99,7 +97,6 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [ibm_pi_image.import_images](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_image) | resource |
 | [ibm_pi_image.pi_custom_image1](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_image) | resource |
 | [ibm_pi_image.pi_custom_image2](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_image) | resource |
 | [ibm_pi_image.pi_custom_image3](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_image) | resource |
@@ -111,7 +108,6 @@ No modules.
 | [ibm_resource_instance.pi_workspace](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_instance) | resource |
 | [ibm_tg_connection.tg_powervs_workspace_attach](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/tg_connection) | resource |
 | [time_sleep.wait_30_sec](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
-| [ibm_pi_catalog_images.catalog_images_ds](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/pi_catalog_images) | data source |
 | [ibm_resource_group.resource_group_ds](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/resource_group) | data source |
 
 ### Inputs
@@ -123,7 +119,6 @@ No modules.
 | <a name="input_pi_custom_image3"></a> [pi\_custom\_image3](#input\_pi\_custom\_image3) | Optional custom image to import from Cloud Object Storage into PowerVS workspace.<br/>      image\_name: string, must be unique image name how the image will be named inside PowerVS workspace<br/>      file\_name: string, full file name of the image inside COS bucket<br/>      storage\_tier: string, storage tier which the image will be stored in after import. Supported values are: "tier0", "tier1", "tier3", "tier5k".<br/>      sap\_type: optional string, "Hana", "Netweaver", don't use it for non-SAP image. | <pre>object({<br/>    image_name   = string<br/>    file_name    = string<br/>    storage_tier = string<br/>    sap_type     = optional(string)<br/>  })</pre> | `null` | no |
 | <a name="input_pi_custom_image_cos_configuration"></a> [pi\_custom\_image\_cos\_configuration](#input\_pi\_custom\_image\_cos\_configuration) | Cloud Object Storage bucket containing the custom PowerVS images. Images will be imported into the PowerVS Workspace.<br/>      bucket\_name: string, name of the COS bucket<br/>      bucket\_access: string, possible values: "public", "private" (private requires pi\_custom\_image\_cos\_service\_credentials)<br/>      bucket\_region: string, COS bucket region | <pre>object({<br/>    bucket_name   = string<br/>    bucket_access = string<br/>    bucket_region = string<br/>  })</pre> | `null` | no |
 | <a name="input_pi_custom_image_cos_service_credentials"></a> [pi\_custom\_image\_cos\_service\_credentials](#input\_pi\_custom\_image\_cos\_service\_credentials) | Service credentials for the Cloud Object Storage bucket containing the custom PowerVS images. The bucket must have HMAC credentials enabled. Click [here](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for a json example of a service credential. | `string` | `null` | no |
-| <a name="input_pi_image_names"></a> [pi\_image\_names](#input\_pi\_image\_names) | List of images to be imported into cloud account from catalog images. Supported values can be found [here](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/main/docs/catalog_images_list.md) | `list(string)` | n/a | yes |
 | <a name="input_pi_private_subnet_1"></a> [pi\_private\_subnet\_1](#input\_pi\_private\_subnet\_1) | IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br/>    name = string<br/>    cidr = string<br/>  })</pre> | `null` | no |
 | <a name="input_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#input\_pi\_private\_subnet\_2) | IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br/>    name = string<br/>    cidr = string<br/>  })</pre> | `null` | no |
 | <a name="input_pi_private_subnet_3"></a> [pi\_private\_subnet\_3](#input\_pi\_private\_subnet\_3) | IBM Cloud PowerVS third private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br/>    name = string<br/>    cidr = string<br/>  })</pre> | `null` | no |

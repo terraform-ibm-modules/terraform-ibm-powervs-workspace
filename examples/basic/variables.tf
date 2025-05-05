@@ -39,12 +39,6 @@ variable "powervs_ssh_public_key" {
   type        = string
 }
 
-variable "powervs_image_names" {
-  description = "List of Images to be imported into cloud account from catalog images."
-  type        = list(string)
-  default     = ["SLES15-SP5-SAP", "RHEL9-SP2-SAP"]
-}
-
 variable "powervs_private_subnet_1" {
   description = "IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
