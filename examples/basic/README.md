@@ -8,7 +8,7 @@ An basic example that will provision the following:
 - 2 new PowerVS private subnets.
 - A new PowerVS public subnet.
 - Attaches the PowerVS workspace to Transit gateway.
-- Imports catalog images into PowerVS workspace.
+- Optionally import one custom image from Cloud Object Storage.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ### Requirements
