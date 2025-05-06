@@ -91,5 +91,19 @@ resource "ibm_pi_image" "pi_custom_image3" {
 ################
 
 locals {
-  pi_images = merge({ for image in ibm_pi_image.pi_custom_image1 : image.pi_image_name => image.image_id }, { for image in ibm_pi_image.pi_custom_image2 : image.pi_image_name => image.image_id }, { for image in ibm_pi_image.pi_custom_image3 : image.pi_image_name => image.image_id })
+  all_images = flatten([
+    ibm_pi_image.pi_custom_image1,
+    ibm_pi_image.pi_custom_image2,
+    ibm_pi_image.pi_custom_image3
+  ])
+
+  pi_images = {
+    for image in local.all_images :
+    image.pi_image_name => {
+      image_id           = image.id
+      image_license_type = length(image.pi_image_import_details) > 0 ? image.pi_image_import_details[0].license_type : ""
+      image_product      = length(image.pi_image_import_details) > 0 ? image.pi_image_import_details[0].product : ""
+      image_vendor       = length(image.pi_image_import_details) > 0 ? image.pi_image_import_details[0].license_type : ""
+    }
+  }
 }
