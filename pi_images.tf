@@ -103,7 +103,7 @@ locals {
       image_id           = image.id
       image_license_type = length(image.pi_image_import_details) > 0 ? image.pi_image_import_details[0].license_type : ""
       image_product      = length(image.pi_image_import_details) > 0 ? image.pi_image_import_details[0].product : ""
-      image_vendor       = length(image.pi_image_import_details) > 0 ? image.pi_image_import_details[0].license_type : ""
+      image_vendor       = length(image.pi_image_import_details) > 0 ? image.pi_image_import_details[0].vendor : ""
     }
   }
 }
