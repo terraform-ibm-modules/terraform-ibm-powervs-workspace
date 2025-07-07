@@ -16,6 +16,7 @@ module "resource_group" {
 
 resource "ibm_tg_gateway" "transit_gateway" {
   provider = ibm.ibm-is
+  count    = var.create_transit_gateway ? 1 : 0
 
   name           = "${var.prefix}-transit-gateway-1"
   location       = lookup(local.ibm_powervs_zone_cloud_region_map, var.powervs_zone, null)
@@ -28,7 +29,7 @@ resource "ibm_tg_gateway" "transit_gateway" {
 # Create PowerVS Workspace
 #############################
 locals {
-  powervs_transit_gateway_connection = { enable = true, transit_gateway_id = ibm_tg_gateway.transit_gateway.id }
+  powervs_transit_gateway_connection = { enable = var.create_transit_gateway ? true : false, transit_gateway_id = var.create_transit_gateway ? ibm_tg_gateway.transit_gateway[0].id : "" }
   powervs_workspace_name             = "${var.prefix}-${var.powervs_workspace_name}"
   powervs_ssh_public_key             = { name = "${var.prefix}-pi-ssh-key", value = var.powervs_ssh_public_key }
   powervs_resource_group_name        = module.resource_group.resource_group_name

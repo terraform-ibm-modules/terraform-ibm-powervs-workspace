@@ -75,6 +75,12 @@ variable "powervs_tags" {
   default     = ["pi-basic"]
 }
 
+variable "create_transit_gateway" {
+  description = "Set to true to create a Transit Gateway for the PowerVS workspace and attach it."
+  type        = bool
+  default     = true
+}
+
 variable "powervs_custom_image1" {
   description = <<EOF
     Optional custom image to import from Cloud Object Storage into PowerVS workspace.
