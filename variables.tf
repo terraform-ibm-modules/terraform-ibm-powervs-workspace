@@ -12,8 +12,19 @@ variable "pi_zone" {
 }
 
 variable "pi_resource_group_name" {
-  description = "Existing Resource Group Name."
+  description = "Existing Resource Group Name. Only define name or id, not both."
   type        = string
+  default     = null
+}
+
+variable "pi_resource_group_id" {
+  description = "Existing Resource Group Id. This is only used if pi_resource_group_name is not set."
+  type        = string
+  default     = null
+  validation {
+    condition     = (var.pi_resource_group_id == null && var.pi_resource_group_name != null) || (var.pi_resource_group_id != null && var.pi_resource_group_name == null)
+    error_message = "Either pi_resource_group_id or pi_resource_group_name must be set, but not both."
+  }
 }
 
 variable "pi_workspace_name" {
