@@ -43,7 +43,8 @@ module "power-workspace" {
   version = "latest" # Replace "latest" with a release version to lock into a specific release
 
   pi_zone                                 = var.pi_zone
-  pi_resource_group_name                  = var.pi_resource_group_name
+  pi_resource_group_name                  = var.pi_resource_group_name                  #(optional, default null,pi_resource_group_name or pi_resource_group_id required)
+  pi_resource_group_id                    = var.pi_resource_group_id                    #(optional, default null,pi_resource_group_name or pi_resource_group_id required)
   pi_workspace_name                       = var.pi_workspace_name
   pi_ssh_public_key                       = var.pi_ssh_public_key
   pi_transit_gateway_connection           = var.pi_transit_gateway_connection           #(optional, default check vars)
@@ -123,7 +124,8 @@ No modules.
 | <a name="input_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#input\_pi\_private\_subnet\_2) | IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br/>    name = string<br/>    cidr = string<br/>  })</pre> | `null` | no |
 | <a name="input_pi_private_subnet_3"></a> [pi\_private\_subnet\_3](#input\_pi\_private\_subnet\_3) | IBM Cloud PowerVS third private subnet name and cidr which will be created. Set value to null to not create this subnet. | <pre>object({<br/>    name = string<br/>    cidr = string<br/>  })</pre> | `null` | no |
 | <a name="input_pi_public_subnet_enable"></a> [pi\_public\_subnet\_enable](#input\_pi\_public\_subnet\_enable) | IBM Cloud PowerVS Public Network. Set to true to enable this. | `bool` | `false` | no |
-| <a name="input_pi_resource_group_name"></a> [pi\_resource\_group\_name](#input\_pi\_resource\_group\_name) | Existing Resource Group Name. | `string` | n/a | yes |
+| <a name="input_pi_resource_group_id"></a> [pi\_resource\_group\_id](#input\_pi\_resource\_group\_id) | Existing Resource Group Id. This is only used if pi\_resource\_group\_name is not set. | `string` | `null` | no |
+| <a name="input_pi_resource_group_name"></a> [pi\_resource\_group\_name](#input\_pi\_resource\_group\_name) | Existing Resource Group Name. Only define name or id, not both. | `string` | `null` | no |
 | <a name="input_pi_ssh_public_key"></a> [pi\_ssh\_public\_key](#input\_pi\_ssh\_public\_key) | Name and value of the Public SSH key to create in PowerVS workspace. | <pre>object({<br/>    name  = string<br/>    value = string<br/>  })</pre> | n/a | yes |
 | <a name="input_pi_tags"></a> [pi\_tags](#input\_pi\_tags) | List of Tag names for IBM Cloud PowerVS workspace. Can be set to null. | `list(string)` | `null` | no |
 | <a name="input_pi_transit_gateway_connection"></a> [pi\_transit\_gateway\_connection](#input\_pi\_transit\_gateway\_connection) | Set enable to true and provide ID of the existing transit gateway to attach the CCs( Non PER DC) to TGW or to attach PowerVS workspace to TGW (PER DC). If enable is false, CCs will not be attached to TGW , or PowerVS workspace will not be attached to TGW, but CCs in (Non PER DC) will be created. | <pre>object({<br/>    enable             = bool<br/>    transit_gateway_id = string<br/>  })</pre> | <pre>{<br/>  "enable": false,<br/>  "transit_gateway_id": ""<br/>}</pre> | no |
