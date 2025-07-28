@@ -17,6 +17,11 @@ data "ibm_resource_group" "resource_group_ds" {
   name  = var.pi_resource_group_name
 }
 
+moved {
+  from = data.ibm_resource_group.resource_group_ds
+  to   = data.ibm_resource_group.resource_group_ds[0]
+}
+
 resource "ibm_resource_instance" "pi_workspace" {
   name              = var.pi_workspace_name
   service           = local.service_type
