@@ -12,7 +12,7 @@ variable "pi_zone" {
 }
 
 variable "pi_resource_group_name" {
-  description = "Existing Resource Group Name. Only define name or id, not both."
+  description = "Existing Resource Group Name. Conflicts with pi_resource_group_id."
   type        = string
   default     = null
 }
