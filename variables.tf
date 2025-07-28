@@ -12,8 +12,19 @@ variable "pi_zone" {
 }
 
 variable "pi_resource_group_name" {
-  description = "Existing Resource Group Name."
+  description = "Existing Resource Group Name. Conflicts with pi_resource_group_id."
   type        = string
+  default     = null
+}
+
+variable "pi_resource_group_id" {
+  description = "Existing Resource Group Id. Conflicts with pi_resource_group_name."
+  type        = string
+  default     = null
+  validation {
+    condition     = (var.pi_resource_group_id == null && var.pi_resource_group_name != null) || (var.pi_resource_group_id != null && var.pi_resource_group_name == null)
+    error_message = "Either pi_resource_group_id or pi_resource_group_name must be set, but not both."
+  }
 }
 
 variable "pi_workspace_name" {
@@ -49,8 +60,10 @@ variable "pi_transit_gateway_connection" {
 variable "pi_private_subnet_1" {
   description = "IBM Cloud PowerVS first private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
-    name = string
-    cidr = string
+    name          = string
+    cidr          = string
+    advertise     = optional(string)
+    arp_broadcast = optional(string)
   })
 
   default = null
@@ -59,13 +72,23 @@ variable "pi_private_subnet_1" {
     condition     = var.pi_private_subnet_1 != null ? anytrue([can(regex("^10\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.){2}(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_1.cidr)), can(regex("^192\\.168\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.)(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_1.cidr)), can(regex("^172\\.(([1][6-9])|([2][0-9])|([3][0-1]))\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.)(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_1.cidr))]) : true
     error_message = "Must be a valid private IPv4 CIDR block address."
   }
+  validation {
+    condition     = var.pi_private_subnet_1 != null ? var.pi_private_subnet_1.advertise != null ? (var.pi_private_subnet_1.advertise == "enable" || var.pi_private_subnet_1.advertise == "disable") : true : true
+    error_message = "pi_private_subnet_1.advertise must be 'enable' or 'disable'."
+  }
+  validation {
+    condition     = var.pi_private_subnet_1 != null ? var.pi_private_subnet_1.arp_broadcast != null ? (var.pi_private_subnet_1.arp_broadcast == "enable" || var.pi_private_subnet_1.arp_broadcast == "disable") : true : true
+    error_message = "pi_private_subnet_1.arp_broadcast must be 'enable' or 'disable'."
+  }
 }
 
 variable "pi_private_subnet_2" {
   description = "IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
-    name = string
-    cidr = string
+    name          = string
+    cidr          = string
+    advertise     = optional(string)
+    arp_broadcast = optional(string)
   })
 
   default = null
@@ -74,13 +97,23 @@ variable "pi_private_subnet_2" {
     condition     = var.pi_private_subnet_2 != null ? anytrue([can(regex("^10\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.){2}(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_2.cidr)), can(regex("^192\\.168\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.)(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_2.cidr)), can(regex("^172\\.(([1][6-9])|([2][0-9])|([3][0-1]))\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.)(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_2.cidr))]) : true
     error_message = "Must be a valid private IPv4 CIDR block address."
   }
+  validation {
+    condition     = var.pi_private_subnet_2 != null ? var.pi_private_subnet_2.advertise != null ? (var.pi_private_subnet_2.advertise == "enable" || var.pi_private_subnet_2.advertise == "disable") : true : true
+    error_message = "pi_private_subnet_2.advertise must be 'enable' or 'disable'."
+  }
+  validation {
+    condition     = var.pi_private_subnet_2 != null ? var.pi_private_subnet_2.arp_broadcast != null ? (var.pi_private_subnet_2.arp_broadcast == "enable" || var.pi_private_subnet_2.arp_broadcast == "disable") : true : true
+    error_message = "pi_private_subnet_2.arp_broadcast must be 'enable' or 'disable'."
+  }
 }
 
 variable "pi_private_subnet_3" {
   description = "IBM Cloud PowerVS third private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
-    name = string
-    cidr = string
+    name          = string
+    cidr          = string
+    advertise     = optional(string)
+    arp_broadcast = optional(string)
   })
 
   default = null
@@ -88,6 +121,14 @@ variable "pi_private_subnet_3" {
   validation {
     condition     = var.pi_private_subnet_3 != null ? anytrue([can(regex("^10\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.){2}(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_3.cidr)), can(regex("^192\\.168\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.)(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_3.cidr)), can(regex("^172\\.(([1][6-9])|([2][0-9])|([3][0-1]))\\.((([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))\\.)(([2][0-5]{2})|([0-1]{0,1}[0-9]{1,2}))", var.pi_private_subnet_3.cidr))]) : true
     error_message = "Must be a valid private IPv4 CIDR block address."
+  }
+  validation {
+    condition     = var.pi_private_subnet_3 != null ? var.pi_private_subnet_3.advertise != null ? (var.pi_private_subnet_3.advertise == "enable" || var.pi_private_subnet_3.advertise == "disable") : true : true
+    error_message = "pi_private_subnet_3.advertise must be 'enable' or 'disable'."
+  }
+  validation {
+    condition     = var.pi_private_subnet_3 != null ? var.pi_private_subnet_3.arp_broadcast != null ? (var.pi_private_subnet_3.arp_broadcast == "enable" || var.pi_private_subnet_3.arp_broadcast == "disable") : true : true
+    error_message = "pi_private_subnet_3.arp_broadcast must be 'enable' or 'disable'."
   }
 }
 

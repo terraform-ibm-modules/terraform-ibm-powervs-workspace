@@ -7,12 +7,19 @@
 #####################################################
 
 locals {
-  service_type = "power-iaas"
-  plan         = "power-virtual-server-group"
+  service_type      = "power-iaas"
+  plan              = "power-virtual-server-group"
+  resource_group_id = var.pi_resource_group_id != null ? var.pi_resource_group_id : data.ibm_resource_group.resource_group_ds[0].id
 }
 
 data "ibm_resource_group" "resource_group_ds" {
-  name = var.pi_resource_group_name
+  count = var.pi_resource_group_name != null ? 1 : 0
+  name  = var.pi_resource_group_name
+}
+
+moved {
+  from = data.ibm_resource_group.resource_group_ds
+  to   = data.ibm_resource_group.resource_group_ds[0]
 }
 
 resource "ibm_resource_instance" "pi_workspace" {
@@ -20,7 +27,7 @@ resource "ibm_resource_instance" "pi_workspace" {
   service           = local.service_type
   plan              = local.plan
   location          = var.pi_zone
-  resource_group_id = data.ibm_resource_group.resource_group_ds.id
+  resource_group_id = local.resource_group_id
   tags              = (var.pi_tags != null ? var.pi_tags : [])
 
   timeouts {

@@ -16,6 +16,8 @@ resource "ibm_pi_network" "private_subnet_1" {
   pi_network_name      = var.pi_private_subnet_1.name
   pi_cidr              = var.pi_private_subnet_1.cidr
   pi_network_type      = "vlan"
+  pi_advertise         = var.pi_private_subnet_1.advertise != null ? var.pi_private_subnet_1.advertise : null
+  pi_arp_broadcast     = var.pi_private_subnet_1.arp_broadcast != null ? var.pi_private_subnet_1.arp_broadcast : null
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
@@ -28,6 +30,8 @@ resource "ibm_pi_network" "private_subnet_2" {
   pi_network_name      = var.pi_private_subnet_2.name
   pi_cidr              = var.pi_private_subnet_2.cidr
   pi_network_type      = "vlan"
+  pi_advertise         = var.pi_private_subnet_2.advertise != null ? var.pi_private_subnet_2.advertise : null
+  pi_arp_broadcast     = var.pi_private_subnet_2.arp_broadcast != null ? var.pi_private_subnet_2.arp_broadcast : null
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
@@ -40,6 +44,8 @@ resource "ibm_pi_network" "private_subnet_3" {
   pi_network_name      = var.pi_private_subnet_3.name
   pi_cidr              = var.pi_private_subnet_3.cidr
   pi_network_type      = "vlan"
+  pi_advertise         = var.pi_private_subnet_3.advertise != null ? var.pi_private_subnet_3.advertise : null
+  pi_arp_broadcast     = var.pi_private_subnet_3.arp_broadcast != null ? var.pi_private_subnet_3.arp_broadcast : null
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
