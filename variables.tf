@@ -18,7 +18,7 @@ variable "pi_resource_group_name" {
 }
 
 variable "pi_resource_group_id" {
-  description = "Existing Resource Group Id. This is only used if pi_resource_group_name is not set."
+  description = "Existing Resource Group Id. Conflicts with pi_resource_group_name."
   type        = string
   default     = null
   validation {
