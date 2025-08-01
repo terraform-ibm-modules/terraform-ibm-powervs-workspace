@@ -25,7 +25,7 @@ output "pi_workspace_guid" {
 
 output "pi_ssh_public_key" {
   description = "SSH public key name and value in created PowerVS infrastructure."
-  value       = var.pi_ssh_public_key
+  value       = { name = ibm_pi_key.ssh_key.pi_key_name, scope = ibm_pi_key.ssh_key.pi_visibility, value = ibm_pi_key.ssh_key.pi_ssh_key }
 }
 
 output "pi_images" {
