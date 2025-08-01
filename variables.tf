@@ -33,11 +33,17 @@ variable "pi_workspace_name" {
 }
 
 variable "pi_ssh_public_key" {
-  description = "Name and value of the Public SSH key to create in PowerVS workspace."
+  description = "Name, value, and scope of the Public SSH key to create in PowerVS Infrastructure. Allowed values for scope: 'account', 'workspace'. Defaults to 'workspace'."
   type = object({
     name  = string
     value = string
+    scope = optional(string)
   })
+
+  validation {
+    condition     = var.pi_ssh_public_key.scope != null ? contains(["account", "workspace"], var.pi_ssh_public_key.scope) : true
+    error_message = "Invalid value for var.pi_ssh_public_key.scope. Allowed values: 'account', 'workspace'."
+  }
 }
 
 ########################################################
