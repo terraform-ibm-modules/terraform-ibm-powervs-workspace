@@ -87,7 +87,7 @@ You need the following permissions to run this module.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.71.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.81.0 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.9.1 |
 
 ### Modules
@@ -126,7 +126,7 @@ No modules.
 | <a name="input_pi_public_subnet_enable"></a> [pi\_public\_subnet\_enable](#input\_pi\_public\_subnet\_enable) | IBM Cloud PowerVS Public Network. Set to true to enable this. | `bool` | `false` | no |
 | <a name="input_pi_resource_group_id"></a> [pi\_resource\_group\_id](#input\_pi\_resource\_group\_id) | Existing Resource Group Id. Conflicts with pi\_resource\_group\_name. | `string` | `null` | no |
 | <a name="input_pi_resource_group_name"></a> [pi\_resource\_group\_name](#input\_pi\_resource\_group\_name) | Existing Resource Group Name. Conflicts with pi\_resource\_group\_id. | `string` | `null` | no |
-| <a name="input_pi_ssh_public_key"></a> [pi\_ssh\_public\_key](#input\_pi\_ssh\_public\_key) | Name, value, and scope of the Public SSH key to create in PowerVS workspace. Allowed values for scope: 'account', 'workspace'. | <pre>object({<br/>    name  = string<br/>    value = string<br/>    scope = optional(string, "account")<br/>  })</pre> | n/a | yes |
+| <a name="input_pi_ssh_public_key"></a> [pi\_ssh\_public\_key](#input\_pi\_ssh\_public\_key) | Name, value, and scope of the Public SSH key to create in PowerVS Infrastructure. Allowed values for scope: 'account', 'workspace'. Defaults to 'workspace'. | <pre>object({<br/>    name  = string<br/>    value = string<br/>    scope = optional(string)<br/>  })</pre> | n/a | yes |
 | <a name="input_pi_tags"></a> [pi\_tags](#input\_pi\_tags) | List of Tag names for IBM Cloud PowerVS workspace. Can be set to null. | `list(string)` | `null` | no |
 | <a name="input_pi_transit_gateway_connection"></a> [pi\_transit\_gateway\_connection](#input\_pi\_transit\_gateway\_connection) | Set enable to true and provide ID of the existing transit gateway to attach the CCs( Non PER DC) to TGW or to attach PowerVS workspace to TGW (PER DC). If enable is false, CCs will not be attached to TGW , or PowerVS workspace will not be attached to TGW, but CCs in (Non PER DC) will be created. | <pre>object({<br/>    enable             = bool<br/>    transit_gateway_id = string<br/>  })</pre> | <pre>{<br/>  "enable": false,<br/>  "transit_gateway_id": ""<br/>}</pre> | no |
 | <a name="input_pi_workspace_name"></a> [pi\_workspace\_name](#input\_pi\_workspace\_name) | Name of IBM Cloud PowerVS workspace which will be created. | `string` | n/a | yes |
