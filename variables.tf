@@ -40,6 +40,17 @@ variable "pi_ssh_public_key" {
   })
 }
 
+variable "pi_ssh_key_visibility" {
+  description = "Visibility of the Public SSH key in the PowerVS workspace. Allowed values: 'account', 'workspace'."
+  type        = string
+  default     = "account"
+
+  validation {
+    condition     = var.pi_ssh_key_visibility == "account" || var.pi_ssh_key_visibility == "workspace"
+    error_message = "Invalid value for pi_ssh_key_visibility. Allowed values: 'account', 'workspace'."
+  }
+}
+
 ########################################################
 #Optional Parameters
 ########################################################
