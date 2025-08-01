@@ -33,21 +33,16 @@ variable "pi_workspace_name" {
 }
 
 variable "pi_ssh_public_key" {
-  description = "Name and value of the Public SSH key to create in PowerVS workspace."
+  description = "Name, value, and scope of the Public SSH key to create in PowerVS workspace. Allowed values for scope: 'account', 'workspace'."
   type = object({
     name  = string
     value = string
+    scope = optional(string, "account")
   })
-}
-
-variable "pi_ssh_key_visibility" {
-  description = "Visibility of the Public SSH key in the PowerVS workspace. Allowed values: 'account', 'workspace'."
-  type        = string
-  default     = "account"
 
   validation {
-    condition     = var.pi_ssh_key_visibility == "account" || var.pi_ssh_key_visibility == "workspace"
-    error_message = "Invalid value for pi_ssh_key_visibility. Allowed values: 'account', 'workspace'."
+    condition     = var.pi_ssh_public_key.scope == "account" || var.pi_ssh_public_key.scope == "workspace"
+    error_message = "Invalid value for var.pi_ssh_public_key.scope. Allowed values: 'account', 'workspace'."
   }
 }
 
