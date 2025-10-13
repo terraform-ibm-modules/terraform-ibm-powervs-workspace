@@ -64,7 +64,7 @@ variable "powervs_private_subnet_2" {
   })
   default = {
     name = "sub_2"
-    cidr = "10.53.0.0/24"
+    cidr = ""
   }
 }
 variable "powervs_private_subnet_3" {
@@ -77,7 +77,7 @@ variable "powervs_private_subnet_3" {
   })
   default = {
     name = "sub_3"
-    cidr = "10.54.0.0/24"
+    cidr = ""
   }
 }
 variable "powervs_public_network_enable" {
