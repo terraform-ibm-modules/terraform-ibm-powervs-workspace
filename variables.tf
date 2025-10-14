@@ -209,9 +209,12 @@ variable "pi_custom_image_cos_configuration" {
     error_message = "Invalid pi_custom_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
   }
   validation {
-    condition     = alltrue([var.pi_custom_images == null]) ? true : var.pi_custom_image_cos_configuration != null
-    error_message = "The import of custom images into PowerVS workspace requires a cos configuration. pi_custom_image_cos_configuration undefined."
+    condition = (
+      length(var.pi_custom_images) == 0 || var.pi_custom_image_cos_configuration != null
+    )
+    error_message = "The import of custom images into PowerVS workspace requires a COS configuration."
   }
+
 }
 
 variable "pi_custom_image_cos_service_credentials" {

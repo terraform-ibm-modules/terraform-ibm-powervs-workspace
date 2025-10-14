@@ -53,7 +53,7 @@
       ],
       "flavors": [
         {
-          "label": "Quickstart - Basic and simple deployment",
+          "label": "standard custom registry workspace",
           "name": "standard",
           "install_type": "fullstack",
           "index": 2,

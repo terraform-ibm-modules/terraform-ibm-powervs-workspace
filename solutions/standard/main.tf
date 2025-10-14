@@ -60,6 +60,10 @@ locals {
     arp_broadcast = try(var.powervs_private_subnet_3.arp_broadcast, null)
   } : null
 }
+
+##############################
+# PowerVS Workspace module
+##############################
 module "powervs_workspace" {
   source     = "../../"
   depends_on = [module.resource_group]
@@ -69,9 +73,9 @@ module "powervs_workspace" {
   pi_workspace_name                       = local.powervs_workspace_name
   pi_tags                                 = var.powervs_tags
   pi_ssh_public_key                       = local.powervs_ssh_public_key
-  pi_private_subnet_1                     = local.powervs_private_subnet_1_final.name != null ? local.powervs_private_subnet_1_final : null
-  pi_private_subnet_2                     = local.powervs_private_subnet_2_final.name != null ? local.powervs_private_subnet_2_final : null
-  pi_private_subnet_3                     = local.powervs_private_subnet_3_final.name != null ? local.powervs_private_subnet_3_final : null
+  pi_private_subnet_1                     = local.powervs_private_subnet_1_final != null ? local.powervs_private_subnet_1_final : null
+  pi_private_subnet_2                     = local.powervs_private_subnet_2_final != null ? local.powervs_private_subnet_2_final : null
+  pi_private_subnet_3                     = local.powervs_private_subnet_3_final != null ? local.powervs_private_subnet_3_final : null
   pi_public_subnet_enable                 = var.powervs_public_network_enable
   pi_transit_gateway_connection           = local.powervs_transit_gateway_connection
   pi_custom_images                        = length(var.pi_custom_images) > 0 ? var.pi_custom_images : []
