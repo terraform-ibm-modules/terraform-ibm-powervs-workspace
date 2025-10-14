@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "name": "deploy-arch-ibm-pvs-inf",
+      "name": "deploy-arch-ibm-custom-registry-workspace",
       "label": "Power Virtual Server workspace",
       "product_kind": "solution",
       "tags": [
@@ -53,11 +53,11 @@
       ],
       "flavors": [
         {
-          "label": "Default Workspace",
-          "name": "default",
+          "label": "Quickstart - Basic and simple deployment",
+          "name": "standard",
           "install_type": "fullstack",
           "index": 2,
-          "working_directory": "solutions/powervsworkspace",
+          "working_directory": "solutions/standard",
           "compliance": {
             "authority": "scc-v3",
             "profiles": [
