@@ -275,9 +275,15 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Administrator"
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
               ],
-              "service_name": "iam-identity"
+              "service_name": "is"
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
+              ],
+              "service_name": "resource-controller"
             },
             {
               "role_crns": [
@@ -309,6 +315,22 @@
               {
                 "title": "Number of Power Virtual Server Workspace",
                 "description": "1"
+              },
+              {
+                "title": "Number of Transit Gateways",
+                "description": "1"
+              },
+              {
+                "title": "Number of Private Subnets",
+                "description": "3"
+              },
+              {
+                "title": "Number of Public Subnet",
+                "description": "1"
+              },
+              {
+                "title": "Number of images imported from COS Storage",
+                "description": "3"
               }
             ],
             "diagrams": [
