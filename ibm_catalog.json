@@ -53,8 +53,8 @@
       ],
       "flavors": [
         {
-          "label": "Custom Registry Workspace",
-          "name": "custom-standard",
+          "label": "Default Workspace",
+          "name": "default",
           "install_type": "fullstack",
           "index": 2,
           "working_directory": "solutions/powervsworkspace",
