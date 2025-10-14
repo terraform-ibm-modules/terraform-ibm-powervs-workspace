@@ -196,7 +196,7 @@
             {
               "key": "powervs_custom_image_cos_service_credentials",
               "type": "multiline_secure_value",
-              "display_name": "powervs_custom_image_cos_service_credentials",
+              "display_name": "cos_service_credentials",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -226,7 +226,12 @@
             },
             {
               "key": "powervs_ssh_public_key",
-              "type": "string",
+              "type": "multiline_secure_value",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "multiline_secure_value"
+              },
               "required": true
             },
             {
