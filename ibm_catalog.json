@@ -54,7 +54,7 @@
       "flavors": [
         {
           "label": "Custom Registry Workspace",
-          "name": "standard",
+          "name": "custom-standard",
           "install_type": "fullstack",
           "index": 2,
           "working_directory": "solutions/powervsworkspace",
@@ -364,11 +364,11 @@
             "diagrams": [
               {
                 "diagram": {
-                  "caption": "Power Virtual Server with VPC landing zone 'Standard Landscape' variation",
+                  "caption": "Power Virtual Server workspace 'Custom Registry Workspace",
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-powervs-infrastructure/refs/tags/v10.0.0/reference-architectures/standard/deploy-arch-ibm-pvs-inf-standard.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "The Power Virtual Server with VPC landing zone as variation 'Create a new architecture' deploys VPC services and a Power Virtual Server workspace and interconnects them.\n \nRequired and optional management components are configured."
+                "description": "The Power Virtual Server workspace as variation 'Create a new architecture' deploys VPC services and a Power Virtual Server workspace and interconnects them.\n \nRequired and optional management components are configured."
               }
             ]
           },
