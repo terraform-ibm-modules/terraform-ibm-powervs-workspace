@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "name": "deploy-arch-ibm-custom-registry-workspace",
+      "name": "deploy-arch-ibm-pvs-ws-standard",
       "label": "Power Virtual Server workspace",
       "product_kind": "solution",
       "tags": [
@@ -320,53 +320,25 @@
               },
               {
                 "title": "Number of Intel Virtual Server Instance",
-                "description": "2"
+                "description": "0"
               },
               {
                 "title": "Number of VPCs",
-                "description": "1"
+                "description": "0"
               },
               {
                 "title": "Number of Power Virtual Server Workspace",
                 "description": "1"
-              },
-              {
-                "title": "Increases security with Key Management",
-                "description": "Yes"
-              },
-              {
-                "title": "Internet proxy on VPC",
-                "description": "Proxy service to reach public internet from PowerVS Workspace"
-              },
-              {
-                "title": "Additional management configurations on VPC",
-                "description": "NFS as service, NTP forwarder, and DNS forwarder reachable from PowerVS Workspace"
-              },
-              {
-                "title": "Client to site VPN with new or existing Secrets Manager instance",
-                "description": "Optional"
-              },
-              {
-                "title": "SCC Workload Protection instance",
-                "description": "Optional"
-              },
-              {
-                "title": "Monitoring Instance and Monitoring Intel VSI Host",
-                "description": "Optional"
-              },
-              {
-                "title": "Bring your own image to PowerVS",
-                "description": "Optional"
               }
             ],
             "diagrams": [
               {
                 "diagram": {
-                  "caption": "Power Virtual Server workspace 'Custom Registry Workspace",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-powervs-infrastructure/refs/tags/v10.0.0/reference-architectures/standard/deploy-arch-ibm-pvs-inf-standard.svg",
+                  "caption": "Power Virtual Server workspace 'deploy-arch-ibm-pvs-ws-standard",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-powervs-infrastructure/refs/tags/v10.0.0/reference-architectures/standard/deploy-arch-ibm-pvs-ws-standard.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "The Power Virtual Server workspace as variation 'Create a new architecture' deploys VPC services and a Power Virtual Server workspace and interconnects them.\n \nRequired and optional management components are configured."
+                "description": "The Power Virtual Server workspace as variation 'Create a new architecture' deploys a Power Virtual Server workspace and Transit Gateway. \n \n Required and optional management components are configured."
               }
             ]
           },
