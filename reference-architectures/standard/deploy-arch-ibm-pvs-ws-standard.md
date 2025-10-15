@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2024, 2025
-lastupdated: "2025-09-15"
+lastupdated: "2025-10-15"
 keywords:
 subcollection: deployable-reference-architectures
 authors:
@@ -9,7 +9,7 @@ authors:
 production: true
 deployment-url:
 docs: https://cloud.ibm.com/docs/powervs-vpc
-image_source: https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/reference-architectures/standard/deploy-arch-ibm-pvs-inf-standard.svg
+image_source: https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/reference-architectures/standard/deploy-arch-ibm-pvs-ws-standard.svg
 use-case: ITServiceManagement
 industry: Technology
 content-type: reference-architecture
@@ -19,29 +19,37 @@ compliance:
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Power Virtual Server with VPC landing zone - 'Standard Landscape Variation'
-{: #deploy-arch-ibm-pvs-inf-standard}
+# Power Virtual Server workspace
+
+{: #deploy-arch-ibm-pvs-ws-standard}
 {: toc-content-type="reference-architecture"}
 {: toc-industry="Technology"}
 {: toc-use-case="ITServiceManagement"}
-{: toc-compliance="SAPCertified"}
-{: toc-version="v10.0.0"}
+{: toc-compliance=""}
+{: toc-version="v4.0.0"}
 
-The Standard deployment of the Power Virtual Server with VPC landing zone creates VPC services and a Power Virtual Server workspace and interconnects them.
 
-A proxy service for public internet access from the PowerVS workspace is configured. You can optionally configure some management components on VPC (such as an NFS service, NTP forwarder, and DNS forwarder), as well as Monitoring and Security and Compliance Center Workload Protection.
+This solution deploys an IBM® Power Virtual Server (PowerVS) workspace using [terraform-ibm-powervs-workspace](https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace) in the `solutions/standard` directory.
+
 
 ## Architecture diagram
 {: #standard-architecture-diagram}
 
-![Architecture diagram for 'Power Virtual Server with VPC landing zone' - variation 'Standard'](deploy-arch-ibm-pvs-inf-standard.svg "Architecture diagram"){: caption="Figure 1. Single-zone PowerVS workspace accessible over secure landing zone" caption-side="bottom"}{: external download="deploy-arch-ibm-pvs-inf-standard.svg"}
+![Architecture diagram for 'Power Virtual Server workspace' - Standard solution](deploy-arch-ibm-pvs-inf-standard.svg "Architecture diagram"){: caption="Figure 1. PowerVS workspace with optional subnets, images, and transit gateway" caption-side="bottom"}
 
 ## Design requirements
 {: #standard-design-requirements}
 
 ![Design requirements for 'Power Virtual Server with VPC landing zone' - variation 'Standard'.](heat-map-deploy-arch-ibm-pvs-inf-standard.svg "Design requirements"){: caption="Figure 2. Scope of the solution requirements" caption-side="bottom"}
 
-IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an enterprise can use to establish its own private IBM Power computing environment on shared public cloud infrastructure. PowerVS is logically isolated from all other public cloud tenants and infrastructure components, creating a private, secure place on the public cloud. This deployable architecture provides a framework to build a PowerVS offering according to the best practices and requirements from the IBM Cloud.
+IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an enterprise can use to establish its own private IBM Power computing environment on shared public cloud infrastructure. PowerVS is logically isolated from all other public cloud tenants and infrastructure components, This solution provides a simple, modular framework to deploy a PowerVS workspace with optional networking and image import features from the IBM Cloud.
+
+## Key solution features
+- Minimal configuration for quick deployment
+- Modular options for subnets, public network, and transit gateway
+- Secure SSH key management
+- Optional import of custom images from COS
+
 
 ## Components
 {: #standard-components}
