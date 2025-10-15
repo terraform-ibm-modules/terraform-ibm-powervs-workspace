@@ -13,8 +13,8 @@ image_source: https://github.com/terraform-ibm-modules/terraform-ibm-powervs-wor
 use-case: ITServiceManagement
 industry: Technology
 content-type: reference-architecture
-version: v10.0.0
-compliance: SAPCertified
+version: v4.0.0
+compliance:
 ---
 
 {{site.data.keyword.attribute-definition-list}}
