@@ -28,32 +28,10 @@ output "pi_ssh_public_key" {
   value       = { name = ibm_pi_key.ssh_key.pi_key_name, scope = ibm_pi_key.ssh_key.pi_visibility, value = ibm_pi_key.ssh_key.pi_ssh_key }
 }
 
-output "pi_custom_image_details" {
-  description = "Detailed map of custom PowerVS images"
-  value = {
-    image_0 = length(var.pi_custom_images) > 0 ? {
-      id           = try(ibm_pi_image.image_0[0].id, null)
-      name         = try(ibm_pi_image.image_0[0].pi_image_name, null)
-      file_name    = try(ibm_pi_image.image_0[0].pi_image_bucket_file_name, null)
-      storage_tier = try(ibm_pi_image.image_0[0].pi_image_storage_type, null)
-    } : null
-
-    image_1 = length(var.pi_custom_images) > 1 ? {
-      id           = try(ibm_pi_image.image_1[0].id, null)
-      name         = try(ibm_pi_image.image_1[0].pi_image_name, null)
-      file_name    = try(ibm_pi_image.image_1[0].pi_image_bucket_file_name, null)
-      storage_tier = try(ibm_pi_image.image_1[0].pi_image_storage_type, null)
-    } : null
-
-    image_2 = length(var.pi_custom_images) > 2 ? {
-      id           = try(ibm_pi_image.image_2[0].id, null)
-      name         = try(ibm_pi_image.image_2[0].pi_image_name, null)
-      file_name    = try(ibm_pi_image.image_2[0].pi_image_bucket_file_name, null)
-      storage_tier = try(ibm_pi_image.image_2[0].pi_image_storage_type, null)
-    } : null
-  }
+output "pi_images" {
+  description = "Object containing imported PowerVS image names and image ids."
+  value       = local.pi_images
 }
-
 
 output "pi_private_subnet_1" {
   description = "Created PowerVS private subnet 1 details."

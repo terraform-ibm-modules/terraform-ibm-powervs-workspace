@@ -78,7 +78,9 @@ module "powervs_workspace" {
   pi_private_subnet_3                     = local.powervs_private_subnet_3_final != null ? local.powervs_private_subnet_3_final : null
   pi_public_subnet_enable                 = var.powervs_public_network_enable
   pi_transit_gateway_connection           = local.powervs_transit_gateway_connection
-  pi_custom_images                        = length(var.pi_custom_images) > 0 ? var.pi_custom_images : []
+  pi_custom_image1                        = var.powervs_custom_image1
+  pi_custom_image2                        = var.powervs_custom_image2
+  pi_custom_image3                        = var.powervs_custom_image3
   pi_custom_image_cos_service_credentials = var.powervs_custom_image_cos_service_credentials
   pi_custom_image_cos_configuration       = var.powervs_custom_image_cos_configuration
 }

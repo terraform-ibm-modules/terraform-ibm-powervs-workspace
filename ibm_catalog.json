@@ -249,7 +249,17 @@
               "required": false
             },
             {
-              "key": "pi_custom_images",
+              "key": "powervs_custom_image1",
+              "type": "json",
+              "required": false
+            },
+            {
+              "key": "powervs_custom_image2",
+              "type": "json",
+              "required": false
+            },
+            {
+              "key": "powervs_custom_image3",
               "type": "json",
               "required": false
             },

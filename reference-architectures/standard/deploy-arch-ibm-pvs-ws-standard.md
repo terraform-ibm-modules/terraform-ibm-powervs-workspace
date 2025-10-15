@@ -5,19 +5,16 @@ lastupdated: "2025-09-15"
 keywords:
 subcollection: deployable-reference-architectures
 authors:
-  - name: Arnold Beilmann
-  - name: Suraj Bharadwaj
-  - name: Ludwig Mueller
+  - name: Babitha Padiri
 production: true
-deployment-url: https://cloud.ibm.com/catalog/architecture/deploy-arch-ibm-pvs-inf-2dd486c7-b317-4aaa-907b-42671485ad96-global
+deployment-url:
 docs: https://cloud.ibm.com/docs/powervs-vpc
-image_source: https://github.com/terraform-ibm-modules/terraform-ibm-powervs-infrastructure/reference-architectures/standard/deploy-arch-ibm-pvs-inf-standard.svg
+image_source: https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/reference-architectures/standard/deploy-arch-ibm-pvs-inf-standard.svg
 use-case: ITServiceManagement
 industry: Technology
 content-type: reference-architecture
 version: v10.0.0
 compliance: SAPCertified
-
 ---
 
 {{site.data.keyword.attribute-definition-list}}
