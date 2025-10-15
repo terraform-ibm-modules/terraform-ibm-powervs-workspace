@@ -21,8 +21,6 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 * [terraform-ibm-powervs-workspace](#terraform-ibm-powervs-workspace)
-* [Examples](./examples)
-    * [Basic example](./examples/basic)
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 

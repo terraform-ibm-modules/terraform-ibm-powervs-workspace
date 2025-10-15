@@ -14,28 +14,28 @@ variable "powervs_resource_group_name" {
 
 variable "ibmcloud_api_key" {
   type        = string
-  description = "The IBM Cloud API Key"
+  description = "The IBM Cloud API Key used to authenticate the IBM Cloud provider."
   sensitive   = true
 }
 
 variable "prefix" {
   type        = string
-  description = "Prefix to append to all resources created by this example"
+  description = "Prefix to append to all resources ."
 }
 
 variable "powervs_zone" {
-  description = "IBM Cloud PowerVS zone."
+  description = "IBM Cloud PowerVS zone where the PowerVS workspace will be created."
   type        = string
 }
 
 variable "powervs_workspace_name" {
-  description = "Name of IBM Cloud PowerVS workspace which will be created."
+  description = "Provide unique name for the PowerVS workspace to be created."
   type        = string
   default     = "powervs-workspace"
 }
 
 variable "powervs_ssh_public_key" {
-  description = "Value of the Public SSH key to create."
+  description = "Value of the Public SSH key to create inside the PowerVS workspace."
   type        = string
 }
 
@@ -61,12 +61,20 @@ variable "powervs_private_subnet_2" {
     advertise     = optional(string)
     arp_broadcast = optional(string)
   })
-  default = {
-    name = "sub_2"
-    cidr = "10.53.0.0/24"
-  }
-}
 
+  default = null
+}
+variable "powervs_private_subnet_3" {
+  description = "IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet."
+  type = object({
+    name          = string
+    cidr          = string
+    advertise     = optional(string)
+    arp_broadcast = optional(string)
+  })
+
+  default = null
+}
 variable "powervs_public_network_enable" {
   description = "IBM Cloud PowerVS Public Network. Set to true to enable this."
   type        = bool
@@ -76,7 +84,7 @@ variable "powervs_public_network_enable" {
 variable "powervs_tags" {
   description = "List of Tag names for IBM Cloud PowerVS workspace."
   type        = list(string)
-  default     = ["pi-basic"]
+  default     = ["custom-workspace"]
 }
 
 variable "create_transit_gateway" {
@@ -87,7 +95,7 @@ variable "create_transit_gateway" {
 
 variable "powervs_custom_image1" {
   description = <<EOF
-    Optional custom image to import from Cloud Object Storage into PowerVS workspace.
+    Optional list of custom images to import from Cloud Object Storage into PowerVS workspace.
       image_name: string, must be unique image name how the image will be named inside PowerVS workspace
       file_name: string, full file name of the image inside COS bucket
       storage_tier: string, storage tier which the image will be stored in after import. Supported values are: "tier0", "tier1", "tier3", "tier5k".
@@ -98,7 +106,42 @@ variable "powervs_custom_image1" {
     file_name    = string
     storage_tier = string
     sap_type     = optional(string)
-  })
+    }
+  )
+  default = null
+}
+variable "powervs_custom_image2" {
+  description = <<EOF
+    Optional list of custom images to import from Cloud Object Storage into PowerVS workspace.
+      image_name: string, must be unique image name how the image will be named inside PowerVS workspace
+      file_name: string, full file name of the image inside COS bucket
+      storage_tier: string, storage tier which the image will be stored in after import. Supported values are: "tier0", "tier1", "tier3", "tier5k".
+      sap_type: optional string, "Hana", "Netweaver", don't use it for non-SAP image.
+  EOF
+  type = object({
+    image_name   = string
+    file_name    = string
+    storage_tier = string
+    sap_type     = optional(string)
+    }
+  )
+  default = null
+}
+variable "powervs_custom_image3" {
+  description = <<EOF
+    Optional list of custom images to import from Cloud Object Storage into PowerVS workspace.
+      image_name: string, must be unique image name how the image will be named inside PowerVS workspace
+      file_name: string, full file name of the image inside COS bucket
+      storage_tier: string, storage tier which the image will be stored in after import. Supported values are: "tier0", "tier1", "tier3", "tier5k".
+      sap_type: optional string, "Hana", "Netweaver", don't use it for non-SAP image.
+  EOF
+  type = object({
+    image_name   = string
+    file_name    = string
+    storage_tier = string
+    sap_type     = optional(string)
+    }
+  )
   default = null
 }
 
@@ -115,6 +158,21 @@ variable "powervs_custom_image_cos_configuration" {
     bucket_region = string
   })
   default = null
+  validation {
+    condition     = var.powervs_custom_image_cos_configuration != null ? contains(["public", "private"], var.powervs_custom_image_cos_configuration.bucket_access) : true
+    error_message = "Invalid powervs_custom_image_cos_configuration.bucket_access. Allowed values: [\"public\", \"private\"]."
+  }
+  validation {
+    condition = (
+      (
+        var.powervs_custom_image1 == null &&
+        var.powervs_custom_image2 == null &&
+        var.powervs_custom_image3 == null
+      ) || var.powervs_custom_image_cos_configuration != null
+    )
+    error_message = "The import of custom images into PowerVS workspace requires a COS configuration if any image is provided."
+  }
+
 }
 
 variable "powervs_custom_image_cos_service_credentials" {
@@ -122,4 +180,8 @@ variable "powervs_custom_image_cos_service_credentials" {
   type        = string
   sensitive   = true
   default     = null
+  validation {
+    condition     = var.powervs_custom_image_cos_configuration != null ? var.powervs_custom_image_cos_configuration.bucket_access == "private" ? var.powervs_custom_image_cos_service_credentials != null : true : true
+    error_message = "powervs_custom_image_cos_service_credentials are required to access private COS buckets."
+  }
 }
