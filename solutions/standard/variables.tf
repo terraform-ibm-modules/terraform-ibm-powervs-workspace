@@ -84,7 +84,7 @@ variable "powervs_public_network_enable" {
 variable "powervs_tags" {
   description = "List of Tag names for IBM Cloud PowerVS workspace."
   type        = list(string)
-  default     = ["custom-workspace"]
+  default     = []
 }
 
 variable "create_transit_gateway" {
