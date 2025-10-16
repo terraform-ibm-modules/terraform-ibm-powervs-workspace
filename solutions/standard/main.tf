@@ -36,6 +36,27 @@ locals {
 }
 
 locals {
+  powervs_private_subnet_1 = merge(
+    var.powervs_private_subnet_1,
+    {
+      name = "${var.prefix}-${var.powervs_private_subnet_1.name}"
+    }
+  )
+
+  powervs_private_subnet_2 = var.powervs_private_subnet_2 == null ? null : merge(
+    var.powervs_private_subnet_2,
+    {
+      name = "${var.prefix}-${var.powervs_private_subnet_2.name}"
+    }
+  )
+
+  powervs_private_subnet_3 = var.powervs_private_subnet_3 == null ? null : merge(
+    var.powervs_private_subnet_3,
+    {
+      name = "${var.prefix}-${var.powervs_private_subnet_3.name}"
+    }
+  )
+}
   powervs_private_subnet_1_final = var.powervs_private_subnet_1 != null ? {
     name          = "${var.prefix}_privatesubnet1"
     cidr          = var.powervs_private_subnet_1.cidr
