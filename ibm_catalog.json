@@ -249,19 +249,12 @@
               "required": false
             },
             {
-              "key": "powervs_custom_image1",
-              "type": "json",
-              "required": false
-            },
-            {
-              "key": "powervs_custom_image2",
-              "type": "json",
-              "required": false
-            },
-            {
-              "key": "powervs_custom_image3",
-              "type": "json",
-              "required": false
+              "key": "powervs_custom_images",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
             },
             {
               "key": "powervs_workspace_name",

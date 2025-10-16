@@ -61,6 +61,28 @@ locals {
   } : null
 }
 
+locals {
+  powervs_custom_image1 = (
+    var.powervs_custom_images.powervs_custom_image1.image_name == "" &&
+    var.powervs_custom_images.powervs_custom_image1.file_name == "" &&
+    var.powervs_custom_images.powervs_custom_image1.storage_tier == ""
+  ) ? null : var.powervs_custom_images.powervs_custom_image1
+  powervs_custom_image2 = (
+    var.powervs_custom_images.powervs_custom_image2.image_name == "" &&
+    var.powervs_custom_images.powervs_custom_image2.file_name == "" &&
+    var.powervs_custom_images.powervs_custom_image2.storage_tier == ""
+  ) ? null : var.powervs_custom_images.powervs_custom_image2
+  powervs_custom_image3 = (
+    var.powervs_custom_images.powervs_custom_image3.image_name == "" &&
+    var.powervs_custom_images.powervs_custom_image3.file_name == "" &&
+    var.powervs_custom_images.powervs_custom_image3.storage_tier == ""
+  ) ? null : var.powervs_custom_images.powervs_custom_image3
+  powervs_custom_image_cos_configuration = (
+    var.powervs_custom_image_cos_configuration.bucket_name == "" &&
+    var.powervs_custom_image_cos_configuration.bucket_access == "" &&
+    var.powervs_custom_image_cos_configuration.bucket_region == ""
+  ) ? null : var.powervs_custom_image_cos_configuration
+}
 ##############################
 # PowerVS Workspace module
 ##############################
@@ -78,9 +100,9 @@ module "powervs_workspace" {
   pi_private_subnet_3                     = local.powervs_private_subnet_3_final != null ? local.powervs_private_subnet_3_final : null
   pi_public_subnet_enable                 = var.powervs_public_network_enable
   pi_transit_gateway_connection           = local.powervs_transit_gateway_connection
-  pi_custom_image1                        = var.powervs_custom_image1
-  pi_custom_image2                        = var.powervs_custom_image2
-  pi_custom_image3                        = var.powervs_custom_image3
+  pi_custom_image1                        = local.powervs_custom_image1
+  pi_custom_image2                        = local.powervs_custom_image2
+  pi_custom_image3                        = local.powervs_custom_image3
   pi_custom_image_cos_service_credentials = var.powervs_custom_image_cos_service_credentials
-  pi_custom_image_cos_configuration       = var.powervs_custom_image_cos_configuration
+  pi_custom_image_cos_configuration       = local.powervs_custom_image_cos_configuration
 }
