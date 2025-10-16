@@ -58,7 +58,7 @@ IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an e
 
 | Requirement | Component | Choice | Alternative choice |
 |-------------|-----------|--------------------|--------------------|
-|* Create an IBM® Power Virtual Server workspace|PowerVS workspace|Create a single PowerVS workspace in the chosen region and resource group||
+|* Create an IBM® Power Virtual Server workspace|PowerVS workspace|Create a single PowerVS workspace in the chosen region and in an existing resource group or a new resource group||
 |* Create an SSH key for administrative access|SSH key||Require users to provide their own SSH public key or reference a key in Secure Cloud Key Management|
 |* Optionally import up to three custom OS images from Cloud Object Storage|Custom OS images|Import up to three images from COS into the PowerVS workspace using provided COS credentials and object locations|Skip image import and use standard public PowerVS images; or import images manually after deployment|
 |* Optionally create private subnets for workload isolation|Private subnets|Create 1, 2 or 3 private subnets as requested |Use a single private subnet for all workloads or create additional subnets manually post-deployment|
