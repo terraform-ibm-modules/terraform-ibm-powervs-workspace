@@ -54,7 +54,7 @@ IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an e
 ## Components
 {: #standard-components}
 
-### PowerVS workspace architecture decisions (custom variant)
+### PowerVS workspace architecture decisions
 {: #pvs-components-workspace}
 
 | Requirement | Component | Choice | Alternative choice |
