@@ -42,7 +42,7 @@ Architecture diagram for 'Power Virtual Server workspace' - Standard solution(de
 
 Design requirements for 'Power Virtual Server workspace' - variation 'Standard'.(heat-map-deploy-arch-ibm-pvs-ws-standard.svg "Design requirements"){: caption="Figure 2. Scope of the solution requirements" caption-side="bottom"}
 
-IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an enterprise can use to establish its own private IBM Power computing environment on shared public cloud infrastructure. PowerVS is logically isolated from all other public cloud tenants and infrastructure components, This solution provides a simple, modular framework to deploy a PowerVS workspace with optional networking and image import features from the IBM Cloud.
+IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an enterprise can use to establish its own private IBM Power computing environment on shared public cloud infrastructure. PowerVS is logically isolated from all other public cloud tenants and infrastructure components, This solution provides a simple, modular framework to deploy a PowerVS workspace with ssh key, optional networking and image import features from the IBM Cloud.
 
 ## Key solution features
 - Minimal configuration for quick deployment
