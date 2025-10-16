@@ -20,7 +20,6 @@ compliance:
 {{site.data.keyword.attribute-definition-list}}
 
 # Power Virtual Server workspace
-
 {: #deploy-arch-ibm-pvs-ws-standard}
 {: toc-content-type="reference-architecture"}
 {: toc-industry="Technology"}
