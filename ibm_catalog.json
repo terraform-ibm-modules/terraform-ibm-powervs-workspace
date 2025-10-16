@@ -74,7 +74,20 @@
             },
             {
               "key": "powervs_resource_group_name",
-              "required": true,
+              "required": false,
+              "default_value": "null",
+              "custom_config": {
+                "config_constraints": {
+                  "identifier": "rg_name"
+                },
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "resource_group"
+              }
+            },
+            {
+              "key": "create_new_resource_group_name",
+              "required": false,
               "default_value": "",
               "custom_config": {
                 "config_constraints": {
@@ -205,6 +218,12 @@
             },
             {
               "key": "create_transit_gateway",
+              "type": "bool",
+              "default_value": true,
+              "required": false
+            },
+            {
+              "key": "existing_transit_gateway_id",
               "type": "bool",
               "default_value": true,
               "required": false

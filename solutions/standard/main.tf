@@ -2,21 +2,34 @@
 # Resource group
 #############################
 
+# Determine the name to create (if an existing resource group is not provided).
+# Priority:
+# 1) if `var.powervs_resource_group_name` is provided -> use as existing (do not create)
+# 2) if `var.create_new_resource_group_name` is provided -> create with that name
+# 3) otherwise create using the prefix
+locals {
+  powervs_rg_create_name = var.powervs_resource_group_name == null ? (var.create_new_resource_group_name != null ? var.create_new_resource_group_name : "${var.prefix}-resource-group") : null
+  # Input resource group name used for creating or referencing the RG. If an existing RG was supplied,
+  # use that, otherwise use the name that will be created.
+  powervs_resource_group_input = var.powervs_resource_group_name != null ? var.powervs_resource_group_name : local.powervs_rg_create_name
+}
+
 module "resource_group" {
   source  = "terraform-ibm-modules/resource-group/ibm"
   version = "1.3.0"
-  # if an existing resource group is not set (null) create a new one using prefix
-  resource_group_name          = var.powervs_resource_group_name == null ? "${var.prefix}-resource-group" : null
-  existing_resource_group_name = var.powervs_resource_group_name
+
+  # When `resource_group_name` is non-null the module will create a new RG. If null, the module
+  # assumes an existing resource group name is provided via `existing_resource_group_name`.
+  resource_group_name          = local.powervs_rg_create_name
+  existing_resource_group_name = local.powervs_resource_group_input
 }
 
 #############################
 # Create Transit gateway
 #############################
-
 resource "ibm_tg_gateway" "transit_gateway" {
   provider = ibm.ibm-is
-  count    = var.create_transit_gateway ? 1 : 0
+  count    = var.create_transit_gateway && var.existing_transit_gateway_id == null ? 1 : 0
 
   name           = "${var.prefix}-transit-gateway-1"
   location       = lookup(local.ibm_powervs_zone_cloud_region_map, var.powervs_zone, null)
@@ -24,16 +37,21 @@ resource "ibm_tg_gateway" "transit_gateway" {
   resource_group = module.resource_group.resource_group_id
 }
 
-
 #############################
 # Create PowerVS Workspace
 #############################
 locals {
-  powervs_transit_gateway_connection = { enable = var.create_transit_gateway ? true : false, transit_gateway_id = var.create_transit_gateway ? ibm_tg_gateway.transit_gateway[0].id : "" }
-  powervs_workspace_name             = "${var.prefix}-${var.powervs_workspace_name}"
-  powervs_ssh_public_key             = { name = "${var.prefix}-pi-ssh-key", value = var.powervs_ssh_public_key }
-  powervs_resource_group_name        = module.resource_group.resource_group_name
+  # powervs_transit_gateway_connection = { enable = var.create_transit_gateway ? true : false, transit_gateway_id = var.create_transit_gateway ? ibm_tg_gateway.transit_gateway[0].id : "" }
+  powervs_transit_gateway_connection = {
+    enable             = var.create_transit_gateway || var.existing_transit_gateway_id != null
+    transit_gateway_id = var.create_transit_gateway ? ibm_tg_gateway.transit_gateway[0].id : var.existing_transit_gateway_id
+  }
+
+  powervs_workspace_name      = "${var.prefix}-${var.powervs_workspace_name}"
+  powervs_ssh_public_key      = { name = "${var.prefix}-pi-ssh-key", value = var.powervs_ssh_public_key }
+  powervs_resource_group_name = module.resource_group.resource_group_name
 }
+
 
 locals {
   powervs_private_subnet_1 = merge(

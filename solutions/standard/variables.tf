@@ -8,6 +8,17 @@ variable "powervs_resource_group_name" {
   default     = null
 }
 
+variable "create_new_resource_group_name" {
+  description = "Name of the new resource group to create if no existing name or ID is provided"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = !(var.powervs_resource_group_name != null) || var.create_new_resource_group_name != null
+    error_message = "If both 'powervs_resource_group_name' and 'powervs_resource_group_id' are null, you must provide 'create_new_resource_group_name' to create a new resource group."
+  }
+}
+
 ####################################
 # PowerVS Workspace module variables
 ###################################
@@ -92,6 +103,17 @@ variable "create_transit_gateway" {
   type        = bool
   default     = true
 }
+
+variable "existing_transit_gateway_id" {
+  description = "Optional: ID of an existing Transit Gateway to use instead of creating a new one"
+  type        = string
+  default     = null
+  validation {
+    condition     = !(var.create_transit_gateway && var.existing_transit_gateway_id != null)
+    error_message = "You cannot set both 'create_transit_gateway = true' and provide 'existing_transit_gateway_id'. Choose only one."
+  }
+}
+
 
 variable "powervs_custom_images" {
   description = "Optionally import up to three custom images from Cloud Object Storage into PowerVS workspace. Requires 'powervs_custom_image_cos_configuration' to be set. image_name: string, must be unique. Name of image inside PowerVS workspace. file_name: string, object key of image inside COS bucket. storage_tier: string, storage tier which image will be stored in after import. Supported values: tier0, tier1, tier3, tier5k. sap_type: optional string, Supported values: null, Hana, Netweaver, use null for non-SAP image."
