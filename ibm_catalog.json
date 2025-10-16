@@ -73,7 +73,7 @@
               "required": true
             },
             {
-              "key": "powervs_resource_group_name",
+              "key": "existing_resource_group_name",
               "required": false,
               "default_value": "null",
               "custom_config": {

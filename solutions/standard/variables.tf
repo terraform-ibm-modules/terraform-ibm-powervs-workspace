@@ -2,7 +2,7 @@
 # Resource group module variable
 ################################
 
-variable "powervs_resource_group_name" {
+variable "existing_resource_group_name" {
   type        = string
   description = "The name of an existing resource group to provision resources in to. If not set a new resource group will be created using the prefix variable"
   default     = null
@@ -14,7 +14,7 @@ variable "create_new_resource_group_name" {
   default     = null
 
   validation {
-    condition     = !(var.powervs_resource_group_name != null) || var.create_new_resource_group_name != null
+    condition     = !(var.existing_resource_group_name != null) || var.create_new_resource_group_name != null
     error_message = "If both 'powervs_resource_group_name' and 'powervs_resource_group_id' are null, you must provide 'create_new_resource_group_name' to create a new resource group."
   }
 }

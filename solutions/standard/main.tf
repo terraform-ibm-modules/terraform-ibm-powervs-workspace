@@ -3,16 +3,23 @@
 #############################
 
 locals {
-  powervs_rg_create_name = var.powervs_resource_group_name == null ? (var.create_new_resource_group_name != null ? var.create_new_resource_group_name : "${var.prefix}-resource-group") : null
+  powervs_rg_create_name = var.existing_resource_group_name == null ? (var.create_new_resource_group_name != null ? var.create_new_resource_group_name : "${var.prefix}-resource-group") : null
   # Input resource group name used for creating or referencing the RG. If an existing RG was supplied,
   # use that, otherwise use the name that will be created.
-  powervs_resource_group_input = var.powervs_resource_group_name != null ? var.powervs_resource_group_name : local.powervs_rg_create_name
+  powervs_resource_group_input = var.existing_resource_group_name != null ? var.existing_resource_group_name : local.powervs_rg_create_name
 }
 
-module "resource_group" {
-  source              = "terraform-ibm-modules/resource-group/ibm"
-  version             = "1.3.0"
-  resource_group_name = local.powervs_resource_group_input
+resource "ibm_resource_group" "resource_group" {
+  count = var.existing_resource_group_name == null ? 1 : 0
+  name  = local.powervs_rg_create_name
+}
+data "ibm_resource_group" "existing" {
+  count = var.existing_resource_group_name != null ? 1 : 0
+  name  = var.existing_resource_group_name
+}
+
+locals {
+  powervs_resource_group_id = var.existing_resource_group_name != null ? data.ibm_resource_group.existing[0].id : ibm_resource_group.resource_group[0].id
 }
 
 #############################
@@ -25,7 +32,7 @@ resource "ibm_tg_gateway" "transit_gateway" {
   name           = "${var.prefix}-transit-gateway-1"
   location       = lookup(local.ibm_powervs_zone_cloud_region_map, var.powervs_zone, null)
   global         = false
-  resource_group = module.resource_group.resource_group_id
+  resource_group = local.powervs_resource_group_id
 }
 
 #############################
@@ -40,7 +47,7 @@ locals {
 
   powervs_workspace_name      = "${var.prefix}-${var.powervs_workspace_name}"
   powervs_ssh_public_key      = { name = "${var.prefix}-pi-ssh-key", value = var.powervs_ssh_public_key }
-  powervs_resource_group_name = module.resource_group.resource_group_name
+  powervs_resource_group_name = local.powervs_resource_group_input
 }
 
 
@@ -95,7 +102,7 @@ locals {
 ##############################
 module "powervs_workspace" {
   source     = "../../"
-  depends_on = [module.resource_group]
+  depends_on = [ibm_resource_group.resource_group]
 
   pi_zone                                 = var.powervs_zone
   pi_resource_group_name                  = local.powervs_resource_group_name
