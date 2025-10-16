@@ -2,11 +2,6 @@
 # Resource group
 #############################
 
-# Determine the name to create (if an existing resource group is not provided).
-# Priority:
-# 1) if `var.powervs_resource_group_name` is provided -> use as existing (do not create)
-# 2) if `var.create_new_resource_group_name` is provided -> create with that name
-# 3) otherwise create using the prefix
 locals {
   powervs_rg_create_name = var.powervs_resource_group_name == null ? (var.create_new_resource_group_name != null ? var.create_new_resource_group_name : "${var.prefix}-resource-group") : null
   # Input resource group name used for creating or referencing the RG. If an existing RG was supplied,
@@ -15,13 +10,9 @@ locals {
 }
 
 module "resource_group" {
-  source  = "terraform-ibm-modules/resource-group/ibm"
-  version = "1.3.0"
-
-  # When `resource_group_name` is non-null the module will create a new RG. If null, the module
-  # assumes an existing resource group name is provided via `existing_resource_group_name`.
-  resource_group_name          = local.powervs_rg_create_name
-  existing_resource_group_name = local.powervs_resource_group_input
+  source              = "terraform-ibm-modules/resource-group/ibm"
+  version             = "1.3.0"
+  resource_group_name = local.powervs_resource_group_input
 }
 
 #############################
