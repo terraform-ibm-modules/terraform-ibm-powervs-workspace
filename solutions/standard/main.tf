@@ -6,7 +6,7 @@ locals {
   powervs_rg_create_name = var.existing_resource_group_name == null ? (var.create_new_resource_group_name != null ? var.create_new_resource_group_name : "${var.prefix}-resource-group") : null
   # Input resource group name used for creating or referencing the RG. If an existing RG was supplied,
   # use that, otherwise use the name that will be created.
-  powervs_resource_group_input = var.existing_resource_group_name != null ? var.existing_resource_group_name : local.powervs_rg_create_name
+  powervs_resource_group_input = var.existing_resource_group_name != null ? var.existing_resource_group_name : var.existing_resource_group_id != null ? null : local.powervs_rg_create_name
 }
 
 resource "ibm_resource_group" "resource_group" {
@@ -19,16 +19,17 @@ data "ibm_resource_group" "existing" {
 }
 
 locals {
-  powervs_resource_group_id = var.existing_resource_group_name != null ? data.ibm_resource_group.existing[0].id : ibm_resource_group.resource_group[0].id
+  powervs_resource_group_id = (
+    var.existing_resource_group_id != null ? var.existing_resource_group_id : var.existing_resource_group_name != null ? data.ibm_resource_group.existing[0].id : ibm_resource_group.resource_group[0].id
+  )
 }
 
 #############################
 # Create Transit gateway
 #############################
 resource "ibm_tg_gateway" "transit_gateway" {
-  provider = ibm.ibm-is
-  count    = var.create_transit_gateway && var.existing_transit_gateway_id == null ? 1 : 0
-
+  provider       = ibm.ibm-is
+  count          = var.create_transit_gateway && var.existing_transit_gateway_id == null ? 1 : 0
   name           = "${var.prefix}-transit-gateway-1"
   location       = lookup(local.ibm_powervs_zone_cloud_region_map, var.powervs_zone, null)
   global         = false
@@ -74,7 +75,6 @@ locals {
   )
 }
 
-
 locals {
   powervs_custom_image1 = (
     var.powervs_custom_images.powervs_custom_image1.image_name == "" &&
@@ -106,6 +106,7 @@ module "powervs_workspace" {
 
   pi_zone                                 = var.powervs_zone
   pi_resource_group_name                  = local.powervs_resource_group_name
+  pi_resource_group_id                    = local.powervs_resource_group_id
   pi_workspace_name                       = local.powervs_workspace_name
   pi_tags                                 = var.powervs_tags
   pi_ssh_public_key                       = local.powervs_ssh_public_key

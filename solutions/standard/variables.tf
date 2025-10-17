@@ -7,7 +7,11 @@ variable "existing_resource_group_name" {
   description = "The name of an existing resource group to provision resources in to. If not set a new resource group will be created using the prefix variable"
   default     = null
 }
-
+variable "existing_resource_group_id" {
+  type        = string
+  description = "The ID of an existing resource group to provision resources in to. If not set a new resource group  will be created using the prefix variable"
+  default     = null
+}
 variable "create_new_resource_group_name" {
   description = "Name of the new resource group to create if no existing name or ID is provided"
   type        = string

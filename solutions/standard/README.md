@@ -38,6 +38,7 @@ An basic example that will provision the following:
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_new_resource_group_name"></a> [create\_new\_resource\_group\_name](#input\_create\_new\_resource\_group\_name) | Name of the new resource group to create if no existing name or ID is provided | `string` | `null` | no |
 | <a name="input_create_transit_gateway"></a> [create\_transit\_gateway](#input\_create\_transit\_gateway) | Set to true to create a Transit Gateway for the PowerVS workspace and attach it. | `bool` | `true` | no |
+| <a name="input_existing_resource_group_id"></a> [existing\_resource\_group\_id](#input\_existing\_resource\_group\_id) | The ID of an existing resource group to provision resources in to. If not set a new resource group  will be created using the prefix variable | `string` | `null` | no |
 | <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | The name of an existing resource group to provision resources in to. If not set a new resource group will be created using the prefix variable | `string` | `null` | no |
 | <a name="input_existing_transit_gateway_id"></a> [existing\_transit\_gateway\_id](#input\_existing\_transit\_gateway\_id) | Optional: ID of an existing Transit Gateway to use instead of creating a new one | `string` | `null` | no |
 | <a name="input_ibmcloud_api_key"></a> [ibmcloud\_api\_key](#input\_ibmcloud\_api\_key) | The IBM Cloud API Key used to authenticate the IBM Cloud provider. | `string` | n/a | yes |
