@@ -23,7 +23,7 @@ An basic example that will provision the following:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_powervs_workspace"></a> [powervs\_workspace](#module\_powervs\_workspace) | ../../ | n/a |
-| <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | terraform-ibm-modules/resource-group/ibm | 1.3.0 |
+| <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | terraform-ibm-modules/resource-group/ibm | 1.4.0 |
 
 ### Resources
 
