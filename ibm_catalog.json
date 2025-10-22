@@ -75,7 +75,7 @@
             {
               "key": "existing_resource_group_name",
               "required": true,
-              "default_value": "null",
+              "default_value": "",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -88,15 +88,8 @@
             {
               "key": "existing_resource_group_id",
               "required": true,
-              "default_value": "null",
-              "custom_config": {
-                "config_constraints": {
-                  "identifier": "rg_id"
-                },
-                "grouping": "deployment",
-                "original_grouping": "deployment",
-                "type": "resource_group"
-              }
+              "type": "string",
+              "default_value": "null"
             },
             {
               "key": "create_new_resource_group_name",
@@ -231,20 +224,24 @@
             },
             {
               "key": "create_transit_gateway",
-              "type": "bool",
+              "type": "boolean",
               "default_value": true,
               "required": true
             },
             {
               "key": "existing_transit_gateway_id",
               "type": "string",
-              "default_value": "null",
+              "default_value": "",
               "required": true
             },
             {
               "key": "powervs_private_subnet_1",
-              "type": "code_editor",
-              "required": true
+              "required": true,
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
             },
             {
               "key": "powervs_private_subnet_2",
@@ -270,15 +267,11 @@
             },
             {
               "key": "powervs_tags",
-              "type": "list(string)",
-              "default_value": [
-                "pi-basic"
-              ],
               "required": true
             },
             {
               "key": "powervs_public_network_enable",
-              "type": "bool",
+              "type": "boolean",
               "default_value": true,
               "required": true
             },
