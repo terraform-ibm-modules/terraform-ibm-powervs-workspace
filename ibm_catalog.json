@@ -75,7 +75,7 @@
             {
               "key": "existing_resource_group_name",
               "required": true,
-              "default_value": "",
+              "default_value": "null",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -87,8 +87,8 @@
             },
             {
               "key": "existing_resource_group_id",
-              "required": false,
-              "default_value": "",
+              "required": true,
+              "default_value": "null",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_id"
@@ -100,8 +100,8 @@
             },
             {
               "key": "create_new_resource_group_name",
-              "required": false,
-              "default_value": "",
+              "required": true,
+              "default_value": "null",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -233,28 +233,30 @@
               "key": "create_transit_gateway",
               "type": "bool",
               "default_value": true,
-              "required": false
+              "required": true
             },
             {
               "key": "existing_transit_gateway_id",
               "type": "string",
-              "default_value": true,
-              "required": false
+              "default_value": "null",
+              "required": true
             },
             {
               "key": "powervs_private_subnet_1",
-              "type": "json",
-              "required": false
+              "type": "code_editor",
+              "required": true
             },
             {
               "key": "powervs_private_subnet_2",
-              "type": "json",
-              "required": false
+              "type": "code_editor",
+              "required": false,
+              "default_value": "null"
             },
             {
               "key": "powervs_private_subnet_3",
-              "type": "json",
-              "required": false
+              "type": "code_editor",
+              "required": true,
+              "default_value": "null"
             },
             {
               "key": "powervs_ssh_public_key",
@@ -272,13 +274,13 @@
               "default_value": [
                 "pi-basic"
               ],
-              "required": false
+              "required": true
             },
             {
               "key": "powervs_public_network_enable",
               "type": "bool",
-              "default_value": false,
-              "required": false
+              "default_value": true,
+              "required": true
             },
             {
               "key": "powervs_custom_images",
