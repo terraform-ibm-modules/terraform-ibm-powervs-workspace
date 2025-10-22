@@ -59,7 +59,7 @@ locals {
     }
   )
 
-  powervs_private_subnet_2 = (var.powervs_private_subnet_2 == null ||
+  powervs_private_subnet_2 = (var.powervs_private_subnet_2 == null ? null :
     (trimspace(var.powervs_private_subnet_2.name) == "" && trimspace(var.powervs_private_subnet_2.cidr) == "") ? null : merge(
       var.powervs_private_subnet_2,
       {
@@ -68,13 +68,13 @@ locals {
   ))
 
   powervs_private_subnet_3 = (
-    var.powervs_private_subnet_3 == null ||
-    (trimspace(var.powervs_private_subnet_3.name) == "" && trimspace(var.powervs_private_subnet_3.cidr) == "")
-    ) ? null : merge(
-    var.powervs_private_subnet_3,
-    {
-      name = "${var.prefix}-${var.powervs_private_subnet_3.name}"
-    }
+    var.powervs_private_subnet_3 == null ? null :
+    (trimspace(var.powervs_private_subnet_3.name) == "" && trimspace(var.powervs_private_subnet_3.cidr) == "") ? null : merge(
+      var.powervs_private_subnet_3,
+      {
+        name = "${var.prefix}-${var.powervs_private_subnet_3.name}"
+      }
+    )
   )
 }
 locals {
