@@ -74,8 +74,8 @@
             },
             {
               "key": "existing_resource_group_name",
-              "required": false,
-              "default_value": "null",
+              "required": true,
+              "default_value": "",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -88,7 +88,7 @@
             {
               "key": "existing_resource_group_id",
               "required": false,
-              "default_value": "null",
+              "default_value": "",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_id"
@@ -237,7 +237,7 @@
             },
             {
               "key": "existing_transit_gateway_id",
-              "type": "bool",
+              "type": "string",
               "default_value": true,
               "required": false
             },
@@ -292,7 +292,7 @@
               "key": "powervs_workspace_name",
               "type": "string",
               "default_value": "powervs-workspace",
-              "required": false
+              "required": true
             }
           ],
           "iam_permissions": [
@@ -372,7 +372,7 @@
               {
                 "diagram": {
                   "caption": "Power Virtual Server workspace 'deploy-arch-ibm-pvs-ws-standard",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-powervs-infrastructure/refs/tags/v10.0.0/reference-architectures/standard/deploy-arch-ibm-pvs-ws-standard.svg",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/blob/feature-cws/reference-architectures/standard/deploy-arch-ibm-pvs-inf-ws-standard.svg",
                   "type": "image/svg+xml"
                 },
                 "description": "The Power Virtual Server workspace as variation 'Create a new architecture' deploys a Power Virtual Server workspace and Transit Gateway. \n \n Required and optional management components are configured."
