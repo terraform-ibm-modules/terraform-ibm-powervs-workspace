@@ -245,15 +245,23 @@
             },
             {
               "key": "powervs_private_subnet_2",
-              "type": "code_editor",
-              "required": false,
-              "default_value": "null"
+              "required": true,
+              "default_value": "null",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
             },
             {
               "key": "powervs_private_subnet_3",
-              "type": "code_editor",
               "required": true,
-              "default_value": "null"
+              "default_value": "null",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
             },
             {
               "key": "powervs_ssh_public_key",
