@@ -20,8 +20,7 @@ data "ibm_resource_group" "existing" {
 
 locals {
   powervs_resource_group_id = (
-    var.existing_resource_group_id != null ? var.existing_resource_group_id : var.existing_resource_group_name != null ? data.ibm_resource_group.existing[0].id : ibm_resource_group.resource_group[0].id
-  )
+  var.existing_resource_group_id != null ? var.existing_resource_group_id : var.existing_resource_group_name != null ? data.ibm_resource_group.existing[0].id : ibm_resource_group.resource_group[0].id)
 }
 
 #############################
@@ -60,21 +59,24 @@ locals {
     }
   )
 
-  powervs_private_subnet_2 = var.powervs_private_subnet_2 == null ? null : merge(
-    var.powervs_private_subnet_2,
-    {
-      name = "${var.prefix}-${var.powervs_private_subnet_2.name}"
-    }
-  )
+  powervs_private_subnet_2 = (var.powervs_private_subnet_2 == null ||
+    (trimspace(var.powervs_private_subnet_2.name) == "" && trimspace(var.powervs_private_subnet_2.cidr) == "") ? null : merge(
+      var.powervs_private_subnet_2,
+      {
+        name = "${var.prefix}-${var.powervs_private_subnet_2.name}"
+      }
+  ))
 
-  powervs_private_subnet_3 = var.powervs_private_subnet_3 == null ? null : merge(
+  powervs_private_subnet_3 = (
+    var.powervs_private_subnet_3 == null ||
+    (trimspace(var.powervs_private_subnet_3.name) == "" && trimspace(var.powervs_private_subnet_3.cidr) == "")
+    ) ? null : merge(
     var.powervs_private_subnet_3,
     {
       name = "${var.prefix}-${var.powervs_private_subnet_3.name}"
     }
   )
 }
-
 locals {
   powervs_custom_image1 = (
     var.powervs_custom_images.powervs_custom_image1.image_name == "" &&

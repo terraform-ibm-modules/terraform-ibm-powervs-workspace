@@ -63,7 +63,7 @@ variable "powervs_private_subnet_1" {
     arp_broadcast = optional(string)
   })
   default = {
-    name = "sub_1"
+    name = "sub_1",
     cidr = "10.51.0.0/24"
   }
 }
@@ -76,8 +76,10 @@ variable "powervs_private_subnet_2" {
     advertise     = optional(string)
     arp_broadcast = optional(string)
   })
-
-  default = null
+  default = {
+    name = ""
+    cidr = ""
+  }
 }
 variable "powervs_private_subnet_3" {
   description = "IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet."
@@ -87,8 +89,10 @@ variable "powervs_private_subnet_3" {
     advertise     = optional(string)
     arp_broadcast = optional(string)
   })
-
-  default = null
+  default = {
+    name = ""
+    cidr = ""
+  }
 }
 variable "powervs_public_network_enable" {
   description = "IBM Cloud PowerVS Public Network. Set to true to enable this."

@@ -224,7 +224,7 @@
             },
             {
               "key": "create_transit_gateway",
-              "type": "boolean",
+              "type": "bool",
               "default_value": true,
               "required": true
             },
@@ -246,7 +246,6 @@
             {
               "key": "powervs_private_subnet_2",
               "required": true,
-              "default_value": "null",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -256,7 +255,6 @@
             {
               "key": "powervs_private_subnet_3",
               "required": true,
-              "default_value": "null",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -279,7 +277,7 @@
             },
             {
               "key": "powervs_public_network_enable",
-              "type": "boolean",
+              "type": "bool",
               "default_value": true,
               "required": true
             },
