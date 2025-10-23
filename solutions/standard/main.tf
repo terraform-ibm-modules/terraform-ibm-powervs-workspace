@@ -14,7 +14,7 @@ resource "ibm_resource_group" "resource_group" {
   name  = local.powervs_rg_create_name
 }
 data "ibm_resource_group" "existing" {
-  count = var.existing_resource_group_name != null ? 1 : 0
+  count = var.existing_resource_group_name != null && var.create_new_resource_group_name == null ? 1 : 0
   name  = var.existing_resource_group_name
 }
 
