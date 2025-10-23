@@ -2,15 +2,15 @@
 # Resource group
 #############################
 
+
 locals {
-  powervs_rg_create_name = var.existing_resource_group_name == null ? (var.create_new_resource_group_name != null ? var.create_new_resource_group_name : "${var.prefix}-resource-group") : null
-  # Input resource group name used for creating or referencing the RG. If an existing RG was supplied,
-  # use that, otherwise use the name that will be created.
-  powervs_resource_group_input = var.existing_resource_group_name != null ? var.existing_resource_group_name : var.existing_resource_group_id != null ? null : local.powervs_rg_create_name
+  # Determine the name to use when creating a new resource group
+  powervs_rg_create_name = (var.existing_resource_group_name == null ? (var.create_new_resource_group_name != null ? var.create_new_resource_group_name : null) : null)
+
 }
 
 resource "ibm_resource_group" "resource_group" {
-  count = var.existing_resource_group_name == null ? 1 : 0
+  count = var.existing_resource_group_name == null && var.existing_resource_group_id == null ? 1 : 0
   name  = local.powervs_rg_create_name
 }
 data "ibm_resource_group" "existing" {
@@ -47,7 +47,7 @@ locals {
 
   powervs_workspace_name      = "${var.prefix}-${var.powervs_workspace_name}"
   powervs_ssh_public_key      = { name = "${var.prefix}-pi-ssh-key", value = var.powervs_ssh_public_key }
-  powervs_resource_group_name = local.powervs_resource_group_input
+  powervs_resource_group_name = local.powervs_rg_create_name
 }
 
 
