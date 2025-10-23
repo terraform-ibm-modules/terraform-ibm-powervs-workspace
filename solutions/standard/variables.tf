@@ -63,8 +63,8 @@ variable "powervs_private_subnet_1" {
     arp_broadcast = optional(string)
   })
   default = {
-    name = "sub_1",
-    cidr = "10.51.0.0/24"
+    "name" : "sub_1",
+    "cidr" : "10.51.0.0/24"
   }
 }
 
@@ -77,8 +77,8 @@ variable "powervs_private_subnet_2" {
     arp_broadcast = optional(string)
   })
   default = {
-    name = ""
-    cidr = ""
+    "name" : "",
+    "cidr" : ""
   }
 }
 variable "powervs_private_subnet_3" {
@@ -90,8 +90,8 @@ variable "powervs_private_subnet_3" {
     arp_broadcast = optional(string)
   })
   default = {
-    name = ""
-    cidr = ""
+    "name" : "",
+    "cidr" : ""
   }
 }
 variable "powervs_public_network_enable" {

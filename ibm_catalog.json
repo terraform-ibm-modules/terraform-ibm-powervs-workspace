@@ -68,7 +68,6 @@
           "configuration": [
             {
               "key": "prefix",
-              "type": "string",
               "default_value": "",
               "required": true
             },
@@ -88,7 +87,6 @@
             {
               "key": "existing_resource_group_id",
               "required": true,
-              "type": "string",
               "default_value": "null"
             },
             {
@@ -100,13 +98,11 @@
                   "identifier": "rg_name"
                 },
                 "grouping": "deployment",
-                "original_grouping": "deployment",
-                "type": "resource_group"
+                "original_grouping": "deployment"
               }
             },
             {
               "key": "powervs_zone",
-              "type": "string",
               "required": true,
               "default_value": "",
               "options": [
@@ -195,7 +191,6 @@
             },
             {
               "key": "ibmcloud_api_key",
-              "type": "multiline_secure_value",
               "display_name": "Multiline secure value",
               "required": true,
               "custom_config": {
@@ -214,7 +209,6 @@
             },
             {
               "key": "powervs_custom_image_cos_service_credentials",
-              "type": "multiline_secure_value",
               "display_name": "cos_service_credentials",
               "custom_config": {
                 "grouping": "deployment",
@@ -224,14 +218,11 @@
             },
             {
               "key": "create_transit_gateway",
-              "type": "bool",
               "default_value": true,
               "required": true
             },
             {
               "key": "existing_transit_gateway_id",
-              "type": "string",
-              "default_value": "",
               "required": true
             },
             {
@@ -263,7 +254,6 @@
             },
             {
               "key": "powervs_ssh_public_key",
-              "type": "multiline_secure_value",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -277,7 +267,7 @@
             },
             {
               "key": "powervs_public_network_enable",
-              "type": "bool",
+              "type": "boolean",
               "default_value": true,
               "required": true
             },
@@ -291,7 +281,6 @@
             },
             {
               "key": "powervs_workspace_name",
-              "type": "string",
               "default_value": "powervs-workspace",
               "required": true
             }
@@ -299,55 +288,13 @@
           "iam_permissions": [
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
-              ],
-              "service_name": "appid"
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
-              ],
-              "service_name": "cloud-object-storage"
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
-              ],
-              "service_name": "is"
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
-              ],
-              "service_name": "resource-controller"
-            },
-            {
-              "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "transit.gateway"
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
-              ],
-              "service_name": "power-iaas"
             }
           ],
           "architecture": {
             "features": [
-              {
-                "title": "Power Virtual Server Instance",
-                "description": "No"
-              },
-              {
-                "title": "Number of Intel Virtual Server Instance",
-                "description": "0"
-              },
-              {
-                "title": "Number of VPCs",
-                "description": "0"
-              },
               {
                 "title": "Number of Power Virtual Server Workspace",
                 "description": "1"
@@ -358,11 +305,11 @@
               },
               {
                 "title": "Number of Private Subnets",
-                "description": "3"
+                "description": "up to 3"
               },
               {
                 "title": "Number of Public Subnet",
-                "description": "1"
+                "description": "1 (optional)"
               },
               {
                 "title": "Number of images imported from COS Storage",
