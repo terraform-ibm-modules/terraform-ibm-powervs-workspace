@@ -4,22 +4,26 @@
 
 variable "existing_resource_group_name" {
   type        = string
-  description = "The name of an existing resource group to provision resources in to. If not set a new resource group will be created using the prefix variable"
+  description = "The name of an existing resource group to provision resources in to . only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided."
   default     = null
 }
 variable "existing_resource_group_id" {
   type        = string
-  description = "The ID of an existing resource group to provision resources in to. If not set a new resource group  will be created using the prefix variable"
+  description = "The ID of an existing resource group to provision resources in to. only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided."
   default     = null
 }
 variable "create_new_resource_group_name" {
-  description = "Name of the new resource group to create if no existing name or ID is provided"
+  description = "Name of the new resource group to create if no existing name or ID is provided. If neither existing_resource_group_name nor existing_resource_group_id is provided, a new resource group will be created with this name."
   type        = string
   default     = null
 
   validation {
-    condition     = !(var.existing_resource_group_name != null) || var.create_new_resource_group_name != null
-    error_message = "If both 'powervs_resource_group_name' and 'powervs_resource_group_id' are null, you must provide 'create_new_resource_group_name' to create a new resource group."
+    condition = (
+      var.existing_resource_group_name != null ||
+      var.existing_resource_group_id != null ||
+      var.create_new_resource_group_name != null
+    )
+    error_message = "You must provide either 'existing_resource_group_name', 'existing_resource_group_id', or 'create_new_resource_group_name' to specify a resource group."
   }
 }
 
@@ -109,7 +113,7 @@ variable "powervs_tags" {
 variable "create_transit_gateway" {
   description = "Set to true to create a Transit Gateway for the PowerVS workspace and attach it."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "existing_transit_gateway_id" {
