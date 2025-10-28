@@ -44,7 +44,7 @@ variable "ibmcloud_api_key" {
 
 variable "prefix" {
   type        = string
-  description = "Prefix to append to all resources ."
+  description = "Prefix to append to all resources."
 }
 
 variable "powervs_zone" {
