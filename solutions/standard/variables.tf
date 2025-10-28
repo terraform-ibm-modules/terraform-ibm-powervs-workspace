@@ -4,7 +4,7 @@
 
 variable "existing_resource_group_name" {
   type        = string
-  description = "The name of an existing resource group to provision resources in to . only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided."
+  description = "The name of an existing resource group to provision resources into. Only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided."
   default     = null
 }
 variable "existing_resource_group_id" {
