@@ -201,8 +201,4 @@ variable "powervs_custom_image_cos_service_credentials" {
   type        = string
   sensitive   = true
   default     = null
-  validation {
-    condition     = var.powervs_custom_image_cos_configuration != null ? var.powervs_custom_image_cos_configuration.bucket_access == "private" ? var.powervs_custom_image_cos_service_credentials != null : true : true
-    error_message = "powervs_custom_image_cos_service_credentials are required to access private COS buckets."
-  }
 }
