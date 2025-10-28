@@ -52,7 +52,7 @@ locals {
 
   powervs_workspace_name      = "${var.prefix}-${var.powervs_workspace_name}"
   powervs_ssh_public_key      = { name = "${var.prefix}-pi-ssh-key", value = var.powervs_ssh_public_key }
-  powervs_resource_group_name = local.powervs_rg_create_name
+  powervs_resource_group_name = var.existing_resource_group_name != null ? var.existing_resource_group_name : (local.create_new_rg ? local.powervs_rg_create_name : null)
 }
 
 
