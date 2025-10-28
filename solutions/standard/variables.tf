@@ -19,11 +19,16 @@ variable "create_new_resource_group_name" {
 
   validation {
     condition = (
-      var.existing_resource_group_name != null ||
-      var.existing_resource_group_id != null ||
-      var.create_new_resource_group_name != null
+      # Scenario 1: Only existing RG name provided
+      (var.existing_resource_group_name != null && var.existing_resource_group_id == null && var.create_new_resource_group_name == null) ||
+      # Scenario 2: Only existing RG ID provided
+      (var.existing_resource_group_name == null && var.existing_resource_group_id != null && var.create_new_resource_group_name == null) ||
+      # Scenario 3: Only new RG name provided
+      (var.existing_resource_group_name == null && var.existing_resource_group_id == null && var.create_new_resource_group_name != null) ||
+      # Scenario 4: Nothing provided (all null)
+      (var.existing_resource_group_name == null && var.existing_resource_group_id == null && var.create_new_resource_group_name == null)
     )
-    error_message = "You must provide either 'existing_resource_group_name', 'existing_resource_group_id', or 'create_new_resource_group_name' to specify a resource group."
+    error_message = "You must provide exactly one of: 'existing_resource_group_name', 'existing_resource_group_id', or 'create_new_resource_group_name'."
   }
 }
 

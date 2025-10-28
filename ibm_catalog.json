@@ -68,13 +68,11 @@
           "configuration": [
             {
               "key": "prefix",
-              "default_value": "",
               "required": true
             },
             {
               "key": "existing_resource_group_name",
               "required": true,
-              "default_value": "",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -86,13 +84,11 @@
             },
             {
               "key": "existing_resource_group_id",
-              "required": true,
-              "default_value": "null"
+              "required": true
             },
             {
               "key": "create_new_resource_group_name",
               "required": true,
-              "default_value": "null",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -104,7 +100,6 @@
             {
               "key": "powervs_zone",
               "required": true,
-              "default_value": "",
               "options": [
                 {
                   "displayname": "Dallas (dallas)",
