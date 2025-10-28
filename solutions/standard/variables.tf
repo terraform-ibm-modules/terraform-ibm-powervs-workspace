@@ -113,7 +113,7 @@ variable "powervs_tags" {
 variable "create_transit_gateway" {
   description = "Set to true to create a Transit Gateway for the PowerVS workspace and attach it."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "existing_transit_gateway_id" {

@@ -37,7 +37,7 @@ An basic example that will provision the following:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_new_resource_group_name"></a> [create\_new\_resource\_group\_name](#input\_create\_new\_resource\_group\_name) | Name of the new resource group to create if no existing name or ID is provided. If neither existing\_resource\_group\_name nor existing\_resource\_group\_id is provided, a new resource group will be created with this name. | `string` | `null` | no |
-| <a name="input_create_transit_gateway"></a> [create\_transit\_gateway](#input\_create\_transit\_gateway) | Set to true to create a Transit Gateway for the PowerVS workspace and attach it. | `bool` | `false` | no |
+| <a name="input_create_transit_gateway"></a> [create\_transit\_gateway](#input\_create\_transit\_gateway) | Set to true to create a Transit Gateway for the PowerVS workspace and attach it. | `bool` | `true` | no |
 | <a name="input_existing_resource_group_id"></a> [existing\_resource\_group\_id](#input\_existing\_resource\_group\_id) | The ID of an existing resource group to provision resources in to. only one of existing\_resource\_group\_name or existing\_resource\_group\_id or create\_new\_resource\_group\_name should be provided. | `string` | `null` | no |
 | <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | The name of an existing resource group to provision resources in to . only one of existing\_resource\_group\_name or existing\_resource\_group\_id or create\_new\_resource\_group\_name should be provided. | `string` | `null` | no |
 | <a name="input_existing_transit_gateway_id"></a> [existing\_transit\_gateway\_id](#input\_existing\_transit\_gateway\_id) | Optional: ID of an existing Transit Gateway to use instead of creating a new one | `string` | `null` | no |
@@ -59,6 +59,7 @@ An basic example that will provision the following:
 
 | Name | Description |
 |------|-------------|
+| <a name="output_existing_resource_group_id"></a> [existing\_resource\_group\_id](#output\_existing\_resource\_group\_id) | value |
 | <a name="output_pi_images"></a> [pi\_images](#output\_pi\_images) | Object containing imported PowerVS image names and image ids. |
 | <a name="output_pi_private_subnet_1"></a> [pi\_private\_subnet\_1](#output\_pi\_private\_subnet\_1) | Created PowerVS private subnet 1 details. |
 | <a name="output_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#output\_pi\_private\_subnet\_2) | Created PowerVS private subnet 2 details. |
@@ -70,4 +71,5 @@ An basic example that will provision the following:
 | <a name="output_pi_workspace_id"></a> [pi\_workspace\_id](#output\_pi\_workspace\_id) | PowerVS infrastructure workspace id. The unique identifier of the new resource instance. |
 | <a name="output_pi_workspace_name"></a> [pi\_workspace\_name](#output\_pi\_workspace\_name) | PowerVS infrastructure workspace name. |
 | <a name="output_pi_zone"></a> [pi\_zone](#output\_pi\_zone) | Zone where PowerVS infrastructure is created. |
+| <a name="output_resource_group_id"></a> [resource\_group\_id](#output\_resource\_group\_id) | value |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
