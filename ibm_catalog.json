@@ -218,7 +218,6 @@
             },
             {
               "key": "create_transit_gateway",
-              "default_value": true,
               "required": true
             },
             {
