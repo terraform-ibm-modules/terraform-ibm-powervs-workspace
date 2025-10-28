@@ -5,7 +5,7 @@ An basic example that will provision the following:
 - A new transit gateway.
 - A new PowerVS workspace.
 - A new PowerVS public SSH key.
-- 3 new PowerVS private subnets.
+- Up to 3 new PowerVS private subnets.
 - A new PowerVS public subnet.
 - Attaches the PowerVS workspace to Transit gateway.
 - Optionally import up to 3 custom images from Cloud Object Storage.
