@@ -72,5 +72,5 @@ IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an e
 {: #standard-next-steps}
 
 - Review and confirm input variables (region, resource group, COS locations, SSH public key).
-- Validate network connectivity (bastion host access, private subnets, and transit gateway attachments).
+- Validate network connectivity (private subnets and transit gateway attachments).
 - Verify imported images are present and usable in PowerVS.
