@@ -53,7 +53,7 @@ variable "powervs_zone" {
 }
 
 variable "powervs_workspace_name" {
-  description = "Provide unique name for the PowerVS workspace to be created."
+ Name of the PowerVS workspace to create. The resulting name will be <prefix>-<powervs_workspace_name>.
   type        = string
   default     = "powervs-workspace"
 }
