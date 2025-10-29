@@ -51,7 +51,7 @@ An basic example that will provision the following:
 | <a name="input_powervs_public_network_enable"></a> [powervs\_public\_network\_enable](#input\_powervs\_public\_network\_enable) | IBM Cloud PowerVS Public Network. Set to true to enable this. | `bool` | `false` | no |
 | <a name="input_powervs_ssh_public_key"></a> [powervs\_ssh\_public\_key](#input\_powervs\_ssh\_public\_key) | Value of the Public SSH key to create inside the PowerVS workspace. | `string` | n/a | yes |
 | <a name="input_powervs_tags"></a> [powervs\_tags](#input\_powervs\_tags) | List of Tag names for IBM Cloud PowerVS workspace. | `list(string)` | `[]` | no |
-| <a name="input_powervs_workspace_name"></a> [powervs\_workspace\_name](#input\_powervs\_workspace\_name) | Provide unique name for the PowerVS workspace to be created. | `string` | `"powervs-workspace"` | no |
+| <a name="input_powervs_workspace_name"></a> [powervs\_workspace\_name](#input\_powervs\_workspace\_name) | Name of the PowerVS workspace to create. The resulting name will be <prefix>-<powervs\_workspace\_name>. | `string` | `"powervs-workspace"` | no |
 | <a name="input_powervs_zone"></a> [powervs\_zone](#input\_powervs\_zone) | IBM Cloud PowerVS zone where the PowerVS workspace will be created. | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix to append to all resources. | `string` | n/a | yes |
 
