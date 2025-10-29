@@ -7,7 +7,7 @@ An basic example that will provision the following:
 - A new PowerVS public SSH key.
 - Up to 3 new PowerVS private subnets.
 - An optional new PowerVS public subnet.
-- Attaches the PowerVS workspace to Transit gateway.
+- Optionally attaches the PowerVS workspace to Transit gateway.
 - Optionally import up to 3 custom images from Cloud Object Storage.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
