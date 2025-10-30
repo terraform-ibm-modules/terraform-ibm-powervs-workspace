@@ -8,15 +8,15 @@ output "pi_zone" {
 }
 
 output "pi_resource_group_name" {
-  description = "IBM Cloud resource group where PowerVS infrastructure is created."
+  description = "The name of the IBM Power Systems Virtual Server resource group used to organize and manage Power Infrastructure resources"
   value       = local.powervs_resource_group_name
 }
 output "existing_resource_group_id" {
-  description = "value"
+  description = "The ID of the existing IBM Cloud resource group used for Power Systems resources"
   value       = var.existing_resource_group_id
 }
 output "resource_group_id" {
-  description = "value"
+  description = "The ID of the  new resource group where PowerVS workspace is created."
   value       = local.powervs_resource_group_id
 }
 output "pi_workspace_name" {
