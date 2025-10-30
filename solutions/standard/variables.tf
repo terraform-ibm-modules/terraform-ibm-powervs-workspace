@@ -94,6 +94,7 @@ variable "powervs_private_subnet_2" {
 
 
 
+
 variable "powervs_private_subnet_3" {
   description = "IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
