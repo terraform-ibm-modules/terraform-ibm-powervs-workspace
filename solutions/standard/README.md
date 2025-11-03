@@ -59,7 +59,6 @@ An basic example that will provision the following:
 
 | Name | Description |
 |------|-------------|
-| <a name="output_existing_resource_group_id"></a> [existing\_resource\_group\_id](#output\_existing\_resource\_group\_id) | The ID of the existing IBM Cloud resource group used for Power Systems resources |
 | <a name="output_pi_images"></a> [pi\_images](#output\_pi\_images) | Object containing imported PowerVS image names and image ids. |
 | <a name="output_pi_private_subnet_1"></a> [pi\_private\_subnet\_1](#output\_pi\_private\_subnet\_1) | Created PowerVS private subnet 1 details. |
 | <a name="output_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#output\_pi\_private\_subnet\_2) | Created PowerVS private subnet 2 details. |
@@ -71,5 +70,4 @@ An basic example that will provision the following:
 | <a name="output_pi_workspace_id"></a> [pi\_workspace\_id](#output\_pi\_workspace\_id) | PowerVS infrastructure workspace id. The unique identifier of the new resource instance. |
 | <a name="output_pi_workspace_name"></a> [pi\_workspace\_name](#output\_pi\_workspace\_name) | PowerVS infrastructure workspace name. |
 | <a name="output_pi_zone"></a> [pi\_zone](#output\_pi\_zone) | Zone where PowerVS infrastructure is created. |
-| <a name="output_resource_group_id"></a> [resource\_group\_id](#output\_resource\_group\_id) | The ID of the  new resource group where PowerVS workspace is created. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
