@@ -302,7 +302,7 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Editor"
+                "crn:v1:bluemix:public:iam::::role:Reader"
               ],
               "service_name": "cloud-object-storage"
             },
