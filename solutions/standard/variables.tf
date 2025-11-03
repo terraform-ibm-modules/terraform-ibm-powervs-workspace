@@ -7,11 +7,13 @@ variable "existing_resource_group_name" {
   description = "The name of an existing resource group to provision resources into. Only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided."
   default     = null
 }
+
 variable "existing_resource_group_id" {
   type        = string
   description = "The ID of an existing resource group to provision resources into. Only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided."
   default     = null
 }
+
 variable "create_new_resource_group_name" {
   description = "Name of the new resource group to create if no existing name or ID is provided. If neither existing_resource_group_name nor existing_resource_group_id is provided, a new resource group will be created with this name."
   type        = string
@@ -91,12 +93,6 @@ variable "powervs_private_subnet_2" {
   }
 }
 
-
-
-
-
-
-
 variable "powervs_private_subnet_3" {
   description = "IBM Cloud PowerVS second private subnet name and cidr which will be created. Set value to null to not create this subnet."
   type = object({
@@ -110,7 +106,6 @@ variable "powervs_private_subnet_3" {
     "cidr" : ""
   }
 }
-
 
 variable "powervs_public_network_enable" {
   description = "IBM Cloud PowerVS Public Network. Set to true to enable this."
@@ -139,7 +134,6 @@ variable "existing_transit_gateway_id" {
     error_message = "You cannot set both 'create_transit_gateway = true' and provide 'existing_transit_gateway_id'. Choose only one."
   }
 }
-
 
 variable "powervs_custom_images" {
   description = "Optionally import up to three custom images from Cloud Object Storage into PowerVS workspace. Requires 'powervs_custom_image_cos_configuration' to be set. image_name: string, must be unique. Name of image inside PowerVS workspace. file_name: string, object key of image inside COS bucket. storage_tier: string, storage tier which image will be stored in after import. Supported values: tier0, tier1, tier3, tier5k. sap_type: optional string, Supported values: null, Hana, Netweaver, use null for non-SAP image."
@@ -184,7 +178,6 @@ variable "powervs_custom_images" {
     }
   }
 }
-
 
 variable "powervs_custom_image_cos_configuration" {
   description = <<EOF

@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2024, 2025
-lastupdated: "2025-10-31"
+lastupdated: "2025-11-01"
 keywords:
 subcollection: deployable-reference-architectures
 authors:
@@ -65,7 +65,7 @@ IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an e
 |* Optionally create a public subnet for external access|Public subnet|Create one public subnet ||
 |* Optionally attach the PowerVS workspace to a transit gateway to connect VPC services|Transit gateway|Attach workspace to a local transit gateway to enable connectivity with VPC and other networks|Do not attach to transit gateway; rely on site-to-site VPN, direct internet, or other connectivity mechanisms|
 
-{: caption="Table X. PowerVS workspace architecture decisions (custom variant)" caption-side="bottom"}
+{: caption="Table 1. PowerVS workspace architecture decisions" caption-side="bottom"}
 
 
 ## Next steps
