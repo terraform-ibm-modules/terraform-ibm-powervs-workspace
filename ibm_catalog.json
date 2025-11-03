@@ -68,7 +68,6 @@
           "configuration": [
             {
               "key": "prefix",
-              "default_value": "__NULL__",
               "required": true
             },
             {
@@ -266,7 +265,6 @@
             {
               "key": "powervs_public_network_enable",
               "type": "boolean",
-              "default_value": true,
               "required": true
             },
             {
