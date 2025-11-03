@@ -44,7 +44,7 @@ resource "ibm_tg_gateway" "transit_gateway" {
 # Create PowerVS Workspace
 #############################
 locals {
-  # powervs_transit_gateway_connection = { enable = var.create_transit_gateway ? true : false, transit_gateway_id = var.create_transit_gateway ? ibm_tg_gateway.transit_gateway[0].id : "" }
+
   powervs_transit_gateway_connection = {
     enable             = var.create_transit_gateway || var.existing_transit_gateway_id != null
     transit_gateway_id = var.create_transit_gateway ? ibm_tg_gateway.transit_gateway[0].id : var.existing_transit_gateway_id

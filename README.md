@@ -8,7 +8,7 @@
 
 
 ## Summary
-This root module automates and provisions a IBM Power Virtual Server Workspace with following components:
+This  module automates and provisions a IBM Power Virtual Server Workspace with following components:
 
 - Creates an IBM® Power Virtual Server (PowerVS) workspace.
 - Creates an SSH key.
