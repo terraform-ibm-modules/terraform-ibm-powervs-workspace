@@ -7,23 +7,11 @@
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
 
-## Summary
-This  module automates and provisions a IBM Power Virtual Server Workspace with following components:
-
-- Creates an IBM® Power Virtual Server (PowerVS) workspace.
-- Creates an SSH key.
-- Optionally imports up to three custom images from Cloud Object Storage.
-- Optionally create one or two or three private subnets.
-- Optionally create one public subnet.
-- Optionally attach the PowerVS workspace to transit gateway.
-
-
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 * [terraform-ibm-powervs-workspace](#terraform-ibm-powervs-workspace)
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
-
 
 ## terraform-ibm-powervs-workspace
 
