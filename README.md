@@ -22,7 +22,7 @@ This root module automates and provisions a IBM Power Virtual Server Workspace w
 ## Overview
 * [terraform-ibm-powervs-workspace](#terraform-ibm-powervs-workspace)
 * [Examples](./examples)
-    * [Basic example](./examples/basic)
+    * <div style="display: inline-block;"><a href="./examples/basic">Basic example</a></div> <div style="display: inline-block; vertical-align: middle;"><a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=pw-basic-example&repository=github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/tree/main/examples/basic" target="_blank"><img src="https://cloud.ibm.com/media/docs/images/icons/Deploy_to_cloud.svg" alt="Deploy to IBM Cloud button"></a></div>
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
