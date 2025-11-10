@@ -290,15 +290,9 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Editor"
+                "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "resource-group"
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Editor"
-              ],
-              "service_name": "power-iaas"
             },
             {
               "role_crns": [
@@ -308,9 +302,9 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Editor"
+                "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
-              "service_name": "account"
+              "service_name": "power-iaas"
             }
           ],
           "architecture": {
