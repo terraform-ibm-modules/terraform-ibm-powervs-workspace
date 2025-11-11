@@ -4,7 +4,7 @@ output "pi_zone" {
 }
 
 output "pi_resource_group_name" {
-  description = "IBM Cloud resource group name tagged to PowerVS Workspace."
+  description = "IBM Cloud resource group name tagged to PowerVS Workspace.  if existing_resource_group_id is provided, this value will be ignored."
   value       = var.pi_resource_group_name
 }
 

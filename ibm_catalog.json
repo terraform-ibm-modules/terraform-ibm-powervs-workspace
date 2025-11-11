@@ -1,0 +1,349 @@
+{
+  "products": [
+    {
+      "name": "deploy-arch-ibm-pvs-ws-standard",
+      "label": "Power Virtual Server workspace",
+      "product_kind": "solution",
+      "tags": [
+        "ibm_created",
+        "target_terraform",
+        "terraform",
+        "solution",
+        "network_vpc",
+        "free",
+        "Technology",
+        "SoftwareAndPlatformApplications",
+        "reference_architecture",
+        "support_ibm",
+        "infra_only",
+        "single_system",
+        "platform_engineering"
+      ],
+      "keywords": [
+        "power",
+        "sap",
+        "sap hana",
+        "sap netweaver",
+        "power solution",
+        "power infrastructure",
+        "powervs",
+        "power vs",
+        "power framework",
+        "sap power",
+        "automation",
+        "secure",
+        "networking",
+        "vertical scaling",
+        "scalable server",
+        "ibmi",
+        "aix",
+        "linux"
+      ],
+      "short_description": "Deploy an IBM® Cloud Power Virtual Server (PowerVS) workspace in accordance with IBM Cloud best practices and compliance requirements.",
+      "long_description": "IBM Cloud® Power Virtual Servers (PowerVS) is a public cloud offering that an enterprise can use to establish its own private IBM Power computing environment on shared public cloud infrastructure. PowerVS is logically isolated from all other public cloud tenants and infrastructure components, creating a private, secure place on the public cloud.",
+      "offering_docs_url": "https://cloud.ibm.com/docs/powervs-vpc",
+      "offering_icon_url": "data:image/svg+xml;base64,PHN2ZyBpZD0iUG93ZXJJbmZyYXN0cnVjdHVyZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDMyIDMyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9Inc2aHpjbXV6amEiIHgxPSItMTg1NS4yMDgiIHkxPSItMjUwMi41NjMiIHgyPSItMTg1NS4yMDgiIHkyPSItMjUyMi4xNzkiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMS4wNiAwIDAgLS40OTEgMTk3My42NzYgLTEyMjcuMjkzKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIvPjxzdG9wIG9mZnNldD0iLjgiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSI2dmZkbzMxaXNiIiB4MT0iMzI4LjUwMiIgeTE9Ii02NzY1LjY0NyIgeDI9IjMyOC41MDIiIHkyPSItNjc4NS4yNjMiIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMS4wNiAwIDAgLjUxNSAtMzM5Ljk2NiAzNTEzLjI1KSIgeGxpbms6aHJlZj0iI3c2aHpjbXV6amEiLz48bGluZWFyR3JhZGllbnQgaWQ9ImJ0eDNhMG9vZ2MiIHgxPSItOTUzLjI2NiIgeTE9Ii0yODI4LjY1OSIgeDI9Ii05NTMuMjY2IiB5Mj0iLTI4MzguNTMzIiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEuMDYgMCAwIC0uNjY5IDEwMzcuMjE4IC0xODc2LjQzOSkiIHhsaW5rOmhyZWY9IiN3Nmh6Y211emphIi8+PGxpbmVhckdyYWRpZW50IGlkPSI2NmhzYWNybDVkIiB4MT0iLTE5MjMuMjUiIHkxPSItMjYyMC4yOSIgeDI9Ii0xOTIzLjI1IiB5Mj0iLTI2MjcuODg0IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDEuMDYgMCAwIC42NjkgMjA0OC4wOTEgMTc4Mi4zNjQpIiB4bGluazpocmVmPSIjdzZoemNtdXpqYSIvPjxsaW5lYXJHcmFkaWVudCBpZD0idXp2YXRxaGhwZSIgeDE9Ii0xOTE1LjgwMiIgeTE9Ii0zMTkxLjI5NCIgeDI9Ii0xOTE1LjgwMiIgeTI9Ii0zMTk4Ljg4OSIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgxLjA2IDAgMCAuNjY5IDIwNDMuNDggMjE0MS4xMjgpIiB4bGluazpocmVmPSIjdzZoemNtdXpqYSIvPjxsaW5lYXJHcmFkaWVudCBpZD0iZTFxMWF3ZXJxZyIgeDE9IjAiIHkxPSIzMiIgeDI9IjMyIiB5Mj0iMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iLjEiIHN0b3AtY29sb3I9IiMwOGJkYmEiLz48c3RvcCBvZmZzZXQ9Ii45IiBzdG9wLWNvbG9yPSIjMGY2MmZlIi8+PC9saW5lYXJHcmFkaWVudD48bWFzayBpZD0idnZmcnV4eXl1ZiIgeD0iMCIgeT0iMCIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMTUuOTgyIDMwYy03LjcyIDAtMTQtNi4yOC0xNC0xNHM2LjI4MS0xNCAxNC0xNCAxNCA2LjI4IDE0IDE0LTYuMjggMTQtMTQgMTR6bTAtMjZjLTYuNjE3IDAtMTIgNS4zODMtMTIgMTJzNS4zODMgMTIgMTIgMTIgMTItNS4zODMgMTItMTItNS4zODMtMTItMTItMTJ6IiBzdHlsZT0iZmlsbDojZmZmIi8+PHBhdGggZD0iTTMwLjY5MSAzMC43MDhIMTEuNzI5bDMtOC43MDggMTAuNDY1LjAxMSA1LjU3Ny0uMDIxLS4wOCA4LjcxOHpNNi45ODIgMjBsLTYgNS40OTRWNi44MDdsNiA1LjAxNVYyMHpNMTYuMDAzIDFoMTQuOTk5djEzLjAzMkgxNi4wMDN6Ii8+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoLTEzNSA3Ljk0MyA2Ljc4NykiIHN0eWxlPSJmaWxsOnVybCgjdzZoemNtdXpqYSkiIGQ9Ik00Ljc2NCAxLjk3aDYuMzU3djkuNjM1SDQuNzY0eiIvPjxwYXRoIHRyYW5zZm9ybT0icm90YXRlKDEzNSA4LjEwNiAyNS4zNDQpIiBzdHlsZT0iZmlsbDp1cmwoIzZ2ZmRvMzFpc2IpIiBkPSJNNC45MjggMjAuMjk1aDYuMzU3djEwLjA5OEg0LjkyOHoiLz48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgxODAgMjcuMTYxIDE4Ljg2MykiIHN0eWxlPSJmaWxsOnVybCgjYnR4M2Ewb29nYykiIGQ9Ik0yMy45ODIgMTUuNTYxaDYuMzU3djYuNjA0aC02LjM1N3oiLz48cGF0aCB0cmFuc2Zvcm09InJvdGF0ZSgtNzAuNzkgMTAuMjYyIDI3LjE5NSkiIHN0eWxlPSJmaWxsOnVybCgjNjZoc2Fjcmw1ZCkiIGQ9Ik03LjA4NCAyNC42NTVoNi4zNTd2NS4wOEg3LjA4NHoiLz48cGF0aCBkPSJNOC45ODIgMjAuOThoLTZjLTEuMTAzIDAtMi0uODk3LTItMnYtNmMwLTEuMTAzLjg5Ny0yIDItMmg2YzEuMTAzIDAgMiAuODk3IDIgMnY2YzAgMS4xMDMtLjg5NyAyLTIgMnptLTYtOHY2aDYuMDAxdi02SDIuOTgyeiIgc3R5bGU9ImZpbGw6I2ZmZiIvPjxwYXRoIHRyYW5zZm9ybT0icm90YXRlKC05MCAxMy41NDMgNC4wMzIpIiBzdHlsZT0iZmlsbDp1cmwoI3V6dmF0cWhocGUpIiBkPSJNMTAuMzY0IDEuNDkyaDYuMzU3djUuMDhoLTYuMzU3eiIvPjxwYXRoIGQ9Ik0yNy4zMDQgNy4xMzRjMC0uMzctLjA2Ny0uNzIxLS4xNjEtMS4wNjJMMjkgNWwtMS0xLjczMi0xLjg0NyAxLjA2NmEzLjk5MSAzLjk5MSAwIDAgMC0xLjg0OS0xLjA1OFYxLjEzNGgtMnYyLjE0MmEzLjk5MSAzLjk5MSAwIDAgMC0xLjg0OSAxLjA1OGwtMS44NDctMS4wNjYtMSAxLjczMiAxLjg1NyAxLjA3MmMtLjA5NC4zNC0uMTYxLjY5Mi0uMTYxIDEuMDYycy4wNjcuNzIxLjE2MSAxLjA2MmwtMS44NTcgMS4wNzIgMSAxLjczMiAxLjg0Ny0xLjA2NmMuNS41MDkgMS4xMzguODczIDEuODQ5IDEuMDU4djIuMTQyaDJ2LTIuMTQyYTMuOTkxIDMuOTkxIDAgMCAwIDEuODQ5LTEuMDU4TDI4IDExbDEtMS43MzItMS44NTctMS4wNzJjLjA5NC0uMzQuMTYxLS42OTIuMTYxLTEuMDYyem0tNCAyYy0xLjEwMyAwLTItLjg5Ny0yLTJzLjg5Ny0yIDItMiAyIC44OTcgMiAyLS44OTcgMi0yIDJ6IiBzdHlsZT0iZmlsbDojZmZmIi8+PC9tYXNrPjwvZGVmcz48ZyBzdHlsZT0ibWFzazp1cmwoI3Z2ZnJ1eHl5dWYpIj48cGF0aCBzdHlsZT0iZmlsbDp1cmwoI2UxcTFhd2VycWcpIiBkPSJNMCAwaDMydjMySDB6Ii8+PC9nPjxwYXRoIGQ9Ik0yOS4wMDIgMzFoLTEzYy0xLjEwMyAwLTItLjg5Ny0yLTJ2LTRjMC0xLjEwMy44OTctMiAyLTJoMTNjMS4xMDMgMCAyIC44OTcgMiAydjRjMCAxLjEwMy0uODk3IDItMiAyem0tMTMtNnY0aDEzLjAwMXYtNEgxNi4wMDJ6IiBzdHlsZT0iZmlsbDojMDAxZDZjIi8+PGNpcmNsZSBjeD0iMTkuMDAyIiBjeT0iMjciIHI9IjEiIHN0eWxlPSJmaWxsOiMwMDFkNmMiLz48L3N2Zz4=",
+      "features": [
+        {
+          "description": "Power Virtual Server workspaces",
+          "title": "One PowerVS workspace is created by initial deployment"
+        }
+      ],
+      "flavors": [
+        {
+          "label": "standard workspace",
+          "name": "standard",
+          "install_type": "fullstack",
+          "index": 2,
+          "working_directory": "solutions/standard",
+          "compliance": {
+            "authority": "scc-v3",
+            "profiles": [
+              {
+                "profile_name": "IBM Cloud Framework for Financial Services",
+                "profile_version": "1.7.0"
+              }
+            ]
+          },
+          "configuration": [
+            {
+              "key": "prefix",
+              "required": true
+            },
+            {
+              "key": "existing_resource_group_name",
+              "required": true,
+              "default_value": "__NULL__",
+              "custom_config": {
+                "config_constraints": {
+                  "identifier": "rg_name"
+                },
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "resource_group"
+              }
+            },
+            {
+              "key": "existing_resource_group_id",
+              "default_value": "__NULL__",
+              "required": true
+            },
+            {
+              "key": "create_new_resource_group_name",
+              "default_value": "__NULL__",
+              "required": true,
+              "custom_config": {
+                "config_constraints": {
+                  "identifier": "rg_name"
+                },
+                "grouping": "deployment",
+                "original_grouping": "deployment"
+              }
+            },
+            {
+              "key": "powervs_zone",
+              "required": true,
+              "options": [
+                {
+                  "displayname": "Dallas (dallas)",
+                  "value": "us-south"
+                },
+                {
+                  "displayname": "Dallas 10 (dal10)",
+                  "value": "dal10"
+                },
+                {
+                  "displayname": "Dallas 12 (dal12)",
+                  "value": "dal12"
+                },
+                {
+                  "displayname": "Dallas 14 (dal14)",
+                  "value": "dal14"
+                },
+                {
+                  "displayname": "Frankfurt 1 (eu-de-1)",
+                  "value": "eu-de-1"
+                },
+                {
+                  "displayname": "Frankfurt 2 (eu-de-2)",
+                  "value": "eu-de-2"
+                },
+                {
+                  "displayname": "London 04 (lon04)",
+                  "value": "lon04"
+                },
+                {
+                  "displayname": "London 06 (lon06)",
+                  "value": "lon06"
+                },
+                {
+                  "displayname": "Madrid 02 (mad02)",
+                  "value": "mad02"
+                },
+                {
+                  "displayname": "Madrid 04 (mad04)",
+                  "value": "mad04"
+                },
+                {
+                  "displayname": "Osaka 21 (osa21)",
+                  "value": "osa21"
+                },
+                {
+                  "displayname": "Sao Paulo 01 (sao01)",
+                  "value": "sao01"
+                },
+                {
+                  "displayname": "Sao Paulo 04 (sao04)",
+                  "value": "sao04"
+                },
+                {
+                  "displayname": "Sydney 04 (syd04)",
+                  "value": "syd04"
+                },
+                {
+                  "displayname": "Sydney 05 (syd05)",
+                  "value": "syd05"
+                },
+                {
+                  "displayname": "Tokyo 04 (tok04)",
+                  "value": "tok04"
+                },
+                {
+                  "displayname": "Toronto 01 (tor01)",
+                  "value": "tor01"
+                },
+                {
+                  "displayname": "Washington DC (us-east)",
+                  "value": "us-east"
+                },
+                {
+                  "displayname": "Washington DC 06 (wdc06)",
+                  "value": "wdc06"
+                },
+                {
+                  "displayname": "Washington DC 07 (wdc07)",
+                  "value": "wdc07"
+                }
+              ],
+              "custom_config": {}
+            },
+            {
+              "key": "ibmcloud_api_key",
+              "display_name": "Multiline secure value",
+              "required": true,
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "multiline_secure_value"
+              }
+            },
+            {
+              "key": "powervs_custom_image_cos_configuration",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
+            },
+            {
+              "key": "powervs_custom_image_cos_service_credentials",
+              "display_name": "cos_service_credentials",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "multiline_secure_value"
+              }
+            },
+            {
+              "key": "create_transit_gateway",
+              "required": true
+            },
+            {
+              "key": "existing_transit_gateway_id",
+              "required": true
+            },
+            {
+              "key": "powervs_private_subnet_1",
+              "required": true,
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
+            },
+            {
+              "key": "powervs_private_subnet_2",
+              "required": true,
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
+            },
+            {
+              "key": "powervs_private_subnet_3",
+              "required": true,
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
+            },
+            {
+              "key": "powervs_ssh_public_key",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "multiline_secure_value"
+              },
+              "required": true
+            },
+            {
+              "key": "powervs_tags",
+              "required": true
+            },
+            {
+              "key": "powervs_public_network_enable",
+              "type": "boolean",
+              "required": true
+            },
+            {
+              "key": "powervs_custom_images",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "type": "code_editor"
+              }
+            },
+            {
+              "key": "powervs_workspace_name",
+              "default_value": "powervs-workspace",
+              "required": true
+            }
+          ],
+          "iam_permissions": [
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "transit.gateway"
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Administrator"
+              ],
+              "service_name": "resource-group"
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Reader"
+              ],
+              "service_name": "cloud-object-storage"
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Administrator"
+              ],
+              "service_name": "power-iaas"
+            }
+          ],
+          "architecture": {
+            "features": [
+              {
+                "title": "Number of Power Virtual Server Workspace",
+                "description": "1"
+              },
+              {
+                "title": "Number of Transit Gateways",
+                "description": "1"
+              },
+              {
+                "title": "Number of Private Subnets",
+                "description": "up to 3"
+              },
+              {
+                "title": "Number of Public Subnet",
+                "description": "1 (optional)"
+              },
+              {
+                "title": "Number of images imported from COS Storage",
+                "description": "up to 3"
+              }
+            ],
+            "diagrams": [
+              {
+                "diagram": {
+                  "caption": "Power Virtual Server workspace 'deploy-arch-ibm-pvs-ws-standard",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/refs/tags/v4.0.1/reference-architectures/standard/deploy-arch-ibm-pvs-ws-standard.svg",
+                  "type": "image/svg+xml"
+                },
+                "description": "The Power Virtual Server workspace as variation 'Create a new architecture' deploys a Power Virtual Server workspace and Transit Gateway. \n \n Required and optional management components are configured."
+              }
+            ]
+          },
+          "terraform_version": "1.10.5"
+        }
+      ]
+    }
+  ]
+}
