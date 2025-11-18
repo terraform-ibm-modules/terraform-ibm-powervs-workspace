@@ -8,7 +8,7 @@ output "pi_zone" {
 }
 
 output "pi_resource_group_name" {
-  description = "IBM Cloud resource group where PowerVS infrastructure is created."
+  description = "The name of the IBM Power Systems Virtual Server resource group used to organize and manage Power Infrastructure resources"
   value       = module.powervs_workspace.pi_resource_group_name
 }
 
