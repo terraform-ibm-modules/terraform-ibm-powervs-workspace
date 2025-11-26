@@ -56,15 +56,6 @@
           "install_type": "fullstack",
           "index": 2,
           "working_directory": "solutions/standard",
-          "compliance": {
-            "authority": "scc-v3",
-            "profiles": [
-              {
-                "profile_name": "IBM Cloud Framework for Financial Services",
-                "profile_version": "1.7.0"
-              }
-            ]
-          },
           "configuration": [
             {
               "key": "prefix",

@@ -1,0 +1,8 @@
+{
+  "prefix":"workspace",
+  "existing_resource_group_name": "Default",
+  "powervs_zone": "us-south",
+  "powervs_ssh_public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD3cxq+5Kt0Pvho3EMsxHQL2J3nNTPJh9ldhpmMxhZHlhsqHA0XZuYl6tPqfD3aDMAZxkxrEtRKILUYjJN+3de8uyYw9OvAa1s7yWzwSwsD/RcPHgs3R89NQr+dDXYF1SAkoJ3jtDUeLaNvll3stvRw1aXqrnMxJ0hhZoTlcv+HUjIYHADKqyW4z+gjLSMBB7q4n8N+ey25anv8xrbPTPyjmIEPtdjGbX66cipthHuu1mdNZDvMmJPSlCJIY3dDlHL/XcvsMLR/7VeDIhcOsaI+wKJVgAMkGTN/v7Dua81NtzXAv3TQVR0h2kqrort548wkl/GqZXxG15RlPLBwpEBp root@jumphost",
+  "ibmcloud_api_key": $VALIDATION_APIKEY,
+  "powervs_workspace_name":"pipeline-test"
+}
