@@ -54,6 +54,7 @@
           "label": "standard workspace",
           "name": "standard",
           "install_type": "fullstack",
+          "short_description": "Deploy an IBM® Cloud Power Virtual Server (PowerVS) workspace in accordance with IBM Cloud best practices and compliance requirements.",
           "index": 2,
           "working_directory": "solutions/standard",
           "configuration": [

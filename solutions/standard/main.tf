@@ -6,7 +6,7 @@ locals {
   create_new_rg = var.existing_resource_group_name == null && var.existing_resource_group_id == null && var.create_new_resource_group_name != null
 
   # Determine the name for new resource group creation
-  powervs_rg_create_name = local.create_new_rg ? var.create_new_resource_group_name : null
+  powervs_rg_create_name = local.create_new_rg ? var.prefix + var.create_new_resource_group_name : null
 }
 
 # Create new resource group only if no existing RG is provided
