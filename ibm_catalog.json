@@ -60,12 +60,14 @@
           "configuration": [
             {
               "key": "prefix",
+              "value_constraint": "string",
               "required": true
             },
             {
               "key": "existing_resource_group_name",
               "required": true,
               "default_value": "__NULL__",
+              "value_constraint": "string",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -77,11 +79,13 @@
             },
             {
               "key": "existing_resource_group_id",
+              "value_constraint": "string",
               "default_value": "__NULL__",
               "required": true
             },
             {
               "key": "create_new_resource_group_name",
+              "value_constraint": "string",
               "default_value": "__NULL__",
               "required": true,
               "custom_config": {
@@ -181,9 +185,9 @@
             },
             {
               "key": "ibmcloud_api_key",
+              "value_constraint": "password",
               "display_name": "Multiline secure value",
               "required": true,
-              "value_constraint": "password",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -192,13 +196,14 @@
             },
             {
               "key": "powervs_custom_image_cos_configuration",
+              "value_constraint": "string",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "type": "code_editor",
                 "config_constraints": {
                   "supportedLanguages": [
-                    "hcl"
+                    "json"
                   ]
                 }
               }
@@ -215,22 +220,25 @@
             },
             {
               "key": "create_transit_gateway",
+              "value_constraint": "boolean",
               "required": true
             },
             {
               "key": "existing_transit_gateway_id",
+              "value_constraint": "string",
               "required": true
             },
             {
               "key": "powervs_private_subnet_1",
               "required": true,
+              "value_constraint": "string",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "type": "code_editor",
                 "config_constraints": {
                   "supportedLanguages": [
-                    "hcl"
+                    "json"
                   ]
                 }
               }
@@ -238,13 +246,14 @@
             {
               "key": "powervs_private_subnet_2",
               "required": true,
+              "value_constraint": "string",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "type": "code_editor",
                 "config_constraints": {
                   "supportedLanguages": [
-                    "hcl"
+                    "json"
                   ]
                 }
               }
@@ -252,13 +261,14 @@
             {
               "key": "powervs_private_subnet_3",
               "required": true,
+              "value_constraint": "string",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "type": "code_editor",
                 "config_constraints": {
                   "supportedLanguages": [
-                    "hcl"
+                    "json"
                   ]
                 }
               }
@@ -275,28 +285,32 @@
             },
             {
               "key": "powervs_tags",
+              "value_constraint": "array",
               "required": true
             },
             {
               "key": "powervs_public_network_enable",
+              "value_constraint": "boolean",
               "type": "boolean",
               "required": true
             },
             {
               "key": "powervs_custom_images",
+              "value_constraint": "string",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
                 "type": "code_editor",
                 "config_constraints": {
                   "supportedLanguages": [
-                    "hcl"
+                    "json"
                   ]
                 }
               }
             },
             {
               "key": "powervs_workspace_name",
+              "value_constraint": "string",
               "default_value": "powervs-workspace",
               "required": true
             }
