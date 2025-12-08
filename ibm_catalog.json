@@ -62,11 +62,9 @@
               "key": "prefix",
               "value_constraints": [
                 {
-                  "type": "string",
-                  "minLength": 3,
-                  "maxLength": 8,
-                  "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
-                  "pattern_description": "must start with a letter and can contain only letters, numbers, and hyphens"
+                  "type": "regex",
+                  "description": "Prefix must start with a letter, be 3-8 characters long, and contain only letters and digits.",
+                  "value": "^[A-Za-z][A-Za-z0-9]{2,7}$"
                 }
               ],
               "required": true
@@ -75,7 +73,6 @@
               "key": "existing_resource_group_name",
               "required": true,
               "default_value": "__NULL__",
-              "value_constraint": "string",
               "custom_config": {
                 "config_constraints": {
                   "identifier": "rg_name"
@@ -87,14 +84,28 @@
             },
             {
               "key": "existing_resource_group_id",
-              "value_constraint": "string",
+              "value_constraints": "string",
               "default_value": "__NULL__",
+              "custom_config": {
+                "type": "resource_group",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "identifier": "rg_id"
+                }
+              },
               "required": true
             },
             {
               "key": "create_new_resource_group_name",
-              "value_constraint": "string",
               "default_value": "__NULL__",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "Resource Group name must start with a letter, be 5-10 characters long, and contain only letters",
+                  "value": "^[A-Za-z][A-Za-z]{4,9}$"
+                }
+              ],
               "required": true,
               "custom_config": {
                 "config_constraints": {
@@ -193,7 +204,6 @@
             },
             {
               "key": "ibmcloud_api_key",
-              "value_constraint": "password",
               "display_name": "Multiline secure value",
               "required": true,
               "custom_config": {
@@ -204,7 +214,12 @@
             },
             {
               "key": "powervs_custom_image_cos_configuration",
-              "value_constraint": "string",
+              "value_constraints": [
+                {
+                  "type": "json",
+                  "description": "Provide the Cloud Object Storage configuration in JSON format."
+                }
+              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -219,7 +234,12 @@
             {
               "key": "powervs_custom_image_cos_service_credentials",
               "display_name": "cos_service_credentials",
-              "value_constraint": "password",
+              "value_constraints": [
+                {
+                  "type": "json",
+                  "description": "Provide the COS service credentials in JSON format."
+                }
+              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -228,18 +248,33 @@
             },
             {
               "key": "create_transit_gateway",
-              "value_constraint": "boolean",
+              "value_constraints": [
+                {
+                  "type": "boolean",
+                  "description": "Specify whether to create a new Transit Gateway (true) or use an existing one (false)."
+                }
+              ],
               "required": true
             },
             {
               "key": "existing_transit_gateway_id",
-              "value_constraint": "string",
+              "value_constraints": [
+                {
+                  "type": "string",
+                  "description": "Provide the ID of the existing Transit Gateway to use."
+                }
+              ],
               "required": true
             },
             {
               "key": "powervs_private_subnet_1",
               "required": true,
-              "value_constraint": "string",
+              "value_constraints": [
+                {
+                  "type": "json",
+                  "description": "Provide the configuration for private subnet 1 in JSON format."
+                }
+              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -254,7 +289,12 @@
             {
               "key": "powervs_private_subnet_2",
               "required": true,
-              "value_constraint": "string",
+              "value_constraints": [
+                {
+                  "type": "json",
+                  "description": "Provide the configuration for private subnet 2 in JSON format."
+                }
+              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -269,7 +309,12 @@
             {
               "key": "powervs_private_subnet_3",
               "required": true,
-              "value_constraint": "string",
+              "value_constraints": [
+                {
+                  "type": "json",
+                  "description": "Provide the configuration for private subnet 3 in JSON format."
+                }
+              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -283,7 +328,12 @@
             },
             {
               "key": "powervs_ssh_public_key",
-              "value_constraint": "password",
+              "value_constraints": [
+                {
+                  "type": "string",
+                  "description": "Provide the SSH public key for accessing the PowerVS instances."
+                }
+              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -293,18 +343,33 @@
             },
             {
               "key": "powervs_tags",
-              "value_constraint": "array",
+              "value_constraints": [
+                {
+                  "type": "array",
+                  "description": "Provide tags for the PowerVS resources, separated by commas."
+                }
+              ],
               "required": true
             },
             {
               "key": "powervs_public_network_enable",
-              "value_constraint": "boolean",
+              "value_constraints": [
+                {
+                  "type": "boolean",
+                  "description": "Specify whether to enable a public network for the PowerVS workspace (true) or not (false)."
+                }
+              ],
               "type": "boolean",
               "required": true
             },
             {
               "key": "powervs_custom_images",
-              "value_constraint": "string",
+              "value_constraints": [
+                {
+                  "type": "json",
+                  "description": "Provide the configuration for custom images to be imported from Cloud Object Storage in JSON format."
+                }
+              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -318,7 +383,15 @@
             },
             {
               "key": "powervs_workspace_name",
-              "value_constraint": "string",
+              "value_constraints": [
+                {
+                  "type": "string",
+                  "minLength": 5,
+                  "maxLength": 10,
+                  "pattern": "[A-Za-z][A-Za-z0-9]{2,20}$",
+                  "pattern_description": "must start with a letter and can contain only letters, numbers"
+                }
+              ],
               "default_value": "powervs-workspace",
               "required": true
             }
