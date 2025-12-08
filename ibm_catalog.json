@@ -84,7 +84,6 @@
             },
             {
               "key": "existing_resource_group_id",
-              "value_constraints": "string",
               "default_value": "__NULL__",
               "custom_config": {
                 "type": "resource_group",
@@ -385,7 +384,7 @@
               "key": "powervs_workspace_name",
               "value_constraints": [
                 {
-                  "type": "string",
+                  "type": "regex",
                   "minLength": 5,
                   "maxLength": 10,
                   "pattern": "[A-Za-z][A-Za-z0-9]{2,20}$",
