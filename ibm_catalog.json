@@ -183,6 +183,7 @@
               "key": "ibmcloud_api_key",
               "display_name": "Multiline secure value",
               "required": true,
+              "value_constraint": "password",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -205,6 +206,7 @@
             {
               "key": "powervs_custom_image_cos_service_credentials",
               "display_name": "cos_service_credentials",
+              "value_constraint": "password",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -263,6 +265,7 @@
             },
             {
               "key": "powervs_ssh_public_key",
+              "value_constraint": "password",
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
