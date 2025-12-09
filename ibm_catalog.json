@@ -384,10 +384,8 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "minLength": 5,
-                  "maxLength": 10,
-                  "pattern": "[A-Za-z][A-Za-z0-9]{2,20}$",
-                  "pattern_description": "must start with a letter and can contain only letters, numbers"
+                  "description": "must start with a letter and can contain only letters, numbers",
+                  "value": "[A-Za-z][A-Za-z0-9]{2,20}$"
                 }
               ],
               "default_value": "powervs-workspace",
