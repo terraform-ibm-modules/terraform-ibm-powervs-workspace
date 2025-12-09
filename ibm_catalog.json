@@ -88,7 +88,7 @@
               "value_constraints": [
                 {
                   "type": "string",
-                  "description": "The ID of an existing resource group to provision resources into. Only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided."
+                  "description": "existing resource group id which is used to deploy the resources combination of alpahanumeric characters and dashes"
                 }
               ],
               "description": "The ID of an existing resource group to provision resources into. Only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided.",
