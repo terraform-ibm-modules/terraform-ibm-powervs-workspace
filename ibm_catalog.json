@@ -328,7 +328,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "must start with a letter and can contain only letters, numbers",
+                  "description": "must be 2-20 characters long, start with a letter, and contain only letters and digits.",
                   "value": "[A-Za-z][A-Za-z0-9]{2,20}$"
                 }
               ],
