@@ -85,12 +85,6 @@
             {
               "key": "existing_resource_group_id",
               "default_value": "__NULL__",
-              "value_constraints": [
-                {
-                  "type": "string",
-                  "description": "existing resource group id which is used to deploy the resources combination of alpahanumeric characters and dashes"
-                }
-              ],
               "description": "The ID of an existing resource group to provision resources into. Only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided.",
               "required": true
             },
@@ -246,22 +240,10 @@
             },
             {
               "key": "create_transit_gateway",
-              "value_constraints": [
-                {
-                  "type": "boolean",
-                  "description": "Specify whether to create a new Transit Gateway (true) or use an existing one (false)."
-                }
-              ],
               "required": true
             },
             {
               "key": "existing_transit_gateway_id",
-              "value_constraints": [
-                {
-                  "type": "string",
-                  "description": "Provide the ID of the existing Transit Gateway to use."
-                }
-              ],
               "required": true
             },
             {
@@ -326,12 +308,6 @@
             },
             {
               "key": "powervs_ssh_public_key",
-              "value_constraints": [
-                {
-                  "type": "string",
-                  "description": "Provide the SSH public key for accessing the PowerVS instances."
-                }
-              ],
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
@@ -351,12 +327,6 @@
             },
             {
               "key": "powervs_public_network_enable",
-              "value_constraints": [
-                {
-                  "type": "boolean",
-                  "description": "Specify whether to enable a public network for the PowerVS workspace (true) or not (false)."
-                }
-              ],
               "type": "boolean",
               "required": true
             },
