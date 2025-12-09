@@ -85,7 +85,6 @@
             {
               "key": "existing_resource_group_id",
               "default_value": "__NULL__",
-              "description": "The ID of an existing resource group to provision resources into. Only one of existing_resource_group_name or existing_resource_group_id or create_new_resource_group_name should be provided.",
               "required": true
             },
             {
@@ -215,12 +214,7 @@
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
-                "type": "code_editor",
-                "config_constraints": {
-                  "supportedLanguages": [
-                    "json"
-                  ]
-                }
+                "type": "code_editor"
               }
             },
             {
@@ -258,12 +252,7 @@
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
-                "type": "code_editor",
-                "config_constraints": {
-                  "supportedLanguages": [
-                    "json"
-                  ]
-                }
+                "type": "code_editor"
               }
             },
             {
@@ -278,12 +267,7 @@
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
-                "type": "code_editor",
-                "config_constraints": {
-                  "supportedLanguages": [
-                    "json"
-                  ]
-                }
+                "type": "code_editor"
               }
             },
             {
@@ -298,12 +282,7 @@
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
-                "type": "code_editor",
-                "config_constraints": {
-                  "supportedLanguages": [
-                    "json"
-                  ]
-                }
+                "type": "code_editor"
               }
             },
             {
@@ -341,12 +320,7 @@
               "custom_config": {
                 "grouping": "deployment",
                 "original_grouping": "deployment",
-                "type": "code_editor",
-                "config_constraints": {
-                  "supportedLanguages": [
-                    "json"
-                  ]
-                }
+                "type": "code_editor"
               }
             },
             {
