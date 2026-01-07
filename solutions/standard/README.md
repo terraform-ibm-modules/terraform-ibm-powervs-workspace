@@ -1,4 +1,4 @@
-# Basic example
+# Power Virtual Server workspace
 
 An basic example that will provision the following:
 - A new resource group if one is not passed in.
