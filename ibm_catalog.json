@@ -94,7 +94,7 @@
                 {
                   "type": "regex",
                   "description": "Resource Group name must start with a letter, be 5-10 characters long, and contain only letters",
-                  "value": "^[A-Za-z][A-Za-z]{4,9}$"
+                  "value": "^([A-Za-z][A-Za-z]{4,9}|__NULL__)$"
                 }
               ],
               "required": true,
