@@ -392,7 +392,7 @@
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/refs/tags/v4.1.0/reference-architectures/standard/deploy-arch-ibm-pvs-ws-standard.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "The Power Virtual Server workspace as variation deploys a Power Virtual Server workspace and Transit Gateway. \n \n Required and optional management components are configured."
+                "description": "This deployable architecture creates a Power Virtual Server workspace and Transit Gateway. \n \n Required and optional management components are configured."
               }
             ]
           },
