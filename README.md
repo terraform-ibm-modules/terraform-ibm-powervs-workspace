@@ -10,6 +10,7 @@
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 * [terraform-ibm-powervs-workspace](#terraform-ibm-powervs-workspace)
+* [Examples](./examples)
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
