@@ -1,6 +1,6 @@
-# Basic example
+# Power Virtual Server workspace
 
-An basic example that will provision the following:
+Power Virtual Server workspace tile that will provision the following:
 - A new resource group if one is not passed in.
 - A new transit gateway.
 - A new PowerVS workspace.
