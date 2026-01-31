@@ -16,7 +16,7 @@ Power Virtual Server workspace tile that will provision the following:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | 1.87.2 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | 1.87.3 |
 
 ### Modules
 
@@ -28,9 +28,9 @@ Power Virtual Server workspace tile that will provision the following:
 
 | Name | Type |
 |------|------|
-| [ibm_resource_group.resource_group](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.87.2/docs/resources/resource_group) | resource |
-| [ibm_tg_gateway.transit_gateway](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.87.2/docs/resources/tg_gateway) | resource |
-| [ibm_resource_group.existing](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.87.2/docs/data-sources/resource_group) | data source |
+| [ibm_resource_group.resource_group](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.87.3/docs/resources/resource_group) | resource |
+| [ibm_tg_gateway.transit_gateway](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.87.3/docs/resources/tg_gateway) | resource |
+| [ibm_resource_group.existing](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.87.3/docs/data-sources/resource_group) | data source |
 
 ### Inputs
 
