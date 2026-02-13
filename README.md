@@ -10,6 +10,8 @@
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 * [terraform-ibm-powervs-workspace](#terraform-ibm-powervs-workspace)
+* [Deployable Architectures](./solutions)
+    * <a href="./solutions/standard">Power Virtual Server workspace</a>
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
