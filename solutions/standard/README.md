@@ -2,7 +2,7 @@
 
 Power Virtual Server workspace tile that will provision the following:
 - A new resource group if one is not passed in.
-- A new transit gateway.
+- An optional local or global transit gateway.
 - A new PowerVS workspace.
 - A new PowerVS public SSH key.
 - Up to 3 new PowerVS private subnets.
@@ -54,6 +54,7 @@ Power Virtual Server workspace tile that will provision the following:
 | <a name="input_powervs_workspace_name"></a> [powervs\_workspace\_name](#input\_powervs\_workspace\_name) | Name of the PowerVS workspace to create. The resulting name will be <prefix>-<powervs\_workspace\_name>. | `string` | `"powervs-workspace"` | no |
 | <a name="input_powervs_zone"></a> [powervs\_zone](#input\_powervs\_zone) | IBM Cloud PowerVS zone where the PowerVS workspace will be created. | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix to append to all resources. | `string` | n/a | yes |
+| <a name="input_transit_gateway_global"></a> [transit\_gateway\_global](#input\_transit\_gateway\_global) | Set to true to create a global Transit Gateway for cross-region connectivity, or false (default) for a local Transit Gateway. This setting only applies when 'create\_transit\_gateway' is true and 'existing\_transit\_gateway\_id' is not provided. | `bool` | `false` | no |
 
 ### Outputs
 

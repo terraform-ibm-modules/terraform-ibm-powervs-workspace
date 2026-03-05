@@ -39,7 +39,7 @@ resource "ibm_tg_gateway" "transit_gateway" {
 
   name           = "${var.prefix}-transit-gateway"
   location       = lookup(local.ibm_powervs_zone_cloud_region_map, var.powervs_zone, null)
-  global         = false
+  global         = var.transit_gateway_global
   resource_group = local.powervs_resource_group_id
 }
 #############################

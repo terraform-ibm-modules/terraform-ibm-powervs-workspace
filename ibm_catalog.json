@@ -241,6 +241,10 @@
               "required": true
             },
             {
+              "key": "transit_gateway_global",
+              "required": true
+            },
+            {
               "key": "existing_transit_gateway_id",
               "required": true
             },

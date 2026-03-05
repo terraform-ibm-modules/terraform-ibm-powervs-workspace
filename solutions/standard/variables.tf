@@ -137,6 +137,12 @@ variable "create_transit_gateway" {
   default     = true
 }
 
+variable "transit_gateway_global" {
+  description = "Set to true to create a global Transit Gateway for cross-region connectivity, or false (default) for a local Transit Gateway. This setting only applies when 'create_transit_gateway' is true and 'existing_transit_gateway_id' is not provided."
+  type        = bool
+  default     = false
+}
+
 variable "existing_transit_gateway_id" {
   description = "Optional: ID of an existing Transit Gateway to use instead of creating a new one"
   type        = string
