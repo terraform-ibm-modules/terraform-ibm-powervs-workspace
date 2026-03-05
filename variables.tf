@@ -70,6 +70,7 @@ variable "pi_private_subnet_1" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
 
   default = null
@@ -95,6 +96,7 @@ variable "pi_private_subnet_2" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
 
   default = null
@@ -120,6 +122,7 @@ variable "pi_private_subnet_3" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
 
   default = null
