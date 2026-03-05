@@ -87,6 +87,10 @@ variable "pi_private_subnet_1" {
     condition     = var.pi_private_subnet_1 != null ? var.pi_private_subnet_1.arp_broadcast != null ? (var.pi_private_subnet_1.arp_broadcast == "enable" || var.pi_private_subnet_1.arp_broadcast == "disable") : true : true
     error_message = "pi_private_subnet_1.arp_broadcast must be 'enable' or 'disable'."
   }
+  validation {
+    condition     = var.pi_private_subnet_1 != null ? var.pi_private_subnet_1.dns != null ? length(var.pi_private_subnet_1.dns) <= 1 : true : true
+    error_message = "pi_private_subnet_1.dns list can contain at most one value."
+  }
 }
 
 variable "pi_private_subnet_2" {
@@ -113,6 +117,10 @@ variable "pi_private_subnet_2" {
     condition     = var.pi_private_subnet_2 != null ? var.pi_private_subnet_2.arp_broadcast != null ? (var.pi_private_subnet_2.arp_broadcast == "enable" || var.pi_private_subnet_2.arp_broadcast == "disable") : true : true
     error_message = "pi_private_subnet_2.arp_broadcast must be 'enable' or 'disable'."
   }
+  validation {
+    condition     = var.pi_private_subnet_2 != null ? var.pi_private_subnet_2.dns != null ? length(var.pi_private_subnet_2.dns) <= 1 : true : true
+    error_message = "pi_private_subnet_2.dns list can contain at most one value."
+  }
 }
 
 variable "pi_private_subnet_3" {
@@ -138,6 +146,10 @@ variable "pi_private_subnet_3" {
   validation {
     condition     = var.pi_private_subnet_3 != null ? var.pi_private_subnet_3.arp_broadcast != null ? (var.pi_private_subnet_3.arp_broadcast == "enable" || var.pi_private_subnet_3.arp_broadcast == "disable") : true : true
     error_message = "pi_private_subnet_3.arp_broadcast must be 'enable' or 'disable'."
+  }
+  validation {
+    condition     = var.pi_private_subnet_3 != null ? var.pi_private_subnet_3.dns != null ? length(var.pi_private_subnet_3.dns) <= 1 : true : true
+    error_message = "pi_private_subnet_3.dns list can contain at most one value."
   }
 }
 

@@ -78,8 +78,8 @@ variable "powervs_private_subnet_1" {
     "name" : "sub_1",
     "cidr" : "10.51.0.0/24",
     "advertise" : "enable",
-    "arp_broadcast" : "disable",
-    "dns" : ["161.26.0.10", "161.26.0.11"]
+    "arp_broadcast" : "disable"
+    "dns" : null
   }
 }
 
@@ -97,8 +97,7 @@ variable "powervs_private_subnet_2" {
     "cidr" : "",
     "advertise" : "enable",
     "arp_broadcast" : "disable",
-    "dns" : ["161.26.0.10", "161.26.0.11"]
-
+    "dns" : null
   }
 }
 
@@ -116,7 +115,7 @@ variable "powervs_private_subnet_3" {
     "cidr" : "",
     "advertise" : "enable",
     "arp_broadcast" : "disable",
-    "dns" : ["161.26.0.10", "161.26.0.11"]
+    "dns" : null
   }
 }
 
