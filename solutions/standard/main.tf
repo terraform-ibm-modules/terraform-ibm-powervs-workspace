@@ -59,8 +59,8 @@ locals {
 
 
 locals {
-  powervs_private_subnet_1 = (var.powervs_private_subnet_2 == null ? null :
-    (trimspace(var.powervs_private_subnet_2.name) == "" && trimspace(var.powervs_private_subnet_2.cidr) == "") ? null : merge(
+  powervs_private_subnet_1 = (var.powervs_private_subnet_1 == null ? null :
+    (trimspace(var.powervs_private_subnet_1.name) == "" && trimspace(var.powervs_private_subnet_1.cidr) == "") ? null : merge(
       var.powervs_private_subnet_1,
       {
         name = "${var.prefix}-${var.powervs_private_subnet_1.name}"

@@ -72,10 +72,14 @@ variable "powervs_private_subnet_1" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
   default = {
     "name" : "sub_1",
-    "cidr" : "10.51.0.0/24"
+    "cidr" : "10.51.0.0/24",
+    "advertise" : "enable",
+    "arp_broadcast" : "disable",
+    "dns" : ["161.26.0.10", "161.26.0.11"]
   }
 }
 
@@ -86,10 +90,15 @@ variable "powervs_private_subnet_2" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
   default = {
     "name" : "",
-    "cidr" : ""
+    "cidr" : "",
+    "advertise" : "enable",
+    "arp_broadcast" : "disable",
+    "dns" : ["161.26.0.10", "161.26.0.11"]
+
   }
 }
 
@@ -100,10 +109,14 @@ variable "powervs_private_subnet_3" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
   default = {
     "name" : "",
-    "cidr" : ""
+    "cidr" : "",
+    "advertise" : "enable",
+    "arp_broadcast" : "disable",
+    "dns" : ["161.26.0.10", "161.26.0.11"]
   }
 }
 
