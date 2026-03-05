@@ -36,34 +36,37 @@ output "pi_images" {
 output "pi_private_subnet_1" {
   description = "Created PowerVS private subnet 1 details."
   value = var.pi_private_subnet_1 != null ? {
-    "advertise"     = ibm_pi_network.private_subnet_1[0].pi_advertise,
-    "arp_broadcast" = ibm_pi_network.private_subnet_1[0].pi_arp_broadcast,
+    "advertise"     = tostring(ibm_pi_network.private_subnet_1[0].pi_advertise),
+    "arp_broadcast" = tostring(ibm_pi_network.private_subnet_1[0].pi_arp_broadcast),
     "cidr"          = ibm_pi_network.private_subnet_1[0].pi_cidr,
+    "dns"           = ibm_pi_network.private_subnet_1[0].pi_dns,
     "name"          = ibm_pi_network.private_subnet_1[0].pi_network_name,
     "id"            = ibm_pi_network.private_subnet_1[0].network_id
-  } : var.pi_private_subnet_1
+  } : null
 }
 
 output "pi_private_subnet_2" {
   description = "Created PowerVS private subnet 2 details."
   value = var.pi_private_subnet_2 != null ? {
-    "advertise"     = ibm_pi_network.private_subnet_2[0].pi_advertise,
-    "arp_broadcast" = ibm_pi_network.private_subnet_2[0].pi_arp_broadcast,
+    "advertise"     = tostring(ibm_pi_network.private_subnet_2[0].pi_advertise),
+    "arp_broadcast" = tostring(ibm_pi_network.private_subnet_2[0].pi_arp_broadcast),
     "cidr"          = ibm_pi_network.private_subnet_2[0].pi_cidr,
+    "dns"           = ibm_pi_network.private_subnet_2[0].pi_dns,
     "name"          = ibm_pi_network.private_subnet_2[0].pi_network_name,
     "id"            = ibm_pi_network.private_subnet_2[0].network_id
-  } : var.pi_private_subnet_2
+  } : null
 }
 
 output "pi_private_subnet_3" {
   description = "Created PowerVS private subnet 3 details."
   value = var.pi_private_subnet_3 != null ? {
-    "advertise"     = ibm_pi_network.private_subnet_3[0].pi_advertise,
-    "arp_broadcast" = ibm_pi_network.private_subnet_3[0].pi_arp_broadcast,
+    "advertise"     = tostring(ibm_pi_network.private_subnet_3[0].pi_advertise),
+    "arp_broadcast" = tostring(ibm_pi_network.private_subnet_3[0].pi_arp_broadcast),
     "cidr"          = ibm_pi_network.private_subnet_3[0].pi_cidr,
+    "dns"           = ibm_pi_network.private_subnet_3[0].pi_dns,
     "name"          = ibm_pi_network.private_subnet_3[0].pi_network_name,
     "id"            = ibm_pi_network.private_subnet_3[0].network_id
-  } : var.pi_private_subnet_3
+  } : null
 }
 
 output "pi_public_subnet" {
