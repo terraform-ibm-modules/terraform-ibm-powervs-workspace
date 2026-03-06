@@ -50,7 +50,7 @@
         },
         {
           "title": "Import custom images from Cloud Object Storage",
-          "description": "Upto three Power Virtual Server images can be imported from Cloud Object Storage"
+          "description": "Up to three Power Virtual Server images can be imported from Cloud Object Storage"
         }
       ],
       "flavors": [
