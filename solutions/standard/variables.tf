@@ -72,10 +72,14 @@ variable "powervs_private_subnet_1" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
   default = {
     "name" : "sub_1",
-    "cidr" : "10.51.0.0/24"
+    "cidr" : "10.51.0.0/24",
+    "advertise" : "enable",
+    "arp_broadcast" : "disable"
+    "dns" : null
   }
 }
 
@@ -86,10 +90,14 @@ variable "powervs_private_subnet_2" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
   default = {
     "name" : "",
-    "cidr" : ""
+    "cidr" : "",
+    "advertise" : "enable",
+    "arp_broadcast" : "disable",
+    "dns" : null
   }
 }
 
@@ -100,10 +108,14 @@ variable "powervs_private_subnet_3" {
     cidr          = string
     advertise     = optional(string)
     arp_broadcast = optional(string)
+    dns           = optional(list(string))
   })
   default = {
     "name" : "",
-    "cidr" : ""
+    "cidr" : "",
+    "advertise" : "enable",
+    "arp_broadcast" : "disable",
+    "dns" : null
   }
 }
 
@@ -123,6 +135,12 @@ variable "create_transit_gateway" {
   description = "Set to true to create a Transit Gateway for the PowerVS workspace and attach it."
   type        = bool
   default     = true
+}
+
+variable "transit_gateway_global" {
+  description = "Set to true to create a global Transit Gateway for cross-region connectivity, or false (default) for a local Transit Gateway. This setting only applies when 'create_transit_gateway' is true and 'existing_transit_gateway_id' is not provided."
+  type        = bool
+  default     = false
 }
 
 variable "existing_transit_gateway_id" {

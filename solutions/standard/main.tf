@@ -34,10 +34,12 @@ locals {
 # Create Transit gateway
 #############################
 resource "ibm_tg_gateway" "transit_gateway" {
-  count          = var.create_transit_gateway && var.existing_transit_gateway_id == null ? 1 : 0
-  name           = "${var.prefix}-transit-gateway-1"
+  count    = var.create_transit_gateway && var.existing_transit_gateway_id == null ? 1 : 0
+  provider = ibm.ibm-is
+
+  name           = "${var.prefix}-transit-gateway"
   location       = lookup(local.ibm_powervs_zone_cloud_region_map, var.powervs_zone, null)
-  global         = false
+  global         = var.transit_gateway_global
   resource_group = local.powervs_resource_group_id
 }
 #############################
@@ -57,8 +59,8 @@ locals {
 
 
 locals {
-  powervs_private_subnet_1 = (var.powervs_private_subnet_2 == null ? null :
-    (trimspace(var.powervs_private_subnet_2.name) == "" && trimspace(var.powervs_private_subnet_2.cidr) == "") ? null : merge(
+  powervs_private_subnet_1 = (var.powervs_private_subnet_1 == null ? null :
+    (trimspace(var.powervs_private_subnet_1.name) == "" && trimspace(var.powervs_private_subnet_1.cidr) == "") ? null : merge(
       var.powervs_private_subnet_1,
       {
         name = "${var.prefix}-${var.powervs_private_subnet_1.name}"

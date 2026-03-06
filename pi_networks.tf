@@ -10,14 +10,16 @@ resource "time_sleep" "wait_30_sec" {
 }
 
 resource "ibm_pi_network" "private_subnet_1" {
-  depends_on           = [time_sleep.wait_30_sec]
-  count                = var.pi_private_subnet_1 != null ? 1 : 0
+  depends_on = [time_sleep.wait_30_sec]
+  count      = var.pi_private_subnet_1 != null ? 1 : 0
+
   pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
   pi_network_name      = var.pi_private_subnet_1.name
   pi_cidr              = var.pi_private_subnet_1.cidr
   pi_network_type      = "vlan"
-  pi_advertise         = var.pi_private_subnet_1.advertise != null ? var.pi_private_subnet_1.advertise : null
-  pi_arp_broadcast     = var.pi_private_subnet_1.arp_broadcast != null ? var.pi_private_subnet_1.arp_broadcast : null
+  pi_advertise         = var.pi_private_subnet_1.advertise
+  pi_arp_broadcast     = var.pi_private_subnet_1.arp_broadcast
+  pi_dns               = var.pi_private_subnet_1.dns
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
@@ -30,8 +32,9 @@ resource "ibm_pi_network" "private_subnet_2" {
   pi_network_name      = var.pi_private_subnet_2.name
   pi_cidr              = var.pi_private_subnet_2.cidr
   pi_network_type      = "vlan"
-  pi_advertise         = var.pi_private_subnet_2.advertise != null ? var.pi_private_subnet_2.advertise : null
-  pi_arp_broadcast     = var.pi_private_subnet_2.arp_broadcast != null ? var.pi_private_subnet_2.arp_broadcast : null
+  pi_advertise         = var.pi_private_subnet_2.advertise
+  pi_arp_broadcast     = var.pi_private_subnet_2.arp_broadcast
+  pi_dns               = var.pi_private_subnet_2.dns
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
@@ -44,8 +47,9 @@ resource "ibm_pi_network" "private_subnet_3" {
   pi_network_name      = var.pi_private_subnet_3.name
   pi_cidr              = var.pi_private_subnet_3.cidr
   pi_network_type      = "vlan"
-  pi_advertise         = var.pi_private_subnet_3.advertise != null ? var.pi_private_subnet_3.advertise : null
-  pi_arp_broadcast     = var.pi_private_subnet_3.arp_broadcast != null ? var.pi_private_subnet_3.arp_broadcast : null
+  pi_advertise         = var.pi_private_subnet_3.advertise
+  pi_arp_broadcast     = var.pi_private_subnet_3.arp_broadcast
+  pi_dns               = var.pi_private_subnet_3.dns
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
 }
@@ -56,7 +60,8 @@ resource "ibm_pi_network" "private_subnet_3" {
 #####################################################
 
 resource "ibm_pi_network" "public_subnet" {
-  count                = var.pi_public_subnet_enable ? 1 : 0
+  count = var.pi_public_subnet_enable ? 1 : 0
+
   pi_cloud_instance_id = ibm_resource_instance.pi_workspace.guid
   pi_network_name      = "public_net"
   pi_network_type      = "pub-vlan"

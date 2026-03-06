@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+offerings:
+  - name: deploy-arch-ibm-pvs-inf
+    kind: solution
+    catalog_id: da12d6f3-3cb7-402e-9350-878837212a6e
+    offering_id: e0d3c2e7-7849-480e-bcf0-6e2a96009031
+    variations:
+      - name: standard
+        mark_ready: false
+        install_type: fullstack
+        scc:
+          instance_id: d9f6ba0c-dd0e-4348-a834-6002b675fe40
+          region: us-south
