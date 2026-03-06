@@ -22,6 +22,8 @@ locals {
     "wdc07"    = "us-east"
     "mad02"    = "mad"
     "mad04"    = "mad"
+    "che02"    = "che"
+    "che03"    = "che"
   }
 
   ibm_powervs_zone_cloud_region_map = {
@@ -47,6 +49,8 @@ locals {
     "wdc07"    = "us-east"
     "mad02"    = "eu-es"
     "mad04"    = "eu-es"
+    "che02"    = "in-che"
+    "che03"    = "in-che"
   }
 }
 
