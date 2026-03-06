@@ -78,7 +78,7 @@ variable "powervs_private_subnet_1" {
     "name" : "sub_1",
     "cidr" : "10.51.0.0/24",
     "advertise" : "enable",
-    "arp_broadcast" : "disable"
+    "arp_broadcast" : "disable",
     "dns" : null
   }
 }
