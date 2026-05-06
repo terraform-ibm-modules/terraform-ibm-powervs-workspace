@@ -22,7 +22,13 @@ resource "ibm_pi_network" "private_subnet_1" {
   pi_dns               = var.pi_private_subnet_1.dns
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
+  pi_ipaddress_range {
+    // Try to retrieve the value from the variable, if it fails, use the whole address range inferred from the CIDR
+    pi_starting_ip_address = try(var.pi_private_subnet_1.ip_address_range.starting_ip_address, cidrhost(var.pi_private_subnet_1.cidr, 2))
+    pi_ending_ip_address   = try(var.pi_private_subnet_1.ip_address_range.ending_ip_address, cidrhost(var.pi_private_subnet_1.cidr, pow(2, (32 - tonumber(split("/", var.pi_private_subnet_1.cidr)[1]))) - 2))
+  }
 }
+
 
 resource "ibm_pi_network" "private_subnet_2" {
   count = var.pi_private_subnet_2 != null ? 1 : 0
@@ -37,6 +43,10 @@ resource "ibm_pi_network" "private_subnet_2" {
   pi_dns               = var.pi_private_subnet_2.dns
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
+  pi_ipaddress_range {
+    pi_starting_ip_address = try(var.pi_private_subnet_2.ip_address_range.starting_ip_address, cidrhost(var.pi_private_subnet_2.cidr, 2))
+    pi_ending_ip_address   = try(var.pi_private_subnet_2.ip_address_range.ending_ip_address, cidrhost(var.pi_private_subnet_2.cidr, pow(2, (32 - tonumber(split("/", var.pi_private_subnet_2.cidr)[1]))) - 2))
+  }
 }
 
 resource "ibm_pi_network" "private_subnet_3" {
@@ -52,6 +62,10 @@ resource "ibm_pi_network" "private_subnet_3" {
   pi_dns               = var.pi_private_subnet_3.dns
   pi_network_mtu       = 9000
   pi_user_tags         = var.pi_tags != null ? var.pi_tags : []
+  pi_ipaddress_range {
+    pi_starting_ip_address = try(var.pi_private_subnet_3.ip_address_range.starting_ip_address, cidrhost(var.pi_private_subnet_3.cidr, 2))
+    pi_ending_ip_address   = try(var.pi_private_subnet_3.ip_address_range.ending_ip_address, cidrhost(var.pi_private_subnet_3.cidr, pow(2, (32 - tonumber(split("/", var.pi_private_subnet_3.cidr)[1]))) - 2))
+  }
 }
 
 
