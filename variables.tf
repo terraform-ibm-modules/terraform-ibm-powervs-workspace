@@ -71,6 +71,10 @@ variable "pi_private_subnet_1" {
     advertise     = optional(string)
     arp_broadcast = optional(string)
     dns           = optional(list(string))
+    ip_address_range = optional(object({
+      starting_ip_address = optional(string)
+      ending_ip_address   = optional(string)
+    }))
   })
 
   default = null
@@ -101,6 +105,10 @@ variable "pi_private_subnet_2" {
     advertise     = optional(string)
     arp_broadcast = optional(string)
     dns           = optional(list(string))
+    ip_address_range = optional(object({
+      starting_ip_address = optional(string)
+      ending_ip_address   = optional(string)
+    }))
   })
 
   default = null
@@ -131,6 +139,10 @@ variable "pi_private_subnet_3" {
     advertise     = optional(string)
     arp_broadcast = optional(string)
     dns           = optional(list(string))
+    ip_address_range = optional(object({
+      starting_ip_address = optional(string)
+      ending_ip_address   = optional(string)
+    }))
   })
 
   default = null
