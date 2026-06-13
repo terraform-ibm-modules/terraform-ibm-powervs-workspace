@@ -11,9 +11,9 @@
 ## Overview
 <ul>
   <li><a href="#terraform-ibm-powervs-workspace">terraform-ibm-powervs-workspace</a></li>
-  <li><a href="./solutions">Deployable Architectures</a>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/tree/main/solutions">Deployable Architectures</a>
     <ul>
-      <li><a href="./solutions/standard">Power Virtual Server workspace</a></li>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-powervs-workspace/tree/main/solutions/standard">Power Virtual Server workspace</a></li>
     </ul>
   </li>
   <li><a href="#contributing">Contributing</a></li>
