@@ -78,7 +78,7 @@ You need the following permissions to run this module.
 ### Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.81.0 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.9.1 |
@@ -90,7 +90,7 @@ No modules.
 ### Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [ibm_pi_image.pi_custom_image1](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_image) | resource |
 | [ibm_pi_image.pi_custom_image2](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_image) | resource |
 | [ibm_pi_image.pi_custom_image3](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_image) | resource |
@@ -107,7 +107,7 @@ No modules.
 ### Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_pi_custom_image1"></a> [pi\_custom\_image1](#input\_pi\_custom\_image1) | Optional custom image to import from Cloud Object Storage into PowerVS workspace.<br/>      image\_name: string, must be unique image name how the image will be named inside PowerVS workspace<br/>      file\_name: string, full file name of the image inside COS bucket<br/>      storage\_tier: string, storage tier which the image will be stored in after import. Supported values are: "tier0", "tier1", "tier3", "tier5k".<br/>      sap\_type: optional string, "Hana", "Netweaver", don't use it for non-SAP image. | <pre>object({<br/>    image_name   = string<br/>    file_name    = string<br/>    storage_tier = string<br/>    sap_type     = optional(string)<br/>  })</pre> | `null` | no |
 | <a name="input_pi_custom_image2"></a> [pi\_custom\_image2](#input\_pi\_custom\_image2) | Optional custom image to import from Cloud Object Storage into PowerVS workspace.<br/>      image\_name: string, must be unique image name how the image will be named inside PowerVS workspace<br/>      file\_name: string, full file name of the image inside COS bucket<br/>      storage\_tier: string, storage tier which the image will be stored in after import. Supported values are: "tier0", "tier1", "tier3", "tier5k".<br/>      sap\_type: optional string, "Hana", "Netweaver", don't use it for non-SAP image. | <pre>object({<br/>    image_name   = string<br/>    file_name    = string<br/>    storage_tier = string<br/>    sap_type     = optional(string)<br/>  })</pre> | `null` | no |
 | <a name="input_pi_custom_image3"></a> [pi\_custom\_image3](#input\_pi\_custom\_image3) | Optional custom image to import from Cloud Object Storage into PowerVS workspace.<br/>      image\_name: string, must be unique image name how the image will be named inside PowerVS workspace<br/>      file\_name: string, full file name of the image inside COS bucket<br/>      storage\_tier: string, storage tier which the image will be stored in after import. Supported values are: "tier0", "tier1", "tier3", "tier5k".<br/>      sap\_type: optional string, "Hana", "Netweaver", don't use it for non-SAP image. | <pre>object({<br/>    image_name   = string<br/>    file_name    = string<br/>    storage_tier = string<br/>    sap_type     = optional(string)<br/>  })</pre> | `null` | no |
@@ -128,7 +128,7 @@ No modules.
 ### Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_pi_images"></a> [pi\_images](#output\_pi\_images) | Object containing imported PowerVS image names and image ids. |
 | <a name="output_pi_private_subnet_1"></a> [pi\_private\_subnet\_1](#output\_pi\_private\_subnet\_1) | Created PowerVS private subnet 1 details. |
 | <a name="output_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#output\_pi\_private\_subnet\_2) | Created PowerVS private subnet 2 details. |
