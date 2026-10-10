@@ -14,28 +14,28 @@ Power Virtual Server workspace tile that will provision the following:
 ### Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | 2.6.2 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | 2.7.0 |
 
 ### Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_powervs_workspace"></a> [powervs\_workspace](#module\_powervs\_workspace) | ../../ | n/a |
 
 ### Resources
 
 | Name | Type |
-|------|------|
-| [ibm_resource_group.resource_group](https://registry.terraform.io/providers/IBM-Cloud/ibm/2.6.2/docs/resources/resource_group) | resource |
-| [ibm_tg_gateway.transit_gateway](https://registry.terraform.io/providers/IBM-Cloud/ibm/2.6.2/docs/resources/tg_gateway) | resource |
-| [ibm_resource_group.existing](https://registry.terraform.io/providers/IBM-Cloud/ibm/2.6.2/docs/data-sources/resource_group) | data source |
+| ---- | ---- |
+| [ibm_resource_group.resource_group](https://registry.terraform.io/providers/IBM-Cloud/ibm/2.7.0/docs/resources/resource_group) | resource |
+| [ibm_tg_gateway.transit_gateway](https://registry.terraform.io/providers/IBM-Cloud/ibm/2.7.0/docs/resources/tg_gateway) | resource |
+| [ibm_resource_group.existing](https://registry.terraform.io/providers/IBM-Cloud/ibm/2.7.0/docs/data-sources/resource_group) | data source |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_create_new_resource_group_name"></a> [create\_new\_resource\_group\_name](#input\_create\_new\_resource\_group\_name) | Name of the new resource group to create if no existing name or ID is provided. If neither existing\_resource\_group\_name nor existing\_resource\_group\_id is provided, a new resource group will be created with this name. | `string` | `null` | no |
 | <a name="input_create_transit_gateway"></a> [create\_transit\_gateway](#input\_create\_transit\_gateway) | Set to true to create a Transit Gateway for the PowerVS workspace and attach it. | `bool` | `true` | no |
 | <a name="input_existing_resource_group_id"></a> [existing\_resource\_group\_id](#input\_existing\_resource\_group\_id) | The ID of an existing resource group to provision resources into. Only one of existing\_resource\_group\_name or existing\_resource\_group\_id or create\_new\_resource\_group\_name should be provided. | `string` | `null` | no |
@@ -59,7 +59,7 @@ Power Virtual Server workspace tile that will provision the following:
 ### Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_pi_images"></a> [pi\_images](#output\_pi\_images) | Object containing imported PowerVS image names and image ids. |
 | <a name="output_pi_private_subnet_1"></a> [pi\_private\_subnet\_1](#output\_pi\_private\_subnet\_1) | Created PowerVS private subnet 1 details. |
 | <a name="output_pi_private_subnet_2"></a> [pi\_private\_subnet\_2](#output\_pi\_private\_subnet\_2) | Created PowerVS private subnet 2 details. |
